@@ -1,0 +1,104 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: IOTA
+providerId: iota
+created: '2026-06-14'
+modified: '2026-06-14'
+reconciled: true
+tags:
+  - Blockchain
+  - Distributed Ledger
+  - Web3
+  - RPC
+  - Rate Limiting
+description: >-
+  Rate limits for IOTA's public shared JSON-RPC and GraphQL endpoints across Mainnet, Testnet, and
+  Devnet networks. All public endpoints are load-balanced but subject to rate limiting. The IOTA
+  Foundation does not publish precise numeric rate limit values for public infrastructure; the
+  documented guidance is that public nodes are not intended for production-level applications. For
+  production use, developers should operate their own IOTA full node or use a commercial third-party
+  RPC provider such as Tatum, Ankr, Monochain, or GetBlock.
+sources:
+  - https://docs.iota.org/developer/network-overview
+  - https://docs.iota.org/iota-api-ref
+  - https://github.com/iotaledger/iri/issues/1304
+responseCodes:
+  throttled: 429
+  blocked: 403
+limits:
+  - name: Public endpoint rate limit (per IP)
+    scope: ip
+    metric: requests_per_second
+    limit: unspecified
+    timeFrame: 1s
+    notes: >-
+      The IOTA Foundation operates public endpoints that are load-balanced and rate limited, but
+      does not publish exact numeric limits. Applications that exceed unannounced thresholds will
+      receive 429 Too Many Requests responses. Public endpoints at api.mainnet.iota.cafe,
+      api.testnet.iota.cafe, and api.devnet.iota.cafe are shared infrastructure intended for
+      development and testing only.
+  - name: Indexer endpoint rate limit (per IP)
+    scope: ip
+    metric: indexer_requests_per_second
+    limit: unspecified
+    timeFrame: 1s
+    notes: >-
+      Extended API methods (iotax_* prefixed) are served by the indexer endpoints at
+      indexer.mainnet.iota.cafe, indexer.testnet.iota.cafe, and indexer.devnet.iota.cafe.
+      These endpoints are also load-balanced and rate limited. Rate limits are not publicly
+      specified and may differ from full node endpoints.
+  - name: GraphQL RPC rate limit (per IP)
+    scope: ip
+    metric: graphql_requests_per_second
+    limit: unspecified
+    timeFrame: 1s
+    notes: >-
+      The GraphQL RPC endpoints at graphql.mainnet.iota.cafe, graphql.testnet.iota.cafe, and
+      graphql.devnet.iota.cafe are subject to their own rate limits. GraphQL query complexity
+      limits may also apply. Exact limits are not publicly documented.
+  - name: Testnet faucet rate limit
+    scope: ip
+    metric: faucet_requests
+    limit: unspecified
+    timeFrame: 1d
+    notes: >-
+      The testnet faucet at faucet.testnet.iota.cafe and devnet faucet at faucet.devnet.iota.cafe
+      are rate limited to prevent abuse. Faucet limits are not publicly specified. The faucets
+      dispense IOTA tokens with no monetary value for testing purposes only.
+policies:
+  - name: Use public endpoints for development only
+    description: >-
+      The IOTA documentation explicitly states that all public endpoints are load-balanced and
+      subject to rate limiting, and recommends setting up dedicated infrastructure for
+      production-level applications to have more control and avoid rate limit constraints.
+  - name: Back off on 429 responses
+    description: >-
+      When a 429 Too Many Requests response is received, the client should stop sending requests
+      immediately, implement exponential backoff with jitter, and retry after a wait period.
+      The IOTA public endpoints do not guarantee a Retry-After header.
+  - name: Use cursor-based pagination
+    description: >-
+      For list methods such as iotax_getCoins, iota_getCheckpoints, and iotax_getDynamicFields,
+      use cursor-based pagination to retrieve data in smaller pages rather than requesting large
+      result sets. This reduces per-request processing time and response size, lowering the
+      chance of hitting rate limits.
+  - name: Prefer batch methods
+    description: >-
+      Use iota_multiGetObjects and iota_multiGetTransactionBlocks instead of making individual
+      iota_getObject or iota_getTransactionBlock calls in a loop. Batching reduces the total
+      number of RPC round trips and lowers rate limit pressure.
+  - name: Use GraphQL for complex queries
+    description: >-
+      The GraphQL RPC at graphql.mainnet.iota.cafe can retrieve multiple related data types in
+      a single query, reducing the number of JSON-RPC calls needed and improving efficiency
+      for analytics and data pipeline use cases.
+  - name: Production requires dedicated infrastructure
+    description: >-
+      Public RPC endpoints are not intended for production applications. Applications serving
+      real users should run their own IOTA full node or use a commercial RPC provider such as
+      Tatum (tatum.io), Ankr (ankr.com), Monochain, or GetBlock to obtain guaranteed capacity,
+      uptime SLAs, and customer support.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

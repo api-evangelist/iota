@@ -1,0 +1,135 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: IOTA
+providerId: iota
+created: '2026-06-14'
+modified: '2026-06-14'
+reconciled: true
+tags:
+  - Blockchain
+  - Distributed Ledger
+  - Web3
+  - RPC
+  - FinOps
+  - FOCUS
+description: >-
+  FOCUS-aligned FinOps for IOTA blockchain infrastructure. IOTA's public RPC endpoints carry no
+  direct monetary cost but impose unspecified rate limits that create operational risk for production
+  applications. Production cost is incurred via self-hosted IOTA full nodes (infrastructure spend)
+  or commercial RPC provider subscriptions (third-party SaaS). On-chain transaction gas fees
+  denominated in IOTA tokens are the primary cost metric for applications submitting transactions.
+  The platform's design goal of feeless microtransactions means gas costs are intended to be minimal,
+  but gas budgets must still be managed for high-volume on-chain operations.
+sources:
+  - https://docs.iota.org/developer/network-overview
+  - https://docs.iota.org/iota-api-ref
+  - https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: IOTA Foundation
+serviceCategory: Blockchain Infrastructure
+billingModel:
+  pricingCategory: Usage
+  billingFrequency: Per-transaction (on-chain gas) + subscription (RPC provider or infrastructure)
+  billingCurrency: IOTA Token (on-chain) / USD (RPC providers)
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Adjustment
+focusColumns:
+  ServiceName: IOTA RPC
+  ServiceCategory: Blockchain Infrastructure
+  ProviderName: IOTA Foundation
+  PublisherName: IOTA Foundation
+  InvoiceIssuerName: IOTA Foundation
+  BillingCurrency: IOTA / USD
+  ChargeCategory: Usage
+  PricingCategory: Usage
+  PricingUnit: transaction / request
+meters:
+  - name: transaction_gas_fee
+    description: >-
+      Gas fee in IOTA tokens charged per transaction executed on the IOTA network. Gas budget
+      must be specified when constructing transactions via the Transaction Builder API. The
+      reference gas price can be obtained via iotax_getReferenceGasPrice.
+    unit: IOTA token (MIST subunit)
+    aggregation: sum
+    dimensions:
+      - network
+      - transaction_type
+      - gas_budget
+      - gas_used
+  - name: rpc_requests
+    description: >-
+      Total JSON-RPC HTTP requests and GraphQL queries made against public or private IOTA
+      endpoints. Free on public endpoints (rate-limited); metered by commercial providers.
+    unit: request
+    aggregation: sum
+    dimensions:
+      - network
+      - method
+      - endpoint_type
+  - name: indexer_requests
+    description: >-
+      Extended API (iotax_*) requests made against IOTA indexer endpoints. These are served by
+      separate indexer infrastructure and may be metered differently by commercial providers.
+    unit: request
+    aggregation: sum
+    dimensions:
+      - network
+      - method
+  - name: rpc_provider_spend
+    description: >-
+      Monthly or usage-based spend to a commercial IOTA RPC provider (Tatum, Ankr, Monochain,
+      GetBlock, etc.) for dedicated RPC access beyond the public rate-limited endpoints.
+    unit: USD
+    aggregation: sum
+    dimensions:
+      - provider
+      - plan_tier
+      - billing_period
+  - name: node_infrastructure_spend
+    description: >-
+      Monthly infrastructure cost for self-hosted IOTA full nodes or indexers, including
+      compute, storage, and network egress.
+    unit: USD
+    aggregation: sum
+    dimensions:
+      - cloud_provider
+      - node_type
+      - region
+principles:
+  - name: Visibility
+    description: >-
+      Instrument every RPC call with method-level tagging to distinguish lightweight read calls
+      (iota_getObject, iotax_getBalance) from complex aggregate queries (iotax_getDynamicFields,
+      iotax_getAllEpochAddressMetrics). Track on-chain gas fees using the gasUsed field in
+      transaction effects returned by iota_executeTransactionBlock and iota_getTransactionBlock.
+      Use iotax_getReferenceGasPrice to monitor network gas price trends.
+  - name: Allocation
+    description: >-
+      Tag RPC usage by application component (wallet, analytics pipeline, indexer, dApp backend).
+      For on-chain gas costs, attribute IOTA token spend to the signing account and transaction
+      type using the gas object and gasUsed fields in transaction metadata. Allocate RPC provider
+      subscription costs to product teams by endpoint usage.
+  - name: Optimization
+    description: >-
+      Use iota_multiGetObjects and iota_multiGetTransactionBlocks to batch read calls instead of
+      individual object lookups. Replace polling with GraphQL subscriptions or indexer queries
+      for event-driven architectures. Use cursor-based pagination to limit response sizes.
+      Call iota_dryRunTransactionBlock before submitting to optimize gas budgets and avoid
+      failed transactions that still consume gas.
+  - name: Accountability
+    description: >-
+      Set per-team RPC request budgets and alert on 429 error rate spikes as a proxy for
+      infrastructure overspend or inefficient query patterns. Review gas expenditure weekly
+      for high-volume transaction submitters. Designate an infrastructure owner for RPC
+      provider contract renewals and full node capacity planning.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

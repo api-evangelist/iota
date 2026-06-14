@@ -1,0 +1,119 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: IOTA
+providerId: iota
+created: '2026-06-14'
+modified: '2026-06-14'
+reconciled: true
+tags:
+  - Blockchain
+  - Distributed Ledger
+  - Web3
+  - RPC
+description: >-
+  IOTA's public JSON-RPC and GraphQL endpoints are free to use with no authentication required, but
+  operate as shared load-balanced infrastructure subject to rate limits and not recommended for
+  production applications at scale. For production use, developers are expected to run their own
+  IOTA full node or subscribe to a third-party RPC provider (Tatum, Ankr, Monochain, GetBlock, etc.)
+  which offer their own pricing tiers. The IOTA Foundation does not publish official tiered pricing
+  for its public node infrastructure; rate limits may change without notice.
+sources:
+  - https://docs.iota.org/developer/network-overview
+  - https://docs.iota.org/iota-api-ref
+  - https://www.comparenodes.com/protocols/iota/
+plans:
+  - id: iota-public-free
+    name: Public Free Tier
+    type: free
+    description: >-
+      Free shared public RPC endpoints for Mainnet, Testnet, and Devnet. No API key required.
+      Subject to rate limits; not intended for high-volume production traffic. Suitable for
+      prototyping, testing, and early development workloads.
+    entries:
+      - label: Requests per second per IP
+        name: requests_per_second
+        type: rate-limit
+        metric: request
+        limit: 100
+        timeFrame: 1s
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Monthly cost
+        name: monthly_cost
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Mainnet JSON-RPC (https://api.mainnet.iota.cafe:443)
+      - name: Testnet JSON-RPC (https://api.testnet.iota.cafe)
+      - name: Devnet JSON-RPC (https://api.devnet.iota.cafe)
+      - name: Mainnet GraphQL (https://graphql.mainnet.iota.cafe)
+      - name: Mainnet Indexer (https://indexer.mainnet.iota.cafe:443)
+      - name: All 70+ JSON-RPC methods
+      - name: GraphQL RPC access
+      - name: No API key required
+      - name: Shared infrastructure, no SLA
+      - name: Testnet and Devnet faucets available
+  - id: iota-third-party-rpc
+    name: Third-Party RPC Provider
+    type: paid
+    description: >-
+      Commercial RPC providers including Tatum, Ankr, Monochain, and GetBlock offer dedicated IOTA
+      endpoints with higher rate limits, uptime SLAs, and support. Pricing varies by provider and
+      plan tier. Recommended for production applications requiring reliability and throughput beyond
+      the public shared endpoints.
+    entries:
+      - label: Requests per day (starter tier example)
+        name: requests_per_day
+        type: rate-limit
+        metric: request
+        limit: 1000000
+        timeFrame: 1d
+        geo: global
+        unit: 1
+        price: contact provider
+        userMultiplied: false
+    elements:
+      - name: Dedicated IOTA Mainnet endpoints
+      - name: API key authentication
+      - name: Higher rate limits than public endpoints
+      - name: Uptime SLA
+      - name: Provider-specific support
+      - name: Usage dashboards and analytics
+  - id: iota-self-hosted
+    name: Self-Hosted Full Node
+    type: enterprise
+    description: >-
+      Operate your own IOTA full node or indexer for dedicated, high-throughput access with no
+      third-party rate limits. Requires significant infrastructure investment and operational expertise.
+      Recommended for production applications with high transaction volumes or specific data requirements.
+    entries:
+      - label: Infrastructure cost
+        name: infra_cost
+        type: subscription
+        metric: infrastructure
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact provider
+        userMultiplied: false
+    elements:
+      - name: Unlimited requests (hardware constrained)
+      - name: Full IOTA ledger history
+      - name: No external rate limits
+      - name: GraphQL and JSON-RPC access
+      - name: Optional indexer for Extended API methods
+      - name: Local development at http://127.0.0.1:9000
+      - name: Configurable node parameters
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
