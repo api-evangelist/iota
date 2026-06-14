@@ -1,0 +1,135 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "iota": "https://docs.iota.org/vocabulary#",
+    "openrpc": "https://open-rpc.org/meta-schema#",
+    "aid": "https://apis.io/vocabulary#aid",
+    "baseURL": "https://apis.io/vocabulary#baseURL",
+    "humanURL": "https://apis.io/vocabulary#humanURL",
+    "specificationVersion": "https://apis.io/vocabulary#specificationVersion",
+    "tags": "keywords",
+    "common": "https://apis.io/vocabulary#common",
+    "properties": "https://apis.io/vocabulary#properties",
+    "maintainers": "https://apis.io/vocabulary#maintainers",
+    "iota:CoinQuery": {
+      "@id": "iota:CoinQuery",
+      "@type": "@id"
+    },
+    "iota:ReadAPI": {
+      "@id": "iota:ReadAPI",
+      "@type": "@id"
+    },
+    "iota:ExtendedAPI": {
+      "@id": "iota:ExtendedAPI",
+      "@type": "@id"
+    },
+    "iota:GovernanceReadAPI": {
+      "@id": "iota:GovernanceReadAPI",
+      "@type": "@id"
+    },
+    "iota:MoveUtils": {
+      "@id": "iota:MoveUtils",
+      "@type": "@id"
+    },
+    "iota:TransactionBuilder": {
+      "@id": "iota:TransactionBuilder",
+      "@type": "@id"
+    },
+    "iota:WriteAPI": {
+      "@id": "iota:WriteAPI",
+      "@type": "@id"
+    },
+    "iota:GraphQLAPI": {
+      "@id": "iota:GraphQLAPI",
+      "@type": "@id"
+    },
+    "iota:EVMAPI": {
+      "@id": "iota:EVMAPI",
+      "@type": "@id"
+    },
+    "iota:Blockchain": {
+      "@id": "iota:Blockchain",
+      "@type": "@id"
+    },
+    "iota:MoveLanguage": {
+      "@id": "iota:MoveLanguage",
+      "@type": "@id"
+    },
+    "iota:Tangle": {
+      "@id": "iota:Tangle",
+      "@type": "@id"
+    },
+    "iota:JsonRpc": {
+      "@id": "iota:JsonRpc",
+      "@type": "@id"
+    },
+    "iota:Checkpoint": {
+      "@id": "iota:Checkpoint",
+      "@type": "@id"
+    },
+    "iota:TransactionBlock": {
+      "@id": "iota:TransactionBlock",
+      "@type": "@id"
+    },
+    "iota:Object": {
+      "@id": "iota:Object",
+      "@type": "@id"
+    },
+    "iota:Coin": {
+      "@id": "iota:Coin",
+      "@type": "@id"
+    },
+    "iota:Validator": {
+      "@id": "iota:Validator",
+      "@type": "@id"
+    },
+    "iota:Epoch": {
+      "@id": "iota:Epoch",
+      "@type": "@id"
+    },
+    "iota:DynamicField": {
+      "@id": "iota:DynamicField",
+      "@type": "@id"
+    },
+    "iota:IotaNames": {
+      "@id": "iota:IotaNames",
+      "@type": "@id"
+    },
+    "iota:GasEstimate": {
+      "@id": "iota:GasEstimate",
+      "@type": "@id"
+    },
+    "iota:MoveModule": {
+      "@id": "iota:MoveModule",
+      "@type": "@id"
+    },
+    "iota:MoveFunction": {
+      "@id": "iota:MoveFunction",
+      "@type": "@id"
+    },
+    "iota:MoveStruct": {
+      "@id": "iota:MoveStruct",
+      "@type": "@id"
+    },
+    "iota:StakingPosition": {
+      "@id": "iota:StakingPosition",
+      "@type": "@id"
+    },
+    "iota:SystemState": {
+      "@id": "iota:SystemState",
+      "@type": "@id"
+    },
+    "iota:ProtocolConfig": {
+      "@id": "iota:ProtocolConfig",
+      "@type": "@id"
+    },
+    "iota:ChainIdentifier": {
+      "@id": "iota:ChainIdentifier",
+      "@type": "@id"
+    },
+    "iota:Event": {
+      "@id": "iota:Event",
+      "@type": "@id"
+    }
+  }
+}
