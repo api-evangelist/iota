@@ -1,0 +1,14 @@
+{
+  "repo": "iota",
+  "feeds": [
+    {
+      "source": "https://faucet.testnet.iota.cafe",
+      "feed_url": "https://faucet.testnet.iota.cafe",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-14T20:42:17Z"
+}
