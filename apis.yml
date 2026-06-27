@@ -254,13 +254,13 @@ common:
 - type: Authentication
   url: https://docs.iota.org/developer/network-overview
   title: Public endpoints require no API key; load balanced and rate limited
-- type: SDK
+- type: SDKs
   url: https://docs.iota.org/developer/ts-sdk/
   title: IOTA TypeScript SDK
-- type: SDK
+- type: SDKs
   url: https://github.com/iotaledger/iota/tree/develop/crates/iota-sdk
   title: IOTA Rust SDK
-- type: SDK
+- type: SDKs
   url: https://docs.iota.org/developer/references/iota-api
   title: IOTA GraphQL RPC
 - type: CLI
