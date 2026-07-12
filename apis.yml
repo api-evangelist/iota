@@ -240,6 +240,10 @@ apis:
     The IOTA EVM is a WASP-based smart contract chain with an Ethereum-compatible
     interface for cross-chain interoperability and developer migration from EVM ecosystems.
 common:
+- type: DomainSecurity
+  url: security/iota-domain-security.yml
+- type: Authentication
+  url: authentication/iota-authentication.yml
 - type: Website
   url: https://www.iota.org/
 - type: Portal

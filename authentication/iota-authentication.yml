@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/iota-evm-wasp-openapi.yaml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Authorization
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: JWT Token
+  sources:
+  - openapi/iota-evm-wasp-openapi.yaml
