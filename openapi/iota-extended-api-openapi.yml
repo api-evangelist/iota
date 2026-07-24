@@ -1,0 +1,1302 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth Extended API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: Extended
+  description: Indexer-exclusive methods for advanced queries, events, dynamic fields, IOTA Names
+paths:
+  /iotax_getCheckpointAddressMetrics:
+    post:
+      operationId: iotax_getCheckpointAddressMetrics
+      summary: iotax_getCheckpointAddressMetrics
+      description: Address related metrics. Exclusively served by the indexer.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getCheckpointAddressMetrics
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getCheckpointAddressMetrics
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/AddressMetrics'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getDynamicFieldObject:
+    post:
+      operationId: iotax_getDynamicFieldObject
+      summary: iotax_getDynamicFieldObject
+      description: Return the dynamic field object information for a specified object
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getDynamicFieldObject
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getDynamicFieldObject
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/IotaObjectResponse'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getDynamicFieldObjectV2:
+    post:
+      operationId: iotax_getDynamicFieldObjectV2
+      summary: iotax_getDynamicFieldObjectV2
+      description: Return the dynamic field object information for a specified object with content options.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getDynamicFieldObjectV2
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getDynamicFieldObjectV2
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/IotaObjectResponse'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getDynamicFields:
+    post:
+      operationId: iotax_getDynamicFields
+      summary: iotax_getDynamicFields
+      description: Return the list of dynamic field objects owned by an object.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getDynamicFields
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getDynamicFields
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/Page_for_DynamicFieldInfo_and_ObjectID'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getLatestAddressMetrics:
+    post:
+      operationId: iotax_getLatestAddressMetrics
+      summary: iotax_getLatestAddressMetrics
+      description: Address related metrics. Exclusively served by the indexer.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getLatestAddressMetrics
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getLatestAddressMetrics
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/AddressMetrics'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getMoveCallMetrics:
+    post:
+      operationId: iotax_getMoveCallMetrics
+      summary: iotax_getMoveCallMetrics
+      description: Return move call metrics. Exclusively served by the indexer.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getMoveCallMetrics
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getMoveCallMetrics
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/MoveCallMetrics'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getNetworkMetrics:
+    post:
+      operationId: iotax_getNetworkMetrics
+      summary: iotax_getNetworkMetrics
+      description: Return Network metrics. Exclusively served by the indexer.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getNetworkMetrics
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getNetworkMetrics
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/NetworkMetrics'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getOwnedObjects:
+    post:
+      operationId: iotax_getOwnedObjects
+      summary: iotax_getOwnedObjects
+      description: Return the list of objects owned by an address. Note that if the address owns more than `QUERY_MAX_RESULT_LIMIT` objects, the pagination is not accurate, because previous page may have been updated when the next page is fetched. Please use iotax_queryObjects if this is a concern.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getOwnedObjects
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getOwnedObjects
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/Page_for_IotaObjectResponse_and_ObjectID'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getTotalTransactions:
+    post:
+      operationId: iotax_getTotalTransactions
+      summary: iotax_getTotalTransactions
+      description: Return the total number of transactions. Exclusively served by the indexer.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getTotalTransactions
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getTotalTransactions
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: string
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_iotaNamesFindAllRegistrationNFTs:
+    post:
+      operationId: iotax_iotaNamesFindAllRegistrationNFTs
+      summary: iotax_iotaNamesFindAllRegistrationNFTs
+      description: Find all registration NFTs for the given address.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_iotaNamesFindAllRegistrationNFTs
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_iotaNamesFindAllRegistrationNFTs
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/Page_for_IotaObjectResponse_and_ObjectID'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_iotaNamesLookup:
+    post:
+      operationId: iotax_iotaNamesLookup
+      summary: iotax_iotaNamesLookup
+      description: Return the resolved record for the given name.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_iotaNamesLookup
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_iotaNamesLookup
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/IotaNameRecord'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_iotaNamesReverseLookup:
+    post:
+      operationId: iotax_iotaNamesReverseLookup
+      summary: iotax_iotaNamesReverseLookup
+      description: Return the resolved name for the given address.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_iotaNamesReverseLookup
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_iotaNamesReverseLookup
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: string
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_queryEvents:
+    post:
+      operationId: iotax_queryEvents
+      summary: iotax_queryEvents
+      description: Return list of events for a specified query criteria.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_queryEvents
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_queryEvents
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/Page_for_Event_and_EventID'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_queryTransactionBlocks:
+    post:
+      operationId: iotax_queryTransactionBlocks
+      summary: iotax_queryTransactionBlocks
+      description: Return list of transactions for a specified query criteria.
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_queryTransactionBlocks
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_queryTransactionBlocks
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/Page_for_TransactionBlockResponse_and_Base58'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_subscribeEvent:
+    post:
+      operationId: iotax_subscribeEvent
+      summary: iotax_subscribeEvent
+      description: Subscribe to a stream of IOTA event
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_subscribeEvent
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_subscribeEvent
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/Event'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_subscribeTransaction:
+    post:
+      operationId: iotax_subscribeTransaction
+      summary: iotax_subscribeTransaction
+      description: Subscribe to a stream of IOTA transaction effects
+      tags:
+      - Extended
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_subscribeTransaction
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_subscribeTransaction
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/TransactionBlockEffects'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+components:
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

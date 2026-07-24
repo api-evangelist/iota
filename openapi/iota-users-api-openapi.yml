@@ -1,0 +1,326 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth users API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: users
+paths:
+  /v1/users:
+    get:
+      operationId: getUsers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: A list of all users
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Get a list of all users
+      tags:
+      - users
+    post:
+      operationId: addUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUserRequest'
+        description: The user data
+        required: true
+      responses:
+        '201':
+          content: {}
+          description: User successfully added
+        '400':
+          content: {}
+          description: Invalid request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Add a user
+      tags:
+      - users
+      x-codegen-request-body-name: ''
+  /v1/users/{username}:
+    delete:
+      operationId: deleteUser
+      parameters:
+      - description: The username
+        in: path
+        name: username
+        required: true
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content: {}
+          description: Deletes a specific user
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+        '404':
+          content: {}
+          description: User not found
+      security:
+      - Authorization: []
+      summary: Deletes a user
+      tags:
+      - users
+    get:
+      operationId: getUser
+      parameters:
+      - description: The username
+        in: path
+        name: username
+        required: true
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Returns a specific user
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+        '404':
+          content: {}
+          description: User not found
+      security:
+      - Authorization: []
+      summary: Get a user
+      tags:
+      - users
+  /v1/users/{username}/password:
+    put:
+      operationId: changeUserPassword
+      parameters:
+      - description: The username
+        in: path
+        name: username
+        required: true
+        schema:
+          format: string
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserPasswordRequest'
+        description: The users new password
+        required: true
+      responses:
+        '200':
+          content: {}
+          description: User successfully updated
+        '400':
+          content: {}
+          description: Invalid request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+        '404':
+          content: {}
+          description: User not found
+      security:
+      - Authorization: []
+      summary: Change user password
+      tags:
+      - users
+      x-codegen-request-body-name: ''
+  /v1/users/{username}/permissions:
+    put:
+      operationId: changeUserPermissions
+      parameters:
+      - description: The username
+        in: path
+        name: username
+        required: true
+        schema:
+          format: string
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserPermissionsRequest'
+        description: The users new permissions
+        required: true
+      responses:
+        '200':
+          content: {}
+          description: User successfully updated
+        '400':
+          content: {}
+          description: Invalid request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+        '404':
+          content: {}
+          description: User not found
+      security:
+      - Authorization: []
+      summary: Change user permissions
+      tags:
+      - users
+      x-codegen-request-body-name: ''
+components:
+  schemas:
+    AddUserRequest:
+      example:
+        password: password
+        permissions:
+        - permissions
+        - permissions
+        username: username
+      properties:
+        password:
+          format: string
+          type: string
+          xml:
+            name: Password
+        permissions:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Permissions
+            wrapped: true
+        username:
+          format: string
+          type: string
+          xml:
+            name: Username
+      required:
+      - password
+      - permissions
+      - username
+      type: object
+      xml:
+        name: AddUserRequest
+    UpdateUserPasswordRequest:
+      example:
+        password: password
+      properties:
+        password:
+          format: string
+          type: string
+          xml:
+            name: Password
+      required:
+      - password
+      type: object
+      xml:
+        name: UpdateUserPasswordRequest
+    User:
+      example:
+        permissions:
+        - permissions
+        - permissions
+        username: username
+      properties:
+        permissions:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Permissions
+            wrapped: true
+        username:
+          format: string
+          type: string
+          xml:
+            name: Username
+      required:
+      - permissions
+      - username
+      type: object
+      xml:
+        name: User
+    ValidationError:
+      example:
+        error: error
+        missingPermission: missingPermission
+      properties:
+        error:
+          format: string
+          type: string
+          xml:
+            name: Error
+        missingPermission:
+          format: string
+          type: string
+          xml:
+            name: MissingPermission
+      required:
+      - error
+      - missingPermission
+      type: object
+      xml:
+        name: ValidationError
+    UpdateUserPermissionsRequest:
+      example:
+        permissions:
+        - permissions
+        - permissions
+      properties:
+        permissions:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Permissions
+            wrapped: true
+      required:
+      - permissions
+      type: object
+      xml:
+        name: UpdateUserPermissionsRequest
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

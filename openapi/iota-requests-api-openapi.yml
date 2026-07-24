@@ -1,0 +1,56 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth requests API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: requests
+paths:
+  /v1/requests/offledger:
+    post:
+      operationId: offLedger
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OffLedgerRequest'
+        description: Offledger request as JSON. Request encoded in Hex
+        required: true
+      responses:
+        '202':
+          content: {}
+          description: Request submitted
+      summary: Post an off-ledger request
+      tags:
+      - requests
+      x-codegen-request-body-name: ''
+components:
+  schemas:
+    OffLedgerRequest:
+      example:
+        request: Hex string
+      properties:
+        request:
+          description: Offledger Request (Hex)
+          example: Hex string
+          format: string
+          type: string
+          xml:
+            name: Request
+      required:
+      - request
+      type: object
+      xml:
+        name: OffLedgerRequest
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

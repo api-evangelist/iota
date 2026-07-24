@@ -1,0 +1,908 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth Read API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: Read
+  description: 'Core read operations: objects, checkpoints, transactions, events, protocol config'
+paths:
+  /iota_getChainIdentifier:
+    post:
+      operationId: iota_getChainIdentifier
+      summary: iota_getChainIdentifier
+      description: Return the first four bytes of the chain's genesis checkpoint digest.
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getChainIdentifier
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getChainIdentifier
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: string
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getCheckpoint:
+    post:
+      operationId: iota_getCheckpoint
+      summary: iota_getCheckpoint
+      description: Return a checkpoint
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getCheckpoint
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getCheckpoint
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/Checkpoint'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getCheckpoints:
+    post:
+      operationId: iota_getCheckpoints
+      summary: iota_getCheckpoints
+      description: Return paginated list of checkpoints
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getCheckpoints
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getCheckpoints
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/Page_for_Checkpoint_and_String'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getEvents:
+    post:
+      operationId: iota_getEvents
+      summary: iota_getEvents
+      description: Return transaction events.
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getEvents
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getEvents
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getLatestCheckpointSequenceNumber:
+    post:
+      operationId: iota_getLatestCheckpointSequenceNumber
+      summary: iota_getLatestCheckpointSequenceNumber
+      description: Return the sequence number of the latest checkpoint that has been executed
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getLatestCheckpointSequenceNumber
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getLatestCheckpointSequenceNumber
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: string
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getObject:
+    post:
+      operationId: iota_getObject
+      summary: iota_getObject
+      description: Return the object information for a specified object
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getObject
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getObject
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/IotaObjectResponse'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getProtocolConfig:
+    post:
+      operationId: iota_getProtocolConfig
+      summary: iota_getProtocolConfig
+      description: Return the protocol config table for the given version number. If the version number is not specified, If none is specified, the node uses the version of the latest epoch it has processed.
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getProtocolConfig
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getProtocolConfig
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/ProtocolConfig'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_multiGetObjects:
+    post:
+      operationId: iota_multiGetObjects
+      summary: iota_multiGetObjects
+      description: Return the object data for a list of objects
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_multiGetObjects
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_multiGetObjects
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IotaObjectResponse'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_tryGetPastObject:
+    post:
+      operationId: iota_tryGetPastObject
+      summary: iota_tryGetPastObject
+      description: Note there is no software-level guarantee/SLA that objects with past versions can be retrieved by this API, even if the object and version exists/existed. The result may vary across nodes depending on their pruning policies. Return the object information for a specified version
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_tryGetPastObject
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_tryGetPastObject
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/ObjectRead'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_tryMultiGetPastObjects:
+    post:
+      operationId: iota_tryMultiGetPastObjects
+      summary: iota_tryMultiGetPastObjects
+      description: Note there is no software-level guarantee/SLA that objects with past versions can be retrieved by this API, even if the object and version exists/existed. The result may vary across nodes depending on their pruning policies. Return the object information for a specified version
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_tryMultiGetPastObjects
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_tryMultiGetPastObjects
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ObjectRead'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_view:
+    post:
+      operationId: iota_view
+      summary: iota_view
+      description: Calls a move view function.
+      tags:
+      - Read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_view
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_view
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/IotaMoveViewCallResults'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+components:
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

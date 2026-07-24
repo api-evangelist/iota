@@ -1,0 +1,31 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth Health API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: Health
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      responses:
+        '200':
+          content: {}
+          description: The node is healthy.
+      summary: Returns 200 if the node is healthy.
+      tags:
+      - Health
+components:
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

@@ -1,0 +1,1447 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth corecontracts API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: corecontracts
+paths:
+  /v1/chain/core/accounts/account/{agentID}/balance:
+    get:
+      operationId: accountsGetAccountBalance
+      parameters:
+      - description: AgentID (Hex Address for L1 accounts | Hex for EVM)
+        in: path
+        name: agentID
+        required: true
+        schema:
+          format: string
+          type: string
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetsResponse'
+          description: All assets belonging to an account
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get all assets belonging to an account
+      tags:
+      - corecontracts
+  /v1/chain/core/accounts/account/{agentID}/nonce:
+    get:
+      operationId: accountsGetAccountNonce
+      parameters:
+      - description: AgentID (Hex Address for L1 accounts | Hex for EVM)
+        in: path
+        name: agentID
+        required: true
+        schema:
+          format: string
+          type: string
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountNonceResponse'
+          description: The current nonce of an account
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the current nonce of an account
+      tags:
+      - corecontracts
+  /v1/chain/core/accounts/total_assets:
+    get:
+      operationId: accountsGetTotalAssets
+      parameters:
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetsResponse'
+          description: All stored assets
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get all stored assets
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/blocks/latest:
+    get:
+      operationId: blocklogGetLatestBlockInfo
+      parameters:
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockInfoResponse'
+          description: The block info
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the block info of the latest block
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/blocks/latest/receipts:
+    get:
+      operationId: blocklogGetRequestReceiptsOfLatestBlock
+      parameters:
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ReceiptResponse'
+                type: array
+          description: The receipts
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get all receipts of the latest block
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/blocks/latest/requestids:
+    get:
+      operationId: blocklogGetRequestIDsForLatestBlock
+      parameters:
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestIDsResponse'
+          description: A list of request ids (ISCRequestID[])
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the request ids for the latest block
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/blocks/{blockIndex}:
+    get:
+      operationId: blocklogGetBlockInfo
+      parameters:
+      - description: BlockIndex (uint32)
+        in: path
+        name: blockIndex
+        required: true
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockInfoResponse'
+          description: The block info
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the block info of a certain block index
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/blocks/{blockIndex}/receipts:
+    get:
+      operationId: blocklogGetRequestReceiptsOfBlock
+      parameters:
+      - description: BlockIndex (uint32)
+        in: path
+        name: blockIndex
+        required: true
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ReceiptResponse'
+                type: array
+          description: The receipts
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get all receipts of a certain block
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/blocks/{blockIndex}/requestids:
+    get:
+      operationId: blocklogGetRequestIDsForBlock
+      parameters:
+      - description: BlockIndex (uint32)
+        in: path
+        name: blockIndex
+        required: true
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestIDsResponse'
+          description: A list of request ids (ISCRequestID[])
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the request ids for a certain block index
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/controladdresses:
+    get:
+      operationId: blocklogGetControlAddresses
+      parameters:
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ControlAddressesResponse'
+          description: The chain info
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the control addresses
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/events/block/latest:
+    get:
+      operationId: blocklogGetEventsOfLatestBlock
+      parameters:
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsResponse'
+          description: The receipts
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get events of the latest block
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/events/block/{blockIndex}:
+    get:
+      operationId: blocklogGetEventsOfBlock
+      parameters:
+      - description: BlockIndex (uint32)
+        in: path
+        name: blockIndex
+        required: true
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsResponse'
+          description: The events
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get events of a block
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/events/request/{requestID}:
+    get:
+      operationId: blocklogGetEventsOfRequest
+      parameters:
+      - description: RequestID (Hex)
+        in: path
+        name: requestID
+        required: true
+        schema:
+          format: string
+          type: string
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsResponse'
+          description: The events
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get events of a request
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/requests/{requestID}:
+    get:
+      operationId: blocklogGetRequestReceipt
+      parameters:
+      - description: RequestID (Hex)
+        in: path
+        name: requestID
+        required: true
+        schema:
+          format: string
+          type: string
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceiptResponse'
+          description: The receipt
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the receipt of a certain request id
+      tags:
+      - corecontracts
+  /v1/chain/core/blocklog/requests/{requestID}/is_processed:
+    get:
+      operationId: blocklogGetRequestIsProcessed
+      parameters:
+      - description: RequestID (Hex)
+        in: path
+        name: requestID
+        required: true
+        schema:
+          format: string
+          type: string
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestProcessedResponse'
+          description: The processing result
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the request processing status
+      tags:
+      - corecontracts
+  /v1/chain/core/errors/{contractHname}/message/{errorID}:
+    get:
+      operationId: errorsGetErrorMessageFormat
+      parameters:
+      - description: ChainID (Hex Address)
+        in: path
+        name: chainID
+        required: true
+        schema:
+          format: string
+          type: string
+      - description: Contract (Hname as Hex)
+        in: path
+        name: contractHname
+        required: true
+        schema:
+          format: string
+          type: string
+      - description: Error Id (uint16)
+        in: path
+        name: errorID
+        required: true
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageFormatResponse'
+          description: The error message format
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the error message format of a specific error id
+      tags:
+      - corecontracts
+  /v1/chain/core/governance/chainadmin:
+    get:
+      description: Returns the chain admin
+      operationId: governanceGetChainAdmin
+      parameters:
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GovChainAdminResponse'
+          description: The chain admin
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the chain admin
+      tags:
+      - corecontracts
+  /v1/chain/core/governance/chaininfo:
+    get:
+      description: If you are using the common API functions, you most likely rather want to use '/v1/chains/:chainID' to get information about a chain.
+      operationId: governanceGetChainInfo
+      parameters:
+      - description: Block index or trie root
+        in: query
+        name: block
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GovChainInfoResponse'
+          description: The chain info
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      summary: Get the chain info
+      tags:
+      - corecontracts
+components:
+  schemas:
+    ValidationError:
+      example:
+        error: error
+        missingPermission: missingPermission
+      properties:
+        error:
+          format: string
+          type: string
+          xml:
+            name: Error
+        missingPermission:
+          format: string
+          type: string
+          xml:
+            name: MissingPermission
+      required:
+      - error
+      - missingPermission
+      type: object
+      xml:
+        name: ValidationError
+    CoinJSON:
+      example:
+        coinType: coinType
+        balance: balance
+      properties:
+        balance:
+          description: The balance (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: Balance
+        coinType:
+          format: string
+          type: string
+          xml:
+            name: CoinType
+      required:
+      - balance
+      - coinType
+      type: object
+      xml:
+        name: CoinJSON
+    RequestIDsResponse:
+      example:
+        requestIds:
+        - requestIds
+        - requestIds
+      properties:
+        requestIds:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: RequestIDs
+            wrapped: true
+      required:
+      - requestIds
+      type: object
+      xml:
+        name: RequestIDsResponse
+    Limits:
+      example:
+        maxGasExternalViewCall: 5
+        minGasPerRequest: 9
+        maxGasPerBlock: 2
+        maxGasPerRequest: 7
+      properties:
+        maxGasExternalViewCall:
+          description: The maximum gas per external view call
+          format: int64
+          type: integer
+          xml:
+            name: MaxGasExternalViewCall
+        maxGasPerBlock:
+          description: The maximum gas per block
+          format: int64
+          type: integer
+          xml:
+            name: MaxGasPerBlock
+        maxGasPerRequest:
+          description: The maximum gas per request
+          format: int64
+          type: integer
+          xml:
+            name: MaxGasPerRequest
+        minGasPerRequest:
+          description: The minimum gas per request
+          format: int64
+          type: integer
+          xml:
+            name: MinGasPerRequest
+      required:
+      - maxGasExternalViewCall
+      - maxGasPerBlock
+      - maxGasPerRequest
+      - minGasPerRequest
+      type: object
+      xml:
+        name: Limits
+    GovPublicChainMetadata:
+      example:
+        website: website
+        evmWebSocketURL: evmWebSocketURL
+        name: name
+        description: description
+        evmJsonRpcURL: evmJsonRpcURL
+      properties:
+        description:
+          description: The description of the chain.
+          format: string
+          type: string
+          xml:
+            name: Description
+        evmJsonRpcURL:
+          description: The EVM json rpc url
+          format: string
+          type: string
+          xml:
+            name: EVMJsonRPCURL
+        evmWebSocketURL:
+          description: The EVM websocket url)
+          format: string
+          type: string
+          xml:
+            name: EVMWebSocketURL
+        name:
+          description: The name of the chain
+          format: string
+          type: string
+          xml:
+            name: Name
+        website:
+          description: The official website of the chain.
+          format: string
+          type: string
+          xml:
+            name: Website
+      required:
+      - description
+      - evmJsonRpcURL
+      - evmWebSocketURL
+      - name
+      - website
+      type: object
+      xml:
+        name: GovPublicChainMetadata
+    ReceiptResponse:
+      example:
+        gasBurnLog:
+        - code: 6
+          gasBurned: 1
+        - code: 6
+          gasBurned: 1
+        request:
+          senderAccount: senderAccount
+          allowanceError: allowanceError
+          assets:
+            coins:
+            - coinType: coinType
+              balance: balance
+            - coinType: coinType
+              balance: balance
+            objects:
+            - id: id
+              type: type
+            - id: id
+              type: type
+          isOffLedger: true
+          requestId: requestId
+          callTarget:
+            contractHName: contractHName
+            functionHName: functionHName
+          gasBudget: gasBudget
+          allowance:
+            coins:
+            - coinType: coinType
+              balance: balance
+            - coinType: coinType
+              balance: balance
+            objects:
+            - id: id
+              type: type
+            - id: id
+              type: type
+          params:
+          - params
+          - params
+          isEVM: true
+        blockIndex: 1
+        rawError:
+          code: code
+          params:
+          - params
+          - params
+        requestIndex: 1
+        storageDepositCharged: storageDepositCharged
+        gasFeeCharged: gasFeeCharged
+        errorMessage: errorMessage
+        gasBudget: gasBudget
+        gasBurned: gasBurned
+      properties:
+        blockIndex:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: BlockIndex
+        errorMessage:
+          format: string
+          type: string
+          xml:
+            name: ErrorMessage
+        gasBudget:
+          description: The gas budget (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: GasBudget
+        gasBurnLog:
+          items:
+            $ref: '#/components/schemas/BurnRecord'
+          type: array
+          xml:
+            name: GasBurnLog
+            wrapped: true
+        gasBurned:
+          description: The burned gas (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: GasBurned
+        gasFeeCharged:
+          description: The charged gas fee (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: GasFeeCharged
+        rawError:
+          $ref: '#/components/schemas/UnresolvedVMErrorJSON'
+        request:
+          $ref: '#/components/schemas/RequestJSON'
+        requestIndex:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: RequestIndex
+        storageDepositCharged:
+          description: Storage deposit charged (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: SDCharged
+      required:
+      - blockIndex
+      - gasBudget
+      - gasBurnLog
+      - gasBurned
+      - gasFeeCharged
+      - request
+      - requestIndex
+      - storageDepositCharged
+      type: object
+      xml:
+        name: ReceiptResponse
+    RequestJSON:
+      example:
+        senderAccount: senderAccount
+        allowanceError: allowanceError
+        assets:
+          coins:
+          - coinType: coinType
+            balance: balance
+          - coinType: coinType
+            balance: balance
+          objects:
+          - id: id
+            type: type
+          - id: id
+            type: type
+        isOffLedger: true
+        requestId: requestId
+        callTarget:
+          contractHName: contractHName
+          functionHName: functionHName
+        gasBudget: gasBudget
+        allowance:
+          coins:
+          - coinType: coinType
+            balance: balance
+          - coinType: coinType
+            balance: balance
+          objects:
+          - id: id
+            type: type
+          - id: id
+            type: type
+        params:
+        - params
+        - params
+        isEVM: true
+      properties:
+        allowance:
+          $ref: '#/components/schemas/AssetsJSON'
+        allowanceError:
+          format: string
+          type: string
+          xml:
+            name: AllowanceError
+        assets:
+          $ref: '#/components/schemas/AssetsJSON'
+        callTarget:
+          $ref: '#/components/schemas/CallTargetJSON'
+        gasBudget:
+          description: The gas budget (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: GasBudget
+        isEVM:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsEVM
+        isOffLedger:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsOffLedger
+        params:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Params
+            wrapped: true
+        requestId:
+          format: string
+          type: string
+          xml:
+            name: RequestID
+        senderAccount:
+          format: string
+          type: string
+          xml:
+            name: SenderAccount
+      required:
+      - allowance
+      - assets
+      - callTarget
+      - gasBudget
+      - isEVM
+      - isOffLedger
+      - params
+      - requestId
+      - senderAccount
+      type: object
+      xml:
+        name: RequestJSON
+    FeePolicy:
+      example:
+        gasPerToken:
+          a: 0
+          b: 0
+        validatorFeeShare: 5
+        evmGasRatio:
+          a: 0
+          b: 0
+      properties:
+        evmGasRatio:
+          $ref: '#/components/schemas/Ratio32'
+        gasPerToken:
+          $ref: '#/components/schemas/Ratio32'
+        validatorFeeShare:
+          description: The validator fee share.
+          format: int32
+          type: integer
+          xml:
+            name: ValidatorFeeShare
+      required:
+      - evmGasRatio
+      - gasPerToken
+      - validatorFeeShare
+      type: object
+      xml:
+        name: FeePolicy
+    BlockInfoResponse:
+      example:
+        blockIndex: 1
+        numSuccessfulRequests: 1
+        gasFeeCharged: gasFeeCharged
+        gasBurned: gasBurned
+        totalRequests: 1
+        numOffLedgerRequests: 1
+        timestamp: 2000-01-23 04:56:07+00:00
+      properties:
+        blockIndex:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: BlockIndex
+        gasBurned:
+          description: The burned gas (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: GasBurned
+        gasFeeCharged:
+          description: The charged gas fee (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: GasFeeCharged
+        numOffLedgerRequests:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: NumOffLedgerRequests
+        numSuccessfulRequests:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: NumSuccessfulRequests
+        timestamp:
+          format: date-time
+          type: string
+          xml:
+            name: Timestamp
+        totalRequests:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: TotalRequests
+      required:
+      - blockIndex
+      - gasBurned
+      - gasFeeCharged
+      - numOffLedgerRequests
+      - numSuccessfulRequests
+      - timestamp
+      - totalRequests
+      type: object
+      xml:
+        name: BlockInfoResponse
+    Ratio32:
+      example:
+        a: 0
+        b: 0
+      properties:
+        a:
+          format: int32
+          minimum: 0
+          type: integer
+          xml:
+            name: A
+        b:
+          format: int32
+          minimum: 0
+          type: integer
+          xml:
+            name: B
+      required:
+      - a
+      - b
+      type: object
+      xml:
+        name: Ratio32
+    AssetsResponse:
+      example:
+        coins:
+        - coinType: coinType
+          balance: balance
+        - coinType: coinType
+          balance: balance
+        baseTokens: baseTokens
+        objects:
+        - id: id
+          type: type
+        - id: id
+          type: type
+      properties:
+        baseTokens:
+          description: The base tokens (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: BaseTokens
+        coins:
+          items:
+            $ref: '#/components/schemas/CoinJSON'
+          type: array
+          xml:
+            name: Coins
+            wrapped: true
+        objects:
+          items:
+            $ref: '#/components/schemas/IotaObjectJSON'
+          type: array
+          xml:
+            name: Objects
+            wrapped: true
+      required:
+      - baseTokens
+      - coins
+      - objects
+      type: object
+      xml:
+        name: AssetsResponse
+    UnresolvedVMErrorJSON:
+      example:
+        code: code
+        params:
+        - params
+        - params
+      properties:
+        code:
+          format: string
+          type: string
+          xml:
+            name: ErrorCode
+        params:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Params
+            wrapped: true
+      type: object
+      xml:
+        name: UnresolvedVMErrorJSON
+    GovChainInfoResponse:
+      example:
+        chainAdmin: chainAdmin
+        metadata:
+          website: website
+          evmWebSocketURL: evmWebSocketURL
+          name: name
+          description: description
+          evmJsonRpcURL: evmJsonRpcURL
+        gasLimits:
+          maxGasExternalViewCall: 5
+          minGasPerRequest: 9
+          maxGasPerBlock: 2
+          maxGasPerRequest: 7
+        chainID: chainID
+        publicURL: publicURL
+        gasFeePolicy:
+          gasPerToken:
+            a: 0
+            b: 0
+          validatorFeeShare: 5
+          evmGasRatio:
+            a: 0
+            b: 0
+      properties:
+        chainAdmin:
+          description: The chain admin address (Hex Address).
+          format: string
+          type: string
+          xml:
+            name: ChainAdmin
+        chainID:
+          description: ChainID (Hex Address).
+          format: string
+          type: string
+          xml:
+            name: ChainID
+        gasFeePolicy:
+          $ref: '#/components/schemas/FeePolicy'
+        gasLimits:
+          $ref: '#/components/schemas/Limits'
+        metadata:
+          $ref: '#/components/schemas/GovPublicChainMetadata'
+        publicURL:
+          description: The fully qualified public url leading to the chains metadata
+          format: string
+          type: string
+          xml:
+            name: PublicURL
+      required:
+      - chainAdmin
+      - chainID
+      - gasFeePolicy
+      - gasLimits
+      - metadata
+      - publicURL
+      type: object
+      xml:
+        name: GovChainInfoResponse
+    EventsResponse:
+      example:
+        events:
+        - payload: payload
+          contractID: 1
+          topic: topic
+          timestamp: 6
+        - payload: payload
+          contractID: 1
+          topic: topic
+          timestamp: 6
+      properties:
+        events:
+          items:
+            $ref: '#/components/schemas/EventJSON'
+          type: array
+          xml:
+            name: Events
+            wrapped: true
+      required:
+      - events
+      type: object
+      xml:
+        name: EventsResponse
+    EventJSON:
+      example:
+        payload: payload
+        contractID: 1
+        topic: topic
+        timestamp: 6
+      properties:
+        contractID:
+          description: ID of the Contract that issued the event
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: ContractID
+        payload:
+          description: payload
+          format: string
+          type: string
+          xml:
+            name: Payload
+        timestamp:
+          description: timestamp
+          format: int64
+          type: integer
+          xml:
+            name: Timestamp
+        topic:
+          description: topic
+          format: string
+          type: string
+          xml:
+            name: Topic
+      required:
+      - contractID
+      - payload
+      - timestamp
+      - topic
+      type: object
+      xml:
+        name: EventJSON
+    CallTargetJSON:
+      example:
+        contractHName: contractHName
+        functionHName: functionHName
+      properties:
+        contractHName:
+          description: The contract name as HName (Hex)
+          format: string
+          type: string
+          xml:
+            name: ContractHName
+        functionHName:
+          description: The function name as HName (Hex)
+          format: string
+          type: string
+          xml:
+            name: FunctionHName
+      required:
+      - contractHName
+      - functionHName
+      type: object
+      xml:
+        name: CallTargetJSON
+    ControlAddressesResponse:
+      example:
+        chainAdmin: chainAdmin
+        sinceBlockIndex: 1
+        anchorOwner: anchorOwner
+      properties:
+        anchorOwner:
+          description: The anchor owner (Hex Address)
+          format: string
+          type: string
+          xml:
+            name: AnchorOwner
+        chainAdmin:
+          description: The chain admin (Hex Address)
+          format: string
+          type: string
+          xml:
+            name: ChainAdmin
+        sinceBlockIndex:
+          description: The block index (uint32
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: SinceBlockIndex
+      required:
+      - anchorOwner
+      - chainAdmin
+      - sinceBlockIndex
+      type: object
+      xml:
+        name: ControlAddressesResponse
+    IotaObjectJSON:
+      example:
+        id: id
+        type: type
+      properties:
+        id:
+          description: Hex-encoded object ID
+          format: string
+          type: string
+          xml:
+            name: ID
+        type:
+          format: string
+          type: string
+          xml:
+            name: Type
+      required:
+      - id
+      - type
+      type: object
+      xml:
+        name: IotaObjectJSON
+    AssetsJSON:
+      example:
+        coins:
+        - coinType: coinType
+          balance: balance
+        - coinType: coinType
+          balance: balance
+        objects:
+        - id: id
+          type: type
+        - id: id
+          type: type
+      properties:
+        coins:
+          items:
+            $ref: '#/components/schemas/CoinJSON'
+          type: array
+          xml:
+            name: Coins
+            wrapped: true
+        objects:
+          items:
+            $ref: '#/components/schemas/IotaObjectJSON'
+          type: array
+          xml:
+            name: Objects
+            wrapped: true
+      required:
+      - coins
+      - objects
+      type: object
+      xml:
+        name: AssetsJSON
+    RequestProcessedResponse:
+      example:
+        chainId: chainId
+        requestId: requestId
+        isProcessed: true
+      properties:
+        chainId:
+          format: string
+          type: string
+          xml:
+            name: ChainID
+        isProcessed:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsProcessed
+        requestId:
+          format: string
+          type: string
+          xml:
+            name: RequestID
+      required:
+      - chainId
+      - isProcessed
+      - requestId
+      type: object
+      xml:
+        name: RequestProcessedResponse
+    AccountNonceResponse:
+      example:
+        nonce: nonce
+      properties:
+        nonce:
+          description: The nonce (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: Nonce
+      required:
+      - nonce
+      type: object
+      xml:
+        name: AccountNonceResponse
+    BurnRecord:
+      example:
+        code: 6
+        gasBurned: 1
+      properties:
+        code:
+          format: int32
+          type: integer
+          xml:
+            name: Code
+        gasBurned:
+          format: int64
+          type: integer
+          xml:
+            name: GasBurned
+      required:
+      - code
+      - gasBurned
+      type: object
+      xml:
+        name: BurnRecord
+    ErrorMessageFormatResponse:
+      example:
+        messageFormat: messageFormat
+      properties:
+        messageFormat:
+          format: string
+          type: string
+          xml:
+            name: MessageFormat
+      required:
+      - messageFormat
+      type: object
+      xml:
+        name: ErrorMessageFormatResponse
+    GovChainAdminResponse:
+      example:
+        chainAdmin: chainAdmin
+      properties:
+        chainAdmin:
+          description: The chain admin (Hex Address)
+          format: string
+          type: string
+          xml:
+            name: ChainAdmin
+      type: object
+      xml:
+        name: GovChainAdminResponse
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

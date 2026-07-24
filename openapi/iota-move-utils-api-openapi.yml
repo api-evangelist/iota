@@ -1,0 +1,426 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth Move Utils API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: Move Utils
+  description: 'Move smart contract introspection: modules, functions, structs'
+paths:
+  /iota_getMoveFunctionArgTypes:
+    post:
+      operationId: iota_getMoveFunctionArgTypes
+      summary: iota_getMoveFunctionArgTypes
+      description: Return the argument types of a Move function, based on normalized Type.
+      tags:
+      - Move Utils
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getMoveFunctionArgTypes
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getMoveFunctionArgTypes
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MoveFunctionArgType'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getNormalizedMoveFunction:
+    post:
+      operationId: iota_getNormalizedMoveFunction
+      summary: iota_getNormalizedMoveFunction
+      description: Return a structured representation of Move function
+      tags:
+      - Move Utils
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getNormalizedMoveFunction
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getNormalizedMoveFunction
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/IotaMoveNormalizedFunction'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getNormalizedMoveModule:
+    post:
+      operationId: iota_getNormalizedMoveModule
+      summary: iota_getNormalizedMoveModule
+      description: Return a structured representation of Move module
+      tags:
+      - Move Utils
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getNormalizedMoveModule
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getNormalizedMoveModule
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/IotaMoveNormalizedModule'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getNormalizedMoveModulesByPackage:
+    post:
+      operationId: iota_getNormalizedMoveModulesByPackage
+      summary: iota_getNormalizedMoveModulesByPackage
+      description: Return structured representations of all modules in the given package
+      tags:
+      - Move Utils
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getNormalizedMoveModulesByPackage
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getNormalizedMoveModulesByPackage
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/IotaMoveNormalizedModule'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getNormalizedMoveStruct:
+    post:
+      operationId: iota_getNormalizedMoveStruct
+      summary: iota_getNormalizedMoveStruct
+      description: Return a structured representation of Move struct
+      tags:
+      - Move Utils
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getNormalizedMoveStruct
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getNormalizedMoveStruct
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/IotaMoveNormalizedStruct'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+components:
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

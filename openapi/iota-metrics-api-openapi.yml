@@ -1,0 +1,507 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth metrics API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: metrics
+paths:
+  /v1/metrics/chain/messages:
+    get:
+      operationId: getChainMessageMetrics
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChainMessageMetrics'
+          description: A list of all available metrics.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+        '404':
+          content: {}
+          description: Chain not found
+      security:
+      - Authorization: []
+      summary: Get chain specific message metrics.
+      tags:
+      - metrics
+  /v1/metrics/chain/pipe:
+    get:
+      operationId: getChainPipeMetrics
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsensusPipeMetrics'
+          description: A list of all available metrics.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+        '404':
+          content: {}
+          description: Chain not found
+      security:
+      - Authorization: []
+      summary: Get chain pipe event metrics.
+      tags:
+      - metrics
+  /v1/metrics/chain/workflow:
+    get:
+      operationId: getChainWorkflowMetrics
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsensusWorkflowMetrics'
+          description: A list of all available metrics.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+        '404':
+          content: {}
+          description: Chain not found
+      security:
+      - Authorization: []
+      summary: Get chain workflow metrics.
+      tags:
+      - metrics
+components:
+  schemas:
+    ValidationError:
+      example:
+        error: error
+        missingPermission: missingPermission
+      properties:
+        error:
+          format: string
+          type: string
+          xml:
+            name: Error
+        missingPermission:
+          format: string
+          type: string
+          xml:
+            name: MissingPermission
+      required:
+      - error
+      - missingPermission
+      type: object
+      xml:
+        name: ValidationError
+    ConsensusPipeMetrics:
+      example:
+        eventACSMsgPipeSize: 0
+        eventPeerLogIndexMsgPipeSize: 6
+        eventVMResultMsgPipeSize: 5
+        eventStateTransitionMsgPipeSize: 1
+        eventTimerMsgPipeSize: 5
+      properties:
+        eventACSMsgPipeSize:
+          format: int32
+          type: integer
+          xml:
+            name: EventACSMsgPipeSize
+        eventPeerLogIndexMsgPipeSize:
+          format: int32
+          type: integer
+          xml:
+            name: EventPeerLogIndexMsgPipeSize
+        eventStateTransitionMsgPipeSize:
+          format: int32
+          type: integer
+          xml:
+            name: EventStateTransitionMsgPipeSize
+        eventTimerMsgPipeSize:
+          format: int32
+          type: integer
+          xml:
+            name: EventTimerMsgPipeSize
+        eventVMResultMsgPipeSize:
+          format: int32
+          type: integer
+          xml:
+            name: EventVMResultMsgPipeSize
+      required:
+      - eventACSMsgPipeSize
+      - eventPeerLogIndexMsgPipeSize
+      - eventStateTransitionMsgPipeSize
+      - eventTimerMsgPipeSize
+      - eventVMResultMsgPipeSize
+      type: object
+      xml:
+        name: ConsensusPipeMetrics
+    StateAnchor:
+      example:
+        stateMetadata: stateMetadata
+        stateIndex: 1
+        raw: raw
+      properties:
+        raw:
+          description: The raw data of the anchor (Hex)
+          format: string
+          type: string
+          xml:
+            name: Raw
+        stateIndex:
+          description: The state index
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: StateIndex
+        stateMetadata:
+          description: The state metadata
+          format: string
+          type: string
+          xml:
+            name: StateMetadata
+      required:
+      - raw
+      - stateIndex
+      - stateMetadata
+      type: object
+      xml:
+        name: StateAnchor
+    OnLedgerRequest:
+      example:
+        raw: raw
+        id: id
+      properties:
+        id:
+          description: The request ID
+          format: string
+          type: string
+          xml:
+            name: ID
+        raw:
+          description: The raw data of the request (Hex)
+          format: string
+          type: string
+          xml:
+            name: Raw
+      required:
+      - id
+      - raw
+      type: object
+      xml:
+        name: OnLedgerRequest
+    OnLedgerRequestMetricItem:
+      example:
+        lastMessage:
+          raw: raw
+          id: id
+        messages: 1
+        timestamp: 2000-01-23 04:56:07+00:00
+      properties:
+        lastMessage:
+          $ref: '#/components/schemas/OnLedgerRequest'
+        messages:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: Messages
+        timestamp:
+          format: date-time
+          type: string
+          xml:
+            name: Timestamp
+      required:
+      - lastMessage
+      - messages
+      - timestamp
+      type: object
+      xml:
+        name: OnLedgerRequestMetricItem
+    PublisherStateTransactionItem:
+      example:
+        lastMessage:
+          stateIndex: 1
+          txDigest: txDigest
+        messages: 1
+        timestamp: 2000-01-23 04:56:07+00:00
+      properties:
+        lastMessage:
+          $ref: '#/components/schemas/StateTransaction'
+        messages:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: Messages
+        timestamp:
+          format: date-time
+          type: string
+          xml:
+            name: Timestamp
+      required:
+      - lastMessage
+      - messages
+      - timestamp
+      type: object
+      xml:
+        name: PublisherStateTransactionItem
+    ConsensusWorkflowMetrics:
+      example:
+        flagStateReceived: true
+        flagTransactionPosted: true
+        flagVMStarted: true
+        timeTransactionSeen: 2000-01-23 04:56:07+00:00
+        flagConsensusBatchKnown: true
+        timeTransactionFinalized: 2000-01-23 04:56:07+00:00
+        timeVMStarted: 2000-01-23 04:56:07+00:00
+        flagVMResultSigned: true
+        timeBatchProposalSent: 2000-01-23 04:56:07+00:00
+        timeVMResultSigned: 2000-01-23 04:56:07+00:00
+        timeCompleted: 2000-01-23 04:56:07+00:00
+        timeTransactionPosted: 2000-01-23 04:56:07+00:00
+        flagTransactionSeen: true
+        timeConsensusBatchKnown: 2000-01-23 04:56:07+00:00
+        currentStateIndex: 1
+        flagInProgress: true
+        flagBatchProposalSent: true
+        flagTransactionFinalized: true
+      properties:
+        currentStateIndex:
+          description: Shows current state index of the consensus
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: CurrentStateIndex
+        flagBatchProposalSent:
+          description: Shows if batch proposal is sent out in current consensus iteration
+          format: boolean
+          type: boolean
+          xml:
+            name: FlagBatchProposalSent
+        flagConsensusBatchKnown:
+          description: Shows if consensus on batch is reached and known in current consensus iteration
+          format: boolean
+          type: boolean
+          xml:
+            name: FlagConsensusBatchKnown
+        flagInProgress:
+          description: Shows if consensus algorithm is still not completed in current consensus iteration
+          format: boolean
+          type: boolean
+          xml:
+            name: FlagInProgress
+        flagStateReceived:
+          description: Shows if state output is received in current consensus iteration
+          format: boolean
+          type: boolean
+          xml:
+            name: FlagStateReceived
+        flagTransactionFinalized:
+          description: Shows if consensus on transaction is reached in current consensus iteration
+          format: boolean
+          type: boolean
+          xml:
+            name: FlagTransactionFinalized
+        flagTransactionPosted:
+          description: Shows if transaction is posted to L1 in current consensus iteration
+          format: boolean
+          type: boolean
+          xml:
+            name: FlagTransactionPosted
+        flagTransactionSeen:
+          description: Shows if L1 reported that it has seen the transaction of current consensus iteration
+          format: boolean
+          type: boolean
+          xml:
+            name: FlagTransactionSeen
+        flagVMResultSigned:
+          description: Shows if virtual machine has returned its results in current consensus iteration
+          format: boolean
+          type: boolean
+          xml:
+            name: FlagVMResultSigned
+        flagVMStarted:
+          description: Shows if virtual machine is started in current consensus iteration
+          format: boolean
+          type: boolean
+          xml:
+            name: FlagVMStarted
+        timeBatchProposalSent:
+          description: Shows when batch proposal was last sent out in current consensus iteration
+          format: date-time
+          type: string
+          xml:
+            name: TimeBatchProposalSent
+        timeCompleted:
+          description: Shows when algorithm was last completed in current consensus iteration
+          format: date-time
+          type: string
+          xml:
+            name: TimeCompleted
+        timeConsensusBatchKnown:
+          description: Shows when ACS results of consensus on batch was last received in current consensus iteration
+          format: date-time
+          type: string
+          xml:
+            name: TimeConsensusBatchKnown
+        timeTransactionFinalized:
+          description: Shows when algorithm last noted that all the data for consensus on transaction had been received in current consensus iteration
+          format: date-time
+          type: string
+          xml:
+            name: TimeTransactionFinalized
+        timeTransactionPosted:
+          description: Shows when transaction was last posted to L1 in current consensus iteration
+          format: date-time
+          type: string
+          xml:
+            name: TimeTransactionPosted
+        timeTransactionSeen:
+          description: Shows when algorithm last noted that transaction had been seen by L1 in current consensus iteration
+          format: date-time
+          type: string
+          xml:
+            name: TimeTransactionSeen
+        timeVMResultSigned:
+          description: Shows when virtual machine results were last received and signed in current consensus iteration
+          format: date-time
+          type: string
+          xml:
+            name: TimeVMResultSigned
+        timeVMStarted:
+          description: Shows when virtual machine was last started in current consensus iteration
+          format: date-time
+          type: string
+          xml:
+            name: TimeVMStarted
+      required:
+      - flagBatchProposalSent
+      - flagConsensusBatchKnown
+      - flagInProgress
+      - flagStateReceived
+      - flagTransactionFinalized
+      - flagTransactionPosted
+      - flagTransactionSeen
+      - flagVMResultSigned
+      - flagVMStarted
+      - timeBatchProposalSent
+      - timeCompleted
+      - timeConsensusBatchKnown
+      - timeTransactionFinalized
+      - timeTransactionPosted
+      - timeTransactionSeen
+      - timeVMResultSigned
+      - timeVMStarted
+      type: object
+      xml:
+        name: ConsensusWorkflowMetrics
+    AnchorMetricItem:
+      example:
+        lastMessage:
+          stateMetadata: stateMetadata
+          stateIndex: 1
+          raw: raw
+        messages: 1
+        timestamp: 2000-01-23 04:56:07+00:00
+      properties:
+        lastMessage:
+          $ref: '#/components/schemas/StateAnchor'
+        messages:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: Messages
+        timestamp:
+          format: date-time
+          type: string
+          xml:
+            name: Timestamp
+      required:
+      - lastMessage
+      - messages
+      - timestamp
+      type: object
+      xml:
+        name: AnchorMetricItem
+    StateTransaction:
+      example:
+        stateIndex: 1
+        txDigest: txDigest
+      properties:
+        stateIndex:
+          description: The state index
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: StateIndex
+        txDigest:
+          description: The transaction Digest
+          format: string
+          type: string
+          xml:
+            name: TransactionDigest
+      required:
+      - stateIndex
+      - txDigest
+      type: object
+      xml:
+        name: StateTransaction
+    ChainMessageMetrics:
+      example:
+        outPublisherStateTransaction:
+          lastMessage:
+            stateIndex: 1
+            txDigest: txDigest
+          messages: 1
+          timestamp: 2000-01-23 04:56:07+00:00
+        inOnLedgerRequest:
+          lastMessage:
+            raw: raw
+            id: id
+          messages: 1
+          timestamp: 2000-01-23 04:56:07+00:00
+        inAnchor:
+          lastMessage:
+            stateMetadata: stateMetadata
+            stateIndex: 1
+            raw: raw
+          messages: 1
+          timestamp: 2000-01-23 04:56:07+00:00
+      properties:
+        inAnchor:
+          $ref: '#/components/schemas/AnchorMetricItem'
+        inOnLedgerRequest:
+          $ref: '#/components/schemas/OnLedgerRequestMetricItem'
+        outPublisherStateTransaction:
+          $ref: '#/components/schemas/PublisherStateTransactionItem'
+      required:
+      - inAnchor
+      - inOnLedgerRequest
+      - outPublisherStateTransaction
+      type: object
+      xml:
+        name: ChainMessageMetrics
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

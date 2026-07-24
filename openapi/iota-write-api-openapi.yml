@@ -1,0 +1,584 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth Write API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: Write
+  description: Transaction execution, dry run, and dev inspection
+paths:
+  /iota_devInspectTransactionBlock:
+    post:
+      operationId: iota_devInspectTransactionBlock
+      summary: iota_devInspectTransactionBlock
+      description: Runs the transaction in dev-inspect mode. Which allows for nearly any transaction (or Move call) with any arguments. Detailed results are provided, including both the transaction effects and any return values.
+      tags:
+      - Write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_devInspectTransactionBlock
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_devInspectTransactionBlock
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/DevInspectResults'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_dryRunTransactionBlock:
+    post:
+      operationId: iota_dryRunTransactionBlock
+      summary: iota_dryRunTransactionBlock
+      description: Return transaction execution effects including the gas cost summary, while the effects are not committed to the chain.
+      tags:
+      - Write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_dryRunTransactionBlock
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_dryRunTransactionBlock
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/DryRunTransactionBlockResponse'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_executeTransactionBlock:
+    post:
+      operationId: iota_executeTransactionBlock
+      summary: iota_executeTransactionBlock
+      description: 'Execute the transaction and wait for results if desired. Request types: 1. WaitForEffectsCert: waits for TransactionEffectsCert and then return to    client. This mode is a proxy for transaction finality. 2. WaitForLocalExecution: waits for TransactionEffectsCert and make sure the    node executed the transaction locally before returning the client. The    local execution makes sure this node is aware of this transaction when    client fires subsequent queries. However if the node fails to execute the    transaction locally in a timely manner, a bool type in the response is    set to false to indicated the case. request_type is default to be `WaitForEffectsCert` unless options.show_events or options.show_effects is true'
+      tags:
+      - Write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_executeTransactionBlock
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_executeTransactionBlock
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/TransactionBlockResponse'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getTotalTransactionBlocks:
+    post:
+      operationId: iota_getTotalTransactionBlocks
+      summary: iota_getTotalTransactionBlocks
+      description: Return the total number of transaction blocks known to the server.
+      tags:
+      - Write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getTotalTransactionBlocks
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getTotalTransactionBlocks
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: string
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_getTransactionBlock:
+    post:
+      operationId: iota_getTransactionBlock
+      summary: iota_getTransactionBlock
+      description: Return the transaction response object.
+      tags:
+      - Write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_getTransactionBlock
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_getTransactionBlock
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/TransactionBlockResponse'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_isTransactionIndexedOnNode:
+    post:
+      operationId: iota_isTransactionIndexedOnNode
+      summary: iota_isTransactionIndexedOnNode
+      description: Return if the transaction has been indexed on the fullnode.
+      tags:
+      - Write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_isTransactionIndexedOnNode
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_isTransactionIndexedOnNode
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: boolean
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iota_multiGetTransactionBlocks:
+    post:
+      operationId: iota_multiGetTransactionBlocks
+      summary: iota_multiGetTransactionBlocks
+      description: Returns an ordered list of transaction responses The method will throw an error if the input contains any duplicate or the input size exceeds QUERY_MAX_RESULT_LIMIT
+      tags:
+      - Write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iota_multiGetTransactionBlocks
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iota_multiGetTransactionBlocks
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TransactionBlockResponse'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+components:
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

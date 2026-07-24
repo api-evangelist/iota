@@ -1,0 +1,1152 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth Governance API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: Governance
+  description: Governance, staking, validator, epoch, and system state queries
+paths:
+  /iotax_getAllEpochAddressMetrics:
+    post:
+      operationId: iotax_getAllEpochAddressMetrics
+      summary: iotax_getAllEpochAddressMetrics
+      description: Address related metrics. Exclusively served by the indexer.
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getAllEpochAddressMetrics
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getAllEpochAddressMetrics
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AddressMetrics'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getCommitteeInfo:
+    post:
+      operationId: iotax_getCommitteeInfo
+      summary: iotax_getCommitteeInfo
+      description: Return the committee information for the asked `epoch`.
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getCommitteeInfo
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getCommitteeInfo
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/CommitteeInfo'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getCurrentEpoch:
+    post:
+      operationId: iotax_getCurrentEpoch
+      summary: iotax_getCurrentEpoch
+      description: Return current epoch info. Exclusively served by the indexer.
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getCurrentEpoch
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getCurrentEpoch
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/EpochInfo'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getEpochMetrics:
+    post:
+      operationId: iotax_getEpochMetrics
+      summary: iotax_getEpochMetrics
+      description: Return a list of epoch metrics, which is a subset of epoch info. Exclusively served by the indexer.
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getEpochMetrics
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getEpochMetrics
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/Page_for_EpochMetrics_and_String'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getEpochs:
+    post:
+      operationId: iotax_getEpochs
+      summary: iotax_getEpochs
+      description: Return a list of epoch info. Exclusively served by the indexer.
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getEpochs
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getEpochs
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/Page_for_EpochInfo_and_String'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getLatestIotaSystemState:
+    post:
+      operationId: iotax_getLatestIotaSystemState
+      summary: iotax_getLatestIotaSystemState
+      description: Return the latest IOTA system state object on networks supporting protocol version `< 5`. These are networks with node software release version `< 0.11`.
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getLatestIotaSystemState
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getLatestIotaSystemState
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/IotaSystemStateSummaryV1'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getLatestIotaSystemStateV2:
+    post:
+      operationId: iotax_getLatestIotaSystemStateV2
+      summary: iotax_getLatestIotaSystemStateV2
+      description: Return the latest IOTA system state object on networks supporting protocol version `>= 5`. These are networks with node software release version `>= 0.11`.
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getLatestIotaSystemStateV2
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getLatestIotaSystemStateV2
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/IotaSystemStateSummary'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getParticipationMetrics:
+    post:
+      operationId: iotax_getParticipationMetrics
+      summary: iotax_getParticipationMetrics
+      description: Returns the participation metrics. Participation is defined as the total number of unique addresses that have delegated stake in the current epoch. Includes both staked and timelocked staked IOTA. Exclusively served by the indexer.
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getParticipationMetrics
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getParticipationMetrics
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/ParticipationMetrics'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getReferenceGasPrice:
+    post:
+      operationId: iotax_getReferenceGasPrice
+      summary: iotax_getReferenceGasPrice
+      description: Return the reference gas price for the network
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getReferenceGasPrice
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getReferenceGasPrice
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: string
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getStakes:
+    post:
+      operationId: iotax_getStakes
+      summary: iotax_getStakes
+      description: Return all [DelegatedStake].
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getStakes
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getStakes
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DelegatedStake'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getStakesByIds:
+    post:
+      operationId: iotax_getStakesByIds
+      summary: iotax_getStakesByIds
+      description: Return one or more [DelegatedStake]. If a Stake was withdrawn its status will be Unstaked.
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getStakesByIds
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getStakesByIds
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DelegatedStake'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getTimelockedStakes:
+    post:
+      operationId: iotax_getTimelockedStakes
+      summary: iotax_getTimelockedStakes
+      description: Return all [DelegatedTimelockedStake].
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getTimelockedStakes
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getTimelockedStakes
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DelegatedTimelockedStake'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getTimelockedStakesByIds:
+    post:
+      operationId: iotax_getTimelockedStakesByIds
+      summary: iotax_getTimelockedStakesByIds
+      description: Return one or more [DelegatedTimelockedStake]. If a Stake was withdrawn its status will be Unstaked.
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getTimelockedStakesByIds
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getTimelockedStakesByIds
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DelegatedTimelockedStake'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+  /iotax_getValidatorsApy:
+    post:
+      operationId: iotax_getValidatorsApy
+      summary: iotax_getValidatorsApy
+      description: Return the validator APY
+      tags:
+      - Governance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - jsonrpc
+              - id
+              - method
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                  - '2.0'
+                  description: JSON-RPC protocol version
+                id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Request identifier
+                method:
+                  type: string
+                  enum:
+                  - iotax_getValidatorsApy
+                  description: The JSON-RPC method name
+                params:
+                  type: array
+                  description: Method parameters
+                  items: {}
+            example:
+              jsonrpc: '2.0'
+              id: 1
+              method: iotax_getValidatorsApy
+              params: []
+      responses:
+        '200':
+          description: Successful JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: '2.0'
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  result:
+                    $ref: '#/components/schemas/ValidatorApys'
+        default:
+          description: JSON-RPC error response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                  id:
+                    oneOf:
+                    - type: integer
+                    - type: string
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                      message:
+                        type: string
+                      data: {}
+components:
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

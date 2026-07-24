@@ -1,0 +1,125 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: auth
+paths:
+  /auth:
+    post:
+      operationId: authenticate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        description: The login request
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+          description: Login was successful
+        '401':
+          content: {}
+          description: Unauthorized (Wrong permissions, missing token)
+        '405':
+          content: {}
+          description: 'auth type: none'
+      summary: Authenticate towards the node
+      tags:
+      - auth
+      x-codegen-request-body-name: ''
+  /auth/info:
+    get:
+      operationId: authInfo
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthInfoModel'
+          description: Login was successful
+      summary: Get information about the current authentication mode
+      tags:
+      - auth
+components:
+  schemas:
+    LoginRequest:
+      example:
+        password: password
+        username: username
+      properties:
+        password:
+          format: string
+          type: string
+          xml:
+            name: Password
+        username:
+          format: string
+          type: string
+          xml:
+            name: Username
+      required:
+      - password
+      - username
+      type: object
+      xml:
+        name: LoginRequest
+    AuthInfoModel:
+      example:
+        authURL: authURL
+        scheme: scheme
+      properties:
+        authURL:
+          description: JWT only
+          format: string
+          type: string
+          xml:
+            name: AuthURL
+        scheme:
+          format: string
+          type: string
+          xml:
+            name: Scheme
+      required:
+      - authURL
+      - scheme
+      type: object
+      xml:
+        name: AuthInfoModel
+    LoginResponse:
+      example:
+        jwt: jwt
+        error: error
+      properties:
+        error:
+          format: string
+          type: string
+          xml:
+            name: Error
+        jwt:
+          format: string
+          type: string
+          xml:
+            name: JWT
+      required:
+      - jwt
+      type: object
+      xml:
+        name: LoginResponse
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

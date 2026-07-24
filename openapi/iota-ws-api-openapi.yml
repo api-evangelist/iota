@@ -1,0 +1,30 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth Ws API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: Ws
+paths:
+  /v1/ws:
+    get:
+      responses:
+        default:
+          content: {}
+          description: successful operation
+      summary: The websocket connection service
+      tags:
+      - Ws
+components:
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'

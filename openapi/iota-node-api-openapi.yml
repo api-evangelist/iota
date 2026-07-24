@@ -1,0 +1,885 @@
+openapi: 3.0.1
+info:
+  description: REST API for the Wasp node
+  title: Wasp auth node API
+  version: '0'
+servers:
+- url: /
+tags:
+- name: node
+paths:
+  /v1/node/config:
+    get:
+      operationId: getConfiguration
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  example: 'true'
+                  format: string
+                  type: string
+                type: object
+          description: Dumped configuration
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Return the Wasp configuration
+      tags:
+      - node
+  /v1/node/dks:
+    post:
+      operationId: generateDKS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DKSharesPostRequest'
+        description: Request parameters
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DKSharesInfo'
+          description: DK shares info
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Generate a new distributed key
+      tags:
+      - node
+      x-codegen-request-body-name: DKSharesPostRequest
+  /v1/node/dks/{sharedAddress}:
+    get:
+      operationId: getDKSInfo
+      parameters:
+      - description: SharedAddress (Hex Address)
+        in: path
+        name: sharedAddress
+        required: true
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DKSharesInfo'
+          description: DK shares info
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+        '404':
+          content: {}
+          description: Shared address not found
+      security:
+      - Authorization: []
+      summary: Get information about the shared address DKS configuration
+      tags:
+      - node
+  /v1/node/info:
+    get:
+      operationId: getInfo
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
+          description: Returns information about this node.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Returns private information about this node.
+      tags:
+      - node
+  /v1/node/owner/certificate:
+    get:
+      operationId: ownerCertificate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeOwnerCertificateResponse'
+          description: Node Certificate
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Gets the node owner
+      tags:
+      - node
+  /v1/node/peers:
+    get:
+      operationId: getAllPeers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PeeringNodeStatusResponse'
+                type: array
+          description: A list of all peers
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Get basic information about all configured peers
+      tags:
+      - node
+  /v1/node/peers/identity:
+    get:
+      operationId: getPeeringIdentity
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeeringNodeIdentityResponse'
+          description: This node peering identity
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Get basic peer info of the current node
+      tags:
+      - node
+  /v1/node/peers/trusted:
+    get:
+      operationId: getTrustedPeers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PeeringNodeIdentityResponse'
+                type: array
+          description: A list of trusted peers
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Get trusted peers
+      tags:
+      - node
+    post:
+      operationId: trustPeer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PeeringTrustRequest'
+        description: Info of the peer to trust
+        required: true
+      responses:
+        '200':
+          content: {}
+          description: Peer was successfully trusted
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Trust a peering node
+      tags:
+      - node
+      x-codegen-request-body-name: ''
+  /v1/node/peers/trusted/{peer}:
+    delete:
+      operationId: distrustPeer
+      parameters:
+      - description: Name or PubKey (hex) of the trusted peer
+        in: path
+        name: peer
+        required: true
+        schema:
+          format: string
+          type: string
+      responses:
+        '200':
+          content: {}
+          description: Peer was successfully distrusted
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+        '404':
+          content: {}
+          description: Peer not found
+      security:
+      - Authorization: []
+      summary: Distrust a peering node
+      tags:
+      - node
+  /v1/node/shutdown:
+    post:
+      operationId: shutdownNode
+      responses:
+        '200':
+          content: {}
+          description: The node has been shut down
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Unauthorized (Wrong permissions, missing token)
+      security:
+      - Authorization: []
+      summary: Shut down the node
+      tags:
+      - node
+  /v1/node/version:
+    get:
+      operationId: getVersion
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionResponse'
+          description: Returns the version of the node.
+      summary: Returns the node version.
+      tags:
+      - node
+components:
+  schemas:
+    ObjectType:
+      example:
+        s: s
+      properties:
+        s:
+          format: string
+          type: string
+          xml:
+            name: s
+      type: object
+      xml:
+        name: ObjectType
+    Protocol:
+      example:
+        protocol_version:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        reference_gas_price:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        epoch:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        system_state_version:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        epoch_duration_ms:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        epoch_start_timestamp_ms:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+      properties:
+        epoch:
+          $ref: '#/components/schemas/BigInt'
+        epoch_duration_ms:
+          $ref: '#/components/schemas/BigInt'
+        epoch_start_timestamp_ms:
+          $ref: '#/components/schemas/BigInt'
+        protocol_version:
+          $ref: '#/components/schemas/BigInt'
+        reference_gas_price:
+          $ref: '#/components/schemas/BigInt'
+        system_state_version:
+          $ref: '#/components/schemas/BigInt'
+      required:
+      - epoch
+      - epoch_duration_ms
+      - epoch_start_timestamp_ms
+      - protocol_version
+      - reference_gas_price
+      - system_state_version
+      type: object
+      xml:
+        name: Protocol
+    NodeOwnerCertificateResponse:
+      example:
+        certificate: certificate
+      properties:
+        certificate:
+          description: Certificate stating the ownership. (Hex)
+          format: string
+          type: string
+          xml:
+            name: Certificate
+      required:
+      - certificate
+      type: object
+      xml:
+        name: NodeOwnerCertificateResponse
+    DKSharesInfo:
+      example:
+        publicKeyShares:
+        - publicKeyShares
+        - publicKeyShares
+        address: address
+        peerIdentities:
+        - peerIdentities
+        - peerIdentities
+        threshold: 1
+        publicKey: publicKey
+        peerIndex: 1
+      properties:
+        address:
+          description: New generated shared address.
+          format: string
+          type: string
+          xml:
+            name: Address
+        peerIdentities:
+          description: Identities of the nodes sharing the key. (Hex)
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: PeerIdentities
+            wrapped: true
+        peerIndex:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: PeerIndex
+        publicKey:
+          description: Used public key. (Hex)
+          format: string
+          type: string
+          xml:
+            name: PublicKey
+        publicKeyShares:
+          description: Public key shares for all the peers. (Hex)
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: PublicKeyShares
+            wrapped: true
+        threshold:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: Threshold
+      required:
+      - address
+      - peerIdentities
+      - peerIndex
+      - publicKey
+      - publicKeyShares
+      - threshold
+      type: object
+      xml:
+        name: DKSharesInfo
+    VersionResponse:
+      example:
+        version: version
+      properties:
+        version:
+          description: The version of the node
+          format: string
+          type: string
+          xml:
+            name: Version
+      required:
+      - version
+      type: object
+      xml:
+        name: VersionResponse
+    ValidationError:
+      example:
+        error: error
+        missingPermission: missingPermission
+      properties:
+        error:
+          format: string
+          type: string
+          xml:
+            name: Error
+        missingPermission:
+          format: string
+          type: string
+          xml:
+            name: MissingPermission
+      required:
+      - error
+      - missingPermission
+      type: object
+      xml:
+        name: ValidationError
+    L1Params:
+      example:
+        protocol:
+          protocol_version:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          reference_gas_price:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          epoch:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          system_state_version:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          epoch_duration_ms:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          epoch_start_timestamp_ms:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+        baseToken:
+          coinType:
+            s: s
+          totalSupply: 6
+          decimals: 0
+          name: name
+          description: description
+          tickerSymbol: tickerSymbol
+          iconUrl: iconUrl
+      properties:
+        baseToken:
+          $ref: '#/components/schemas/IotaCoinInfo'
+        protocol:
+          $ref: '#/components/schemas/Protocol'
+      required:
+      - baseToken
+      - protocol
+      type: object
+      xml:
+        name: L1Params
+    IotaCoinInfo:
+      example:
+        coinType:
+          s: s
+        totalSupply: 6
+        decimals: 0
+        name: name
+        description: description
+        tickerSymbol: tickerSymbol
+        iconUrl: iconUrl
+      properties:
+        coinType:
+          $ref: '#/components/schemas/ObjectType'
+        decimals:
+          description: The token decimals
+          format: int32
+          type: integer
+          xml:
+            name: Decimals
+        description:
+          description: The token description
+          format: string
+          type: string
+          xml:
+            name: Description
+        iconUrl:
+          description: The icon URL
+          format: string
+          type: string
+          xml:
+            name: IconURL
+        name:
+          description: The base token name
+          format: string
+          type: string
+          xml:
+            name: Name
+        tickerSymbol:
+          description: The ticker symbol
+          format: string
+          type: string
+          xml:
+            name: Symbol
+        totalSupply:
+          description: The total supply of BaseToken
+          format: int64
+          type: integer
+          xml:
+            name: TotalSupply
+      required:
+      - coinType
+      - decimals
+      - description
+      - iconUrl
+      - name
+      - tickerSymbol
+      - totalSupply
+      type: object
+      xml:
+        name: IotaCoinInfo
+    PeeringNodeStatusResponse:
+      example:
+        isAlive: true
+        peeringURL: peeringURL
+        name: name
+        publicKey: publicKey
+        numUsers: 0
+        isTrusted: true
+      properties:
+        isAlive:
+          description: Whether or not the peer is activated
+          format: boolean
+          type: boolean
+          xml:
+            name: IsAlive
+        isTrusted:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsTrusted
+        name:
+          format: string
+          type: string
+          xml:
+            name: Name
+        numUsers:
+          description: The amount of users attached to the peer
+          format: int32
+          type: integer
+          xml:
+            name: NumUsers
+        peeringURL:
+          description: The peering URL of the peer
+          format: string
+          type: string
+          xml:
+            name: PeeringURL
+        publicKey:
+          description: The peers public key encoded in Hex
+          format: string
+          type: string
+          xml:
+            name: PublicKey
+      required:
+      - isAlive
+      - isTrusted
+      - name
+      - numUsers
+      - peeringURL
+      - publicKey
+      type: object
+      xml:
+        name: PeeringNodeStatusResponse
+    PeeringTrustRequest:
+      example:
+        peeringURL: peeringURL
+        name: name
+        publicKey: publicKey
+      properties:
+        name:
+          format: string
+          type: string
+          xml:
+            name: Name
+        peeringURL:
+          description: The peering URL of the peer
+          format: string
+          type: string
+          xml:
+            name: PeeringURL
+        publicKey:
+          description: The peers public key encoded in Hex
+          format: string
+          type: string
+          xml:
+            name: PublicKey
+      required:
+      - name
+      - peeringURL
+      - publicKey
+      type: object
+      xml:
+        name: PeeringTrustRequest
+    InfoResponse:
+      example:
+        peeringURL: peeringURL
+        l1Params:
+          protocol:
+            protocol_version:
+              Int:
+                neg: true
+                abs:
+                - 1
+                - 1
+            reference_gas_price:
+              Int:
+                neg: true
+                abs:
+                - 1
+                - 1
+            epoch:
+              Int:
+                neg: true
+                abs:
+                - 1
+                - 1
+            system_state_version:
+              Int:
+                neg: true
+                abs:
+                - 1
+                - 1
+            epoch_duration_ms:
+              Int:
+                neg: true
+                abs:
+                - 1
+                - 1
+            epoch_start_timestamp_ms:
+              Int:
+                neg: true
+                abs:
+                - 1
+                - 1
+          baseToken:
+            coinType:
+              s: s
+            totalSupply: 6
+            decimals: 0
+            name: name
+            description: description
+            tickerSymbol: tickerSymbol
+            iconUrl: iconUrl
+        publicKey: publicKey
+        version: version
+      properties:
+        l1Params:
+          $ref: '#/components/schemas/L1Params'
+        peeringURL:
+          description: The net id of the node
+          format: string
+          type: string
+          xml:
+            name: PeeringURL
+        publicKey:
+          description: The public key of the node (Hex)
+          format: string
+          type: string
+          xml:
+            name: PublicKey
+        version:
+          description: The version of the node
+          format: string
+          type: string
+          xml:
+            name: Version
+      required:
+      - l1Params
+      - peeringURL
+      - publicKey
+      - version
+      type: object
+      xml:
+        name: InfoResponse
+    DKSharesPostRequest:
+      example:
+        peerIdentities:
+        - peerIdentities
+        - peerIdentities
+        timeoutMS: 1
+        threshold: 1
+      properties:
+        peerIdentities:
+          description: Names or hex encoded public keys of trusted peers to run DKG on.
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: PeerPubKeysOrNames
+            wrapped: true
+        threshold:
+          description: Should be =< len(PeerPublicIdentities)
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: Threshold
+        timeoutMS:
+          description: Timeout in milliseconds.
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: TimeoutMS
+      required:
+      - peerIdentities
+      - threshold
+      - timeoutMS
+      type: object
+      xml:
+        name: DKSharesPostRequest
+    PeeringNodeIdentityResponse:
+      example:
+        peeringURL: peeringURL
+        name: name
+        publicKey: publicKey
+        isTrusted: true
+      properties:
+        isTrusted:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsTrusted
+        name:
+          format: string
+          type: string
+          xml:
+            name: Name
+        peeringURL:
+          description: The peering URL of the peer
+          format: string
+          type: string
+          xml:
+            name: PeeringURL
+        publicKey:
+          description: The peers public key encoded in Hex
+          format: string
+          type: string
+          xml:
+            name: PublicKey
+      required:
+      - isTrusted
+      - name
+      - peeringURL
+      - publicKey
+      type: object
+      xml:
+        name: PeeringNodeIdentityResponse
+    BigInt:
+      example:
+        Int:
+          neg: true
+          abs:
+          - 1
+          - 1
+      properties:
+        Int:
+          $ref: '#/components/schemas/Int'
+      type: object
+      xml:
+        name: BigInt
+    Int:
+      example:
+        neg: true
+        abs:
+        - 1
+        - 1
+      properties:
+        abs:
+          items:
+            format: int32
+            type: integer
+          type: array
+          xml:
+            name: abs
+            wrapped: true
+        neg:
+          format: boolean
+          type: boolean
+          xml:
+            name: neg
+      type: object
+      xml:
+        name: Int
+  securitySchemes:
+    Authorization:
+      description: JWT Token
+      in: header
+      name: Authorization
+      type: apiKey
+externalDocs:
+  description: Find out more about Wasp
+  url: https://wiki.iota.org/smart-contracts/overview
+x-original-swagger-version: '2.0'
