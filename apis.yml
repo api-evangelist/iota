@@ -2,7 +2,20 @@ aid: iota
 url: https://raw.githubusercontent.com/api-evangelist/iota/refs/heads/main/apis.yml
 name: IOTA
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: open
+  trial: false
+  try_now: true
+  public: true
+  label: Free · Open access
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/iota.png
 tags:
 - Blockchain
 - Distributed Ledger
@@ -23,176 +36,6 @@ created: '2026-06-14'
 modified: '2026-06-14'
 specificationVersion: '0.19'
 apis:
-- aid: iota:iota-coin-query-api
-  name: IOTA Coin Query API
-  tags:
-  - Coins
-  - Balances
-  - Tokens
-  - Blockchain
-  humanURL: https://docs.iota.org/iota-api-ref
-  baseURL: https://api.mainnet.iota.cafe:443
-  properties:
-  - url: https://docs.iota.org/iota-api-ref
-    type: Documentation
-  - url: https://docs.iota.org/iota-api-ref
-    type: APIReference
-  - url: openapi/iota-jsonrpc-openapi.json
-    type: OpenAPI
-  description: Coin and balance-oriented JSON-RPC methods for the IOTA blockchain.
-    Provides iotax_getAllBalances to retrieve total balances across all coin types
-    for an address, iotax_getAllCoins to list all coin objects owned by an address,
-    iotax_getBalance for the balance of a specific coin type, iotax_getCirculatingSupply
-    to retrieve circulating supply summary, iotax_getCoinMetadata for token symbol,
-    decimals and description, iotax_getCoins to list coins of a specific type with
-    pagination, and iotax_getTotalSupply to return the total supply for a given coin
-    type.
-- aid: iota:iota-read-api
-  name: IOTA Read API
-  tags:
-  - Objects
-  - Checkpoints
-  - Transactions
-  - Events
-  - Blockchain
-  humanURL: https://docs.iota.org/iota-api-ref
-  baseURL: https://api.mainnet.iota.cafe:443
-  properties:
-  - url: https://docs.iota.org/iota-api-ref
-    type: Documentation
-  - url: https://docs.iota.org/iota-api-ref
-    type: APIReference
-  - url: openapi/iota-jsonrpc-openapi.json
-    type: OpenAPI
-  description: Core read-oriented JSON-RPC methods for the IOTA blockchain. Includes
-    iota_getChainIdentifier to retrieve the genesis checkpoint digest, iota_getCheckpoint
-    and iota_getCheckpoints for checkpoint data with pagination, iota_getObject and
-    iota_multiGetObjects for on-chain object retrieval, iota_getTransactionBlock for
-    individual transaction details, iota_multiGetTransactionBlocks for batch transaction
-    lookup, iota_getEvents to query on-chain events by filter criteria, iota_getProtocolConfig
-    for current protocol configuration, iota_getLatestCheckpointSequenceNumber, iota_getTotalTransactionBlocks,
-    and iota_tryGetPastObject for historical object state.
-- aid: iota:iota-extended-api
-  name: IOTA Extended API
-  tags:
-  - Epochs
-  - Metrics
-  - Events
-  - Dynamic Fields
-  - Indexer
-  - Blockchain
-  humanURL: https://docs.iota.org/iota-api-ref
-  baseURL: https://indexer.mainnet.iota.cafe:443
-  properties:
-  - url: https://docs.iota.org/iota-api-ref
-    type: Documentation
-  - url: https://docs.iota.org/iota-api-ref
-    type: APIReference
-  - url: openapi/iota-jsonrpc-openapi.json
-    type: OpenAPI
-  description: Advanced indexer-exclusive JSON-RPC methods for the IOTA blockchain.
-    Provides address metrics via iotax_getAllEpochAddressMetrics and iotax_getLatestAddressMetrics,
-    epoch data via iotax_getCurrentEpoch and iotax_getEpochMetrics, dynamic field
-    access via iotax_getDynamicFieldObject and iotax_getDynamicFields, network metrics,
-    event and transaction queries with rich filtering, IOTA Names (SuiNS-compatible)
-    resolution, and validator APY data. Approximately 18 methods available exclusively
-    through the indexer endpoint rather than full nodes.
-- aid: iota:iota-governance-read-api
-  name: IOTA Governance Read API
-  tags:
-  - Governance
-  - Validators
-  - Staking
-  - System State
-  - Blockchain
-  humanURL: https://docs.iota.org/iota-api-ref
-  baseURL: https://api.mainnet.iota.cafe:443
-  properties:
-  - url: https://docs.iota.org/iota-api-ref
-    type: Documentation
-  - url: https://docs.iota.org/iota-api-ref
-    type: APIReference
-  - url: openapi/iota-jsonrpc-openapi.json
-    type: OpenAPI
-  description: Governance and staking JSON-RPC methods for the IOTA blockchain. Includes
-    iotax_getCommitteeInfo to retrieve committee data for specific epochs, iotax_getLatestIotaSystemState
-    to return the full system state object, iotax_getReferenceGasPrice for the current
-    network gas price, iotax_getStakes and iotax_getStakesByIds to query staking positions,
-    iotax_getValidatorsApy for validator annual percentage yields, iotax_getCheckpointSummaryByEpoch,
-    and additional epoch-scoped governance queries totaling 9 methods.
-- aid: iota:iota-move-utils-api
-  name: IOTA Move Utils API
-  tags:
-  - Move
-  - Smart Contracts
-  - Modules
-  - Introspection
-  - Blockchain
-  humanURL: https://docs.iota.org/iota-api-ref
-  baseURL: https://api.mainnet.iota.cafe:443
-  properties:
-  - url: https://docs.iota.org/iota-api-ref
-    type: Documentation
-  - url: https://docs.iota.org/iota-api-ref
-    type: APIReference
-  - url: openapi/iota-jsonrpc-openapi.json
-    type: OpenAPI
-  description: Move language introspection JSON-RPC methods for the IOTA blockchain.
-    Provides iota_getMoveFunctionArgTypes to retrieve function argument types for
-    a Move function, iota_getNormalizedMoveFunction for full function structure including
-    visibility and generics, iota_getNormalizedMoveModule to retrieve a normalized
-    Move module, iota_getNormalizedMoveModulesByPackage to list all modules in a package,
-    and iota_getNormalizedMoveStruct for detailed struct representation including
-    fields and abilities. These 5 methods enable smart contract introspection and
-    on-chain ABI discovery.
-- aid: iota:iota-transaction-builder-api
-  name: IOTA Transaction Builder API
-  tags:
-  - Transactions
-  - Transfer
-  - Staking
-  - Construction
-  - Blockchain
-  humanURL: https://docs.iota.org/iota-api-ref
-  baseURL: https://api.mainnet.iota.cafe:443
-  properties:
-  - url: https://docs.iota.org/iota-api-ref
-    type: Documentation
-  - url: https://docs.iota.org/iota-api-ref
-    type: APIReference
-  - url: openapi/iota-jsonrpc-openapi.json
-    type: OpenAPI
-  description: Transaction construction JSON-RPC methods for the IOTA blockchain.
-    Includes methods for building unsigned transactions such as unsafe_transferObject,
-    unsafe_transferIota, unsafe_payIota, unsafe_pay, unsafe_payAllIota, unsafe_moveCall
-    for Move function invocations, unsafe_requestAddStake and unsafe_requestWithdrawStake
-    for staking operations, and additional batch transfer and publish methods. These
-    16 unsafe transaction builder methods produce serialized unsigned transactions
-    requiring subsequent signing and submission via the Write API.
-- aid: iota:iota-write-api
-  name: IOTA Write API
-  tags:
-  - Transactions
-  - Execution
-  - Simulation
-  - Submit
-  - Blockchain
-  humanURL: https://docs.iota.org/iota-api-ref
-  baseURL: https://api.mainnet.iota.cafe:443
-  properties:
-  - url: https://docs.iota.org/iota-api-ref
-    type: Documentation
-  - url: https://docs.iota.org/iota-api-ref
-    type: APIReference
-  - url: openapi/iota-jsonrpc-openapi.json
-    type: OpenAPI
-  description: Transaction execution and simulation JSON-RPC methods for the IOTA
-    blockchain. Provides iota_executeTransactionBlock to submit a signed transaction
-    to the network and return results, iota_dryRunTransactionBlock to simulate a transaction
-    without broadcasting and receive full effects and events, iota_devInspectTransactionBlock
-    for development inspection of transaction execution with arbitrary gas budgets,
-    and iotax_estimateGasBudget for gas budget estimation. These 4 methods handle
-    all state-mutating operations on the IOTA network.
 - aid: iota:iota-graphql-api
   name: IOTA GraphQL API
   tags:
@@ -210,35 +53,300 @@ apis:
     type: APIReference
   - url: graphql/iota-graphql.md
     type: GraphQL
-  description: GraphQL RPC interface for the IOTA blockchain, providing an alternative
-    to the JSON-RPC API. Supports querying transaction blocks, objects, checkpoints,
-    events, and on-chain state using GraphQL query syntax. Available on all IOTA networks
-    including Mainnet at graphql.mainnet.iota.cafe, Testnet at graphql.testnet.iota.cafe,
-    and Devnet at graphql.devnet.iota.cafe. Cursor-based pagination is supported for
-    list operations.
-- aid: iota:iota-evm-json-rpc-api
-  name: IOTA EVM JSON-RPC API
+  description: >-
+    GraphQL RPC interface for the IOTA blockchain, providing an alternative to the JSON-RPC API. Supports
+    querying transaction blocks, objects, checkpoints, events, and on-chain state using GraphQL query
+    syntax. Available on all IOTA networks including Mainnet at graphql.mainnet.iota.cafe, Testnet at
+    graphql.testnet.iota.cafe, and Devnet at graphql.devnet.iota.cafe. Cursor-based pagination is supported
+    for list operations.
+- aid: iota:iota-auth-api
+  name: IOTA auth API
+  description: The auth API from IOTA — 2 operation(s) for auth.
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
   tags:
-  - EVM
-  - Ethereum
-  - Smart Contracts
-  - L2
-  - Blockchain
-  humanURL: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
-  baseURL: https://json-rpc.evm.testnet.iotaledger.net
+  - auth
   properties:
-  - url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
-    type: Documentation
-  - url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
-    type: APIReference
-  - url: openapi/iota-evm-wasp-openapi.yaml
-    type: OpenAPI
-  description: Ethereum-compatible JSON-RPC API for the IOTA EVM Layer 2. Supports
-    standard Ethereum JSON-RPC methods enabling Solidity smart contract deployment
-    and interaction via EVM-compatible tooling including Hardhat, Foundry, and MetaMask.
-    Provides HTTP and WebSocket transports for state queries and event subscriptions.
-    The IOTA EVM is a WASP-based smart contract chain with an Ethereum-compatible
-    interface for cross-chain interoperability and developer migration from EVM ecosystems.
+  - type: OpenAPI
+    url: openapi/iota-auth-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-chains-api
+  name: IOTA chains API
+  description: The chains API from IOTA — 18 operation(s) for chains.
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - chains
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-chains-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-coin-query-api
+  name: IOTA Coin Query API
+  description: 'Coin and balance queries: balances, coins list, metadata, supply'
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - Coin Query
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-coin-query-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-corecontracts-api
+  name: IOTA corecontracts API
+  description: The corecontracts API from IOTA — 18 operation(s) for corecontracts.
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - corecontracts
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-corecontracts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-extended-api
+  name: IOTA Extended API
+  description: Indexer-exclusive methods for advanced queries, events, dynamic fields, IOTA Names
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - Extended
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-extended-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-governance-api
+  name: IOTA Governance API
+  description: Governance, staking, validator, epoch, and system state queries
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - Governance
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-governance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-health-api
+  name: IOTA Health API
+  description: The Health API from IOTA — 1 operation(s) for health.
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-health-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-metrics-api
+  name: IOTA metrics API
+  description: The metrics API from IOTA — 3 operation(s) for metrics.
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-move-utils-api
+  name: IOTA Move Utils API
+  description: 'Move smart contract introspection: modules, functions, structs'
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - Move Utils
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-move-utils-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-node-api
+  name: IOTA node API
+  description: The node API from IOTA — 11 operation(s) for node.
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - node
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-node-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-read-api
+  name: IOTA Read API
+  description: 'Core read operations: objects, checkpoints, transactions, events, protocol config'
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - Read
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-read-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-requests-api
+  name: IOTA requests API
+  description: The requests API from IOTA — 1 operation(s) for requests.
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - requests
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-requests-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-transaction-builder-api
+  name: IOTA Transaction Builder API
+  description: Build unsigned transactions for transfers, staking, Move calls (unsafe_ prefix)
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - Transaction Builder
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-transaction-builder-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-users-api
+  name: IOTA users API
+  description: The users API from IOTA — 4 operation(s) for users.
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - users
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-write-api
+  name: IOTA Write API
+  description: Transaction execution, dry run, and dev inspection
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - Write
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-write-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
+- aid: iota:iota-ws-api
+  name: IOTA Ws API
+  description: The Ws API from IOTA — 1 operation(s) for ws.
+  humanURL: https://docs.iota.org/iota-api-ref
+  baseURL: https://api.mainnet.iota.cafe:443
+  tags:
+  - Ws
+  properties:
+  - type: OpenAPI
+    url: openapi/iota-ws-api-openapi.yml
+  - type: Documentation
+    url: https://docs.iota.org/iota-api-ref
+  - type: APIReference
+    url: https://docs.iota.org/iota-api-ref
+  - type: Documentation
+    url: https://docs.iota.org/developer/iota-evm/references/json-rpc-spec
+  - type: APIReference
+    url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
 common:
 - type: AgenticAccess
   url: agentic-access/iota-agentic-access.yml
