@@ -348,6 +348,17 @@ apis:
   - type: APIReference
     url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
 common:
+- type: IssueTracker
+  url: https://github.com/iotaledger/iota/issues
+- type: Releases
+  url: https://github.com/iotaledger/iota/releases
+- type: SecurityPolicy
+  url: https://github.com/iotaledger/iota/blob/develop/SECURITY.md
+- type: ContributionGuide
+  url: https://github.com/iotaledger/iota/blob/develop/CONTRIBUTING.md
+- type: License
+  name: Apache-2.0
+  url: https://github.com/iotaledger/iota/blob/develop/LICENSE
 - type: AgenticAccess
   url: agentic-access/iota-agentic-access.yml
 - type: DomainSecurity
@@ -407,10 +418,10 @@ common:
 - type: FinOps
   url: finops/iota-finops.yml
 - type: OpenAPI
-  url: openapi/iota-jsonrpc-openapi.json
+  url: openapi/_original/iota-jsonrpc-openapi.json
   title: IOTA JSON-RPC OpenAPI 3.0 (75 methods, derived from OpenRPC)
 - type: OpenAPI
-  url: openapi/iota-evm-wasp-openapi.yaml
+  url: openapi/_original/iota-evm-wasp-openapi.yaml
   title: IOTA EVM WASP Node REST API OpenAPI 3.0 (59 paths)
 - type: OpenRPC
   url: openapi/iota-openrpc.json
