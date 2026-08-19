@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth Coin Query API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Coin Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "iotax_getAllBalances",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getAllBalances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the total coin balance for all coin type, owned by the address owner."
+        },
+        {
+          "info": {
+            "name": "iotax_getAllCoins",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getAllCoins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return all Coin objects owned by an address."
+        },
+        {
+          "info": {
+            "name": "iotax_getBalance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getBalance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the total coin balance for one coin type, owned by the address owner."
+        },
+        {
+          "info": {
+            "name": "iotax_getCirculatingSupply",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getCirculatingSupply",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the circulating supply summary."
+        },
+        {
+          "info": {
+            "name": "iotax_getCoinMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getCoinMetadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return metadata (e.g., symbol, decimals) for a coin."
+        },
+        {
+          "info": {
+            "name": "iotax_getCoins",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getCoins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return all Coin<`coin_type`> objects owned by an address."
+        },
+        {
+          "info": {
+            "name": "iotax_getTotalSupply",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getTotalSupply",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return total supply for a coin."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

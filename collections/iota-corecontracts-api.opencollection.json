@@ -1,0 +1,432 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth corecontracts API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "corecontracts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all assets belonging to an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/accounts/account/:agentID/balance",
+            "params": [
+              {
+                "name": "agentID",
+                "value": "",
+                "type": "path",
+                "description": "AgentID (Hex Address for L1 accounts | Hex for EVM)"
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get all assets belonging to an account"
+        },
+        {
+          "info": {
+            "name": "Get the current nonce of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/accounts/account/:agentID/nonce",
+            "params": [
+              {
+                "name": "agentID",
+                "value": "",
+                "type": "path",
+                "description": "AgentID (Hex Address for L1 accounts | Hex for EVM)"
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get the current nonce of an account"
+        },
+        {
+          "info": {
+            "name": "Get all stored assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/accounts/total_assets",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get all stored assets"
+        },
+        {
+          "info": {
+            "name": "Get the block info of the latest block",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/blocks/latest",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get the block info of the latest block"
+        },
+        {
+          "info": {
+            "name": "Get all receipts of the latest block",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/blocks/latest/receipts",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get all receipts of the latest block"
+        },
+        {
+          "info": {
+            "name": "Get the request ids for the latest block",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/blocks/latest/requestids",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get the request ids for the latest block"
+        },
+        {
+          "info": {
+            "name": "Get the block info of a certain block index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/blocks/:blockIndex",
+            "params": [
+              {
+                "name": "blockIndex",
+                "value": "",
+                "type": "path",
+                "description": "BlockIndex (uint32)"
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get the block info of a certain block index"
+        },
+        {
+          "info": {
+            "name": "Get all receipts of a certain block",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/blocks/:blockIndex/receipts",
+            "params": [
+              {
+                "name": "blockIndex",
+                "value": "",
+                "type": "path",
+                "description": "BlockIndex (uint32)"
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get all receipts of a certain block"
+        },
+        {
+          "info": {
+            "name": "Get the request ids for a certain block index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/blocks/:blockIndex/requestids",
+            "params": [
+              {
+                "name": "blockIndex",
+                "value": "",
+                "type": "path",
+                "description": "BlockIndex (uint32)"
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get the request ids for a certain block index"
+        },
+        {
+          "info": {
+            "name": "Get the control addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/controladdresses",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get the control addresses"
+        },
+        {
+          "info": {
+            "name": "Get events of the latest block",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/events/block/latest",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get events of the latest block"
+        },
+        {
+          "info": {
+            "name": "Get events of a block",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/events/block/:blockIndex",
+            "params": [
+              {
+                "name": "blockIndex",
+                "value": "",
+                "type": "path",
+                "description": "BlockIndex (uint32)"
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get events of a block"
+        },
+        {
+          "info": {
+            "name": "Get events of a request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/events/request/:requestID",
+            "params": [
+              {
+                "name": "requestID",
+                "value": "",
+                "type": "path",
+                "description": "RequestID (Hex)"
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get events of a request"
+        },
+        {
+          "info": {
+            "name": "Get the receipt of a certain request id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/requests/:requestID",
+            "params": [
+              {
+                "name": "requestID",
+                "value": "",
+                "type": "path",
+                "description": "RequestID (Hex)"
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get the receipt of a certain request id"
+        },
+        {
+          "info": {
+            "name": "Get the request processing status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/blocklog/requests/:requestID/is_processed",
+            "params": [
+              {
+                "name": "requestID",
+                "value": "",
+                "type": "path",
+                "description": "RequestID (Hex)"
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get the request processing status"
+        },
+        {
+          "info": {
+            "name": "Get the error message format of a specific error id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/errors/:contractHname/message/:errorID",
+            "params": [
+              {
+                "name": "chainID",
+                "value": "",
+                "type": "path",
+                "description": "ChainID (Hex Address)"
+              },
+              {
+                "name": "contractHname",
+                "value": "",
+                "type": "path",
+                "description": "Contract (Hname as Hex)"
+              },
+              {
+                "name": "errorID",
+                "value": "",
+                "type": "path",
+                "description": "Error Id (uint16)"
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get the error message format of a specific error id"
+        },
+        {
+          "info": {
+            "name": "Get the chain admin",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/governance/chainadmin",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Returns the chain admin"
+        },
+        {
+          "info": {
+            "name": "Get the chain info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/core/governance/chaininfo",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "If you are using the common API functions, you most likely rather want to use '/v1/chains/:chainID' to get information about a chain."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

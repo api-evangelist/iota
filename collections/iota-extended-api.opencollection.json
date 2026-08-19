@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth Extended API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extended",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "iotax_getCheckpointAddressMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getCheckpointAddressMetrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Address related metrics. Exclusively served by the indexer."
+        },
+        {
+          "info": {
+            "name": "iotax_getDynamicFieldObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getDynamicFieldObject",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the dynamic field object information for a specified object"
+        },
+        {
+          "info": {
+            "name": "iotax_getDynamicFieldObjectV2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getDynamicFieldObjectV2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the dynamic field object information for a specified object with content options."
+        },
+        {
+          "info": {
+            "name": "iotax_getDynamicFields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getDynamicFields",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the list of dynamic field objects owned by an object."
+        },
+        {
+          "info": {
+            "name": "iotax_getLatestAddressMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getLatestAddressMetrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Address related metrics. Exclusively served by the indexer."
+        },
+        {
+          "info": {
+            "name": "iotax_getMoveCallMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getMoveCallMetrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return move call metrics. Exclusively served by the indexer."
+        },
+        {
+          "info": {
+            "name": "iotax_getNetworkMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getNetworkMetrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return Network metrics. Exclusively served by the indexer."
+        },
+        {
+          "info": {
+            "name": "iotax_getOwnedObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getOwnedObjects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the list of objects owned by an address. Note that if the address owns more than `QUERY_MAX_RESULT_LIMIT` objects, the pagination is not accurate, because previous page may have been updated when the next page is fetched. Please use iotax_queryObjects if this is a concern."
+        },
+        {
+          "info": {
+            "name": "iotax_getTotalTransactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getTotalTransactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the total number of transactions. Exclusively served by the indexer."
+        },
+        {
+          "info": {
+            "name": "iotax_iotaNamesFindAllRegistrationNFTs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_iotaNamesFindAllRegistrationNFTs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Find all registration NFTs for the given address."
+        },
+        {
+          "info": {
+            "name": "iotax_iotaNamesLookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_iotaNamesLookup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the resolved record for the given name."
+        },
+        {
+          "info": {
+            "name": "iotax_iotaNamesReverseLookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_iotaNamesReverseLookup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the resolved name for the given address."
+        },
+        {
+          "info": {
+            "name": "iotax_queryEvents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_queryEvents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return list of events for a specified query criteria."
+        },
+        {
+          "info": {
+            "name": "iotax_queryTransactionBlocks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_queryTransactionBlocks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return list of transactions for a specified query criteria."
+        },
+        {
+          "info": {
+            "name": "iotax_subscribeEvent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_subscribeEvent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe to a stream of IOTA event"
+        },
+        {
+          "info": {
+            "name": "iotax_subscribeTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_subscribeTransaction",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe to a stream of IOTA transaction effects"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

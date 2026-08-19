@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth Governance API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Governance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "iotax_getAllEpochAddressMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getAllEpochAddressMetrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Address related metrics. Exclusively served by the indexer."
+        },
+        {
+          "info": {
+            "name": "iotax_getCommitteeInfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getCommitteeInfo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the committee information for the asked `epoch`."
+        },
+        {
+          "info": {
+            "name": "iotax_getCurrentEpoch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getCurrentEpoch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return current epoch info. Exclusively served by the indexer."
+        },
+        {
+          "info": {
+            "name": "iotax_getEpochMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getEpochMetrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return a list of epoch metrics, which is a subset of epoch info. Exclusively served by the indexer."
+        },
+        {
+          "info": {
+            "name": "iotax_getEpochs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getEpochs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return a list of epoch info. Exclusively served by the indexer."
+        },
+        {
+          "info": {
+            "name": "iotax_getLatestIotaSystemState",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getLatestIotaSystemState",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the latest IOTA system state object on networks supporting protocol version `< 5`. These are networks with node software release version `< 0.11`."
+        },
+        {
+          "info": {
+            "name": "iotax_getLatestIotaSystemStateV2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getLatestIotaSystemStateV2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the latest IOTA system state object on networks supporting protocol version `>= 5`. These are networks with node software release version `>= 0.11`."
+        },
+        {
+          "info": {
+            "name": "iotax_getParticipationMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getParticipationMetrics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the participation metrics. Participation is defined as the total number of unique addresses that have delegated stake in the current epoch. Includes both staked and timelocked staked IOTA. Exclusively served by the indexer."
+        },
+        {
+          "info": {
+            "name": "iotax_getReferenceGasPrice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getReferenceGasPrice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the reference gas price for the network"
+        },
+        {
+          "info": {
+            "name": "iotax_getStakes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getStakes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return all [DelegatedStake]."
+        },
+        {
+          "info": {
+            "name": "iotax_getStakesByIds",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getStakesByIds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return one or more [DelegatedStake]. If a Stake was withdrawn its status will be Unstaked."
+        },
+        {
+          "info": {
+            "name": "iotax_getTimelockedStakes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getTimelockedStakes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return all [DelegatedTimelockedStake]."
+        },
+        {
+          "info": {
+            "name": "iotax_getTimelockedStakesByIds",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getTimelockedStakesByIds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return one or more [DelegatedTimelockedStake]. If a Stake was withdrawn its status will be Unstaked."
+        },
+        {
+          "info": {
+            "name": "iotax_getValidatorsApy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iotax_getValidatorsApy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the validator APY"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

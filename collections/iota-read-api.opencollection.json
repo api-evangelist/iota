@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth Read API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Read",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "iota_getChainIdentifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getChainIdentifier",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the first four bytes of the chain's genesis checkpoint digest."
+        },
+        {
+          "info": {
+            "name": "iota_getCheckpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getCheckpoint",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return a checkpoint"
+        },
+        {
+          "info": {
+            "name": "iota_getCheckpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getCheckpoints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return paginated list of checkpoints"
+        },
+        {
+          "info": {
+            "name": "iota_getEvents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getEvents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return transaction events."
+        },
+        {
+          "info": {
+            "name": "iota_getLatestCheckpointSequenceNumber",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getLatestCheckpointSequenceNumber",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the sequence number of the latest checkpoint that has been executed"
+        },
+        {
+          "info": {
+            "name": "iota_getObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getObject",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the object information for a specified object"
+        },
+        {
+          "info": {
+            "name": "iota_getProtocolConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getProtocolConfig",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the protocol config table for the given version number. If the version number is not specified, If none is specified, the node uses the version of the latest epoch it has processed."
+        },
+        {
+          "info": {
+            "name": "iota_multiGetObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_multiGetObjects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the object data for a list of objects"
+        },
+        {
+          "info": {
+            "name": "iota_tryGetPastObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_tryGetPastObject",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Note there is no software-level guarantee/SLA that objects with past versions can be retrieved by this API, even if the object and version exists/existed. The result may vary across nodes depending on their pruning policies. Return the object information for a specified version"
+        },
+        {
+          "info": {
+            "name": "iota_tryMultiGetPastObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_tryMultiGetPastObjects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Note there is no software-level guarantee/SLA that objects with past versions can be retrieved by this API, even if the object and version exists/existed. The result may vary across nodes depending on their pruning policies. Return the object information for a specified version"
+        },
+        {
+          "info": {
+            "name": "iota_view",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_view",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls a move view function."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

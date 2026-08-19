@@ -1,0 +1,2753 @@
+{
+  "item": [
+    {
+      "id": "6bbd7c70-cffc-4fba-8497-6a993c536f7e",
+      "name": "corecontracts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6fbe1374-5a0d-433a-8a15-3a2515c7d511",
+          "name": "Get all assets belonging to an account",
+          "request": {
+            "name": "Get all assets belonging to an account",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "accounts",
+                "account",
+                ":agentID",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentID",
+                  "description": "(Required) AgentID (Hex Address for L1 accounts | Hex for EVM)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2093ceea-c1f0-4758-8765-79851a6eab6e",
+              "name": "All assets belonging to an account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "accounts",
+                    "account",
+                    ":agentID",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentID",
+                      "description": "(Required) AgentID (Hex Address for L1 accounts | Hex for EVM)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseTokens\": \"string\",\n  \"coins\": [\n    {\n      \"coinType\": \"coinType\",\n      \"balance\": \"balance\"\n    },\n    {\n      \"coinType\": \"coinType\",\n      \"balance\": \"balance\"\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f22a909e-5103-4abb-a10f-1299c5960fe4",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "accounts",
+                    "account",
+                    ":agentID",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentID",
+                      "description": "(Required) AgentID (Hex Address for L1 accounts | Hex for EVM)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6d4e47a-5912-4652-a290-83dd5a7c3cf1",
+          "name": "Get the current nonce of an account",
+          "request": {
+            "name": "Get the current nonce of an account",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "accounts",
+                "account",
+                ":agentID",
+                "nonce"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentID",
+                  "description": "(Required) AgentID (Hex Address for L1 accounts | Hex for EVM)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afd8aeb8-bf38-4e4a-a6a1-976faec8c4d9",
+              "name": "The current nonce of an account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "accounts",
+                    "account",
+                    ":agentID",
+                    "nonce"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentID",
+                      "description": "(Required) AgentID (Hex Address for L1 accounts | Hex for EVM)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nonce\": \"nonce\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e281d20-8e09-4f3b-bedb-238e4e37b26c",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "accounts",
+                    "account",
+                    ":agentID",
+                    "nonce"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentID",
+                      "description": "(Required) AgentID (Hex Address for L1 accounts | Hex for EVM)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43f57ba1-6c0f-4218-9592-6e3a428f879e",
+          "name": "Get all stored assets",
+          "request": {
+            "name": "Get all stored assets",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "accounts",
+                "total_assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "062adcea-913e-41e3-b11c-382253b9a8ce",
+              "name": "All stored assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "accounts",
+                    "total_assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseTokens\": \"string\",\n  \"coins\": [\n    {\n      \"coinType\": \"coinType\",\n      \"balance\": \"balance\"\n    },\n    {\n      \"coinType\": \"coinType\",\n      \"balance\": \"balance\"\n    }\n  ],\n  \"objects\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38cbcdc4-9935-43cc-a878-5224c80ba711",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "accounts",
+                    "total_assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c66227d-64ab-4f20-b212-83c42d3b7f0d",
+          "name": "Get the block info of the latest block",
+          "request": {
+            "name": "Get the block info of the latest block",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "blocks",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "316370a7-482d-445d-aa63-ba60339e7a5a",
+              "name": "The block info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blockIndex\": 1,\n  \"numSuccessfulRequests\": 1,\n  \"gasFeeCharged\": \"gasFeeCharged\",\n  \"gasBurned\": \"gasBurned\",\n  \"totalRequests\": 1,\n  \"numOffLedgerRequests\": 1,\n  \"timestamp\": \"2000-01-23 04:56:07+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cca58bac-0aa8-439c-9539-c8e4430ca7b6",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8f12533-f2fe-43cd-a61f-8ff8670a8318",
+          "name": "Get all receipts of the latest block",
+          "request": {
+            "name": "Get all receipts of the latest block",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "blocks",
+                "latest",
+                "receipts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5821347-d36a-46f5-8232-32b149aa6ba9",
+              "name": "The receipts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    "latest",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"blockIndex\": 1713,\n    \"gasBudget\": \"string\",\n    \"gasBurnLog\": [\n      {\n        \"code\": 6,\n        \"gasBurned\": 1\n      },\n      {\n        \"code\": 6,\n        \"gasBurned\": 1\n      }\n    ],\n    \"gasBurned\": \"string\",\n    \"gasFeeCharged\": \"string\",\n    \"request\": {\n      \"allowance\": {\n        \"coins\": [\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          },\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          }\n        ],\n        \"objects\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"assets\": {\n        \"coins\": [\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          },\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          }\n        ],\n        \"objects\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"callTarget\": {\n        \"contractHName\": \"contractHName\",\n        \"functionHName\": \"functionHName\"\n      },\n      \"gasBudget\": \"string\",\n      \"isEVM\": false,\n      \"isOffLedger\": false,\n      \"params\": [\n        \"string\",\n        \"string\"\n      ],\n      \"requestId\": \"string\",\n      \"senderAccount\": \"string\",\n      \"allowanceError\": \"string\"\n    },\n    \"requestIndex\": 8775,\n    \"storageDepositCharged\": \"string\",\n    \"errorMessage\": \"string\",\n    \"rawError\": {\n      \"code\": \"code\",\n      \"params\": [\n        \"params\",\n        \"params\"\n      ]\n    }\n  },\n  {\n    \"blockIndex\": 8463,\n    \"gasBudget\": \"string\",\n    \"gasBurnLog\": [\n      {\n        \"code\": 6,\n        \"gasBurned\": 1\n      },\n      {\n        \"code\": 6,\n        \"gasBurned\": 1\n      }\n    ],\n    \"gasBurned\": \"string\",\n    \"gasFeeCharged\": \"string\",\n    \"request\": {\n      \"allowance\": {\n        \"coins\": [\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          },\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          }\n        ],\n        \"objects\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"assets\": {\n        \"coins\": [\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          },\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          }\n        ],\n        \"objects\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"callTarget\": {\n        \"contractHName\": \"contractHName\",\n        \"functionHName\": \"functionHName\"\n      },\n      \"gasBudget\": \"string\",\n      \"isEVM\": false,\n      \"isOffLedger\": false,\n      \"params\": [\n        \"string\",\n        \"string\"\n      ],\n      \"requestId\": \"string\",\n      \"senderAccount\": \"string\",\n      \"allowanceError\": \"string\"\n    },\n    \"requestIndex\": 7470,\n    \"storageDepositCharged\": \"string\",\n    \"errorMessage\": \"string\",\n    \"rawError\": {\n      \"code\": \"code\",\n      \"params\": [\n        \"params\",\n        \"params\"\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "624f7e32-477f-44d7-908d-608748deab4e",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    "latest",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75dd1330-5e5c-47fd-9830-6965b257d203",
+          "name": "Get the request ids for the latest block",
+          "request": {
+            "name": "Get the request ids for the latest block",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "blocks",
+                "latest",
+                "requestids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f2be624-6832-44e2-ba6b-509a7a2ef63f",
+              "name": "A list of request ids (ISCRequestID[])",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    "latest",
+                    "requestids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestIds\": [\n    \"requestIds\",\n    \"requestIds\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d50647f9-9a40-4e34-aac4-e9e9b04923fd",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    "latest",
+                    "requestids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecc2ae55-a2cc-4328-99d1-1f1349c261ec",
+          "name": "Get the block info of a certain block index",
+          "request": {
+            "name": "Get the block info of a certain block index",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "blocks",
+                ":blockIndex"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "blockIndex",
+                  "description": "(Required) BlockIndex (uint32)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74aebcf3-a395-4199-9e83-21a5eb1a5328",
+              "name": "The block info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    ":blockIndex"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "blockIndex",
+                      "description": "(Required) BlockIndex (uint32)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blockIndex\": 1,\n  \"numSuccessfulRequests\": 1,\n  \"gasFeeCharged\": \"gasFeeCharged\",\n  \"gasBurned\": \"gasBurned\",\n  \"totalRequests\": 1,\n  \"numOffLedgerRequests\": 1,\n  \"timestamp\": \"2000-01-23 04:56:07+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebe92106-441e-4384-9ec3-916d695ff4b9",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    ":blockIndex"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "blockIndex",
+                      "description": "(Required) BlockIndex (uint32)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ba372bd-d440-4c6f-93fb-169e1389b3e5",
+          "name": "Get all receipts of a certain block",
+          "request": {
+            "name": "Get all receipts of a certain block",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "blocks",
+                ":blockIndex",
+                "receipts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "blockIndex",
+                  "description": "(Required) BlockIndex (uint32)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdb6fcab-32c7-43eb-8604-405867a1b253",
+              "name": "The receipts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    ":blockIndex",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "blockIndex",
+                      "description": "(Required) BlockIndex (uint32)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"blockIndex\": 906,\n    \"gasBudget\": \"string\",\n    \"gasBurnLog\": [\n      {\n        \"code\": 6,\n        \"gasBurned\": 1\n      },\n      {\n        \"code\": 6,\n        \"gasBurned\": 1\n      }\n    ],\n    \"gasBurned\": \"string\",\n    \"gasFeeCharged\": \"string\",\n    \"request\": {\n      \"allowance\": {\n        \"coins\": [\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          },\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          }\n        ],\n        \"objects\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"assets\": {\n        \"coins\": [\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          },\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          }\n        ],\n        \"objects\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"callTarget\": {\n        \"contractHName\": \"contractHName\",\n        \"functionHName\": \"functionHName\"\n      },\n      \"gasBudget\": \"string\",\n      \"isEVM\": true,\n      \"isOffLedger\": true,\n      \"params\": [\n        \"string\",\n        \"string\"\n      ],\n      \"requestId\": \"string\",\n      \"senderAccount\": \"string\",\n      \"allowanceError\": \"string\"\n    },\n    \"requestIndex\": 4202,\n    \"storageDepositCharged\": \"string\",\n    \"errorMessage\": \"string\",\n    \"rawError\": {\n      \"code\": \"code\",\n      \"params\": [\n        \"params\",\n        \"params\"\n      ]\n    }\n  },\n  {\n    \"blockIndex\": 3679,\n    \"gasBudget\": \"string\",\n    \"gasBurnLog\": [\n      {\n        \"code\": 6,\n        \"gasBurned\": 1\n      },\n      {\n        \"code\": 6,\n        \"gasBurned\": 1\n      }\n    ],\n    \"gasBurned\": \"string\",\n    \"gasFeeCharged\": \"string\",\n    \"request\": {\n      \"allowance\": {\n        \"coins\": [\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          },\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          }\n        ],\n        \"objects\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"assets\": {\n        \"coins\": [\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          },\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          }\n        ],\n        \"objects\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"callTarget\": {\n        \"contractHName\": \"contractHName\",\n        \"functionHName\": \"functionHName\"\n      },\n      \"gasBudget\": \"string\",\n      \"isEVM\": false,\n      \"isOffLedger\": true,\n      \"params\": [\n        \"string\",\n        \"string\"\n      ],\n      \"requestId\": \"string\",\n      \"senderAccount\": \"string\",\n      \"allowanceError\": \"string\"\n    },\n    \"requestIndex\": 63,\n    \"storageDepositCharged\": \"string\",\n    \"errorMessage\": \"string\",\n    \"rawError\": {\n      \"code\": \"code\",\n      \"params\": [\n        \"params\",\n        \"params\"\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f8a6b3d-97b4-40c0-8255-768bdd43acd7",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    ":blockIndex",
+                    "receipts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "blockIndex",
+                      "description": "(Required) BlockIndex (uint32)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bdf96df-c220-48f4-9b7c-62aa434f5b97",
+          "name": "Get the request ids for a certain block index",
+          "request": {
+            "name": "Get the request ids for a certain block index",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "blocks",
+                ":blockIndex",
+                "requestids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "blockIndex",
+                  "description": "(Required) BlockIndex (uint32)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6095bc1-b8b2-4651-9157-5193cfb8a396",
+              "name": "A list of request ids (ISCRequestID[])",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    ":blockIndex",
+                    "requestids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "blockIndex",
+                      "description": "(Required) BlockIndex (uint32)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestIds\": [\n    \"requestIds\",\n    \"requestIds\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b92dccc3-0a35-4eef-a6ee-96250a4fa997",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "blocks",
+                    ":blockIndex",
+                    "requestids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "blockIndex",
+                      "description": "(Required) BlockIndex (uint32)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27724cfe-3a5c-4b56-bf77-ffba80b1ab5d",
+          "name": "Get the control addresses",
+          "request": {
+            "name": "Get the control addresses",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "controladdresses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49d1d04f-a603-43de-a25e-2e7e4df95c29",
+              "name": "The chain info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "controladdresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chainAdmin\": \"chainAdmin\",\n  \"sinceBlockIndex\": 1,\n  \"anchorOwner\": \"anchorOwner\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf9c0b2e-6c5b-43c0-84d0-828daec4e529",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "controladdresses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4695124-4fbc-4d3e-8774-8f0469ebd93c",
+          "name": "Get events of the latest block",
+          "request": {
+            "name": "Get events of the latest block",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "events",
+                "block",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "998dd59c-6720-4b87-8c05-e5aacb976c6a",
+              "name": "The receipts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "events",
+                    "block",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"events\": [\n    {\n      \"payload\": \"payload\",\n      \"contractID\": 1,\n      \"topic\": \"topic\",\n      \"timestamp\": 6\n    },\n    {\n      \"payload\": \"payload\",\n      \"contractID\": 1,\n      \"topic\": \"topic\",\n      \"timestamp\": 6\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bf125ae-96bd-4a3e-9e58-d71a3586e335",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "events",
+                    "block",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96078872-0766-4811-a6ed-e6ae94e1be21",
+          "name": "Get events of a block",
+          "request": {
+            "name": "Get events of a block",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "events",
+                "block",
+                ":blockIndex"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "blockIndex",
+                  "description": "(Required) BlockIndex (uint32)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bfef68c3-3dcf-4be9-901c-0725385402eb",
+              "name": "The events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "events",
+                    "block",
+                    ":blockIndex"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "blockIndex",
+                      "description": "(Required) BlockIndex (uint32)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"events\": [\n    {\n      \"payload\": \"payload\",\n      \"contractID\": 1,\n      \"topic\": \"topic\",\n      \"timestamp\": 6\n    },\n    {\n      \"payload\": \"payload\",\n      \"contractID\": 1,\n      \"topic\": \"topic\",\n      \"timestamp\": 6\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8139e2a9-dfda-477f-8b68-ce74e23d6a00",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "events",
+                    "block",
+                    ":blockIndex"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "blockIndex",
+                      "description": "(Required) BlockIndex (uint32)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03790b60-e9c8-4481-a9b9-d3366605d5c2",
+          "name": "Get events of a request",
+          "request": {
+            "name": "Get events of a request",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "events",
+                "request",
+                ":requestID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestID",
+                  "description": "(Required) RequestID (Hex)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c41306b-f056-4f15-a677-f1d1b1a83ffc",
+              "name": "The events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "events",
+                    "request",
+                    ":requestID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"events\": [\n    {\n      \"payload\": \"payload\",\n      \"contractID\": 1,\n      \"topic\": \"topic\",\n      \"timestamp\": 6\n    },\n    {\n      \"payload\": \"payload\",\n      \"contractID\": 1,\n      \"topic\": \"topic\",\n      \"timestamp\": 6\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "566f3d0f-7a6b-4eb8-94ba-7ea6b779d3be",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "events",
+                    "request",
+                    ":requestID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "818e59ce-0fc2-4939-bea6-e7514de3caf9",
+          "name": "Get the receipt of a certain request id",
+          "request": {
+            "name": "Get the receipt of a certain request id",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "requests",
+                ":requestID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestID",
+                  "description": "(Required) RequestID (Hex)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80942ae2-dc72-4b4c-9cc4-86f6fc43c8df",
+              "name": "The receipt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "requests",
+                    ":requestID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blockIndex\": 4362,\n  \"gasBudget\": \"string\",\n  \"gasBurnLog\": [\n    {\n      \"code\": 6,\n      \"gasBurned\": 1\n    },\n    {\n      \"code\": 6,\n      \"gasBurned\": 1\n    }\n  ],\n  \"gasBurned\": \"string\",\n  \"gasFeeCharged\": \"string\",\n  \"request\": {\n    \"allowance\": {\n      \"coins\": [\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        },\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        }\n      ],\n      \"objects\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"assets\": {\n      \"coins\": [\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        },\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        }\n      ],\n      \"objects\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"callTarget\": {\n      \"contractHName\": \"contractHName\",\n      \"functionHName\": \"functionHName\"\n    },\n    \"gasBudget\": \"string\",\n    \"isEVM\": false,\n    \"isOffLedger\": true,\n    \"params\": [\n      \"string\",\n      \"string\"\n    ],\n    \"requestId\": \"string\",\n    \"senderAccount\": \"string\",\n    \"allowanceError\": \"string\"\n  },\n  \"requestIndex\": 6313,\n  \"storageDepositCharged\": \"string\",\n  \"errorMessage\": \"string\",\n  \"rawError\": {\n    \"code\": \"code\",\n    \"params\": [\n      \"params\",\n      \"params\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "202b6be6-eaa7-4b65-9b03-756df8a67829",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "requests",
+                    ":requestID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e4128d3-4540-4297-9904-e149fee16516",
+          "name": "Get the request processing status",
+          "request": {
+            "name": "Get the request processing status",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "blocklog",
+                "requests",
+                ":requestID",
+                "is_processed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestID",
+                  "description": "(Required) RequestID (Hex)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d74e84ca-8c77-4f6b-adeb-00967ff624b2",
+              "name": "The processing result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "requests",
+                    ":requestID",
+                    "is_processed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chainId\": \"chainId\",\n  \"requestId\": \"requestId\",\n  \"isProcessed\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bce22d6-517e-455b-a347-1cf2e2cbc6e3",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "blocklog",
+                    "requests",
+                    ":requestID",
+                    "is_processed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1125e2b0-3c6d-4d2e-99d5-8ba3523e2582",
+          "name": "Get the error message format of a specific error id",
+          "request": {
+            "name": "Get the error message format of a specific error id",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "errors",
+                ":contractHname",
+                "message",
+                ":errorID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chainID",
+                  "description": "(Required) ChainID (Hex Address)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contractHname",
+                  "description": "(Required) Contract (Hname as Hex)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "errorID",
+                  "description": "(Required) Error Id (uint16)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98728c78-9c36-4a52-8707-5097b7558978",
+              "name": "The error message format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "errors",
+                    ":contractHname",
+                    "message",
+                    ":errorID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainID",
+                      "description": "(Required) ChainID (Hex Address)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contractHname",
+                      "description": "(Required) Contract (Hname as Hex)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "errorID",
+                      "description": "(Required) Error Id (uint16)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messageFormat\": \"messageFormat\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3235116-af94-4dc8-ba42-533238f28ae3",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "errors",
+                    ":contractHname",
+                    "message",
+                    ":errorID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainID",
+                      "description": "(Required) ChainID (Hex Address)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contractHname",
+                      "description": "(Required) Contract (Hname as Hex)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "errorID",
+                      "description": "(Required) Error Id (uint16)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9997275-4d62-4528-b39b-c6e152cb0ff2",
+          "name": "Get the chain admin",
+          "request": {
+            "name": "Get the chain admin",
+            "description": {
+              "content": "Returns the chain admin",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "governance",
+                "chainadmin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "159cdce0-3e93-4a77-83b0-df8f51dc9d83",
+              "name": "The chain admin",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "governance",
+                    "chainadmin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chainAdmin\": \"chainAdmin\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79b42f57-f45b-4374-a720-f7304ea436fa",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "governance",
+                    "chainadmin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20a6da1e-d74c-45a7-9f70-23615630ed3c",
+          "name": "Get the chain info",
+          "request": {
+            "name": "Get the chain info",
+            "description": {
+              "content": "If you are using the common API functions, you most likely rather want to use '/v1/chains/:chainID' to get information about a chain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "core",
+                "governance",
+                "chaininfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a1bf43b-9efe-4989-8b0d-72d8ca9f394f",
+              "name": "The chain info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "governance",
+                    "chaininfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chainAdmin\": \"chainAdmin\",\n  \"metadata\": {\n    \"website\": \"website\",\n    \"evmWebSocketURL\": \"evmWebSocketURL\",\n    \"name\": \"name\",\n    \"description\": \"description\",\n    \"evmJsonRpcURL\": \"evmJsonRpcURL\"\n  },\n  \"gasLimits\": {\n    \"maxGasExternalViewCall\": 5,\n    \"minGasPerRequest\": 9,\n    \"maxGasPerBlock\": 2,\n    \"maxGasPerRequest\": 7\n  },\n  \"chainID\": \"chainID\",\n  \"publicURL\": \"publicURL\",\n  \"gasFeePolicy\": {\n    \"gasPerToken\": {\n      \"a\": 0,\n      \"b\": 0\n    },\n    \"validatorFeeShare\": 5,\n    \"evmGasRatio\": {\n      \"a\": 0,\n      \"b\": 0\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afbd7e10-b040-4a65-8893-bd64e7efb748",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "core",
+                    "governance",
+                    "chaininfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2b23d627-2143-47d5-a8ac-4b7e54533fcb",
+    "name": "Wasp auth corecontracts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Wasp node",
+      "type": "text/plain"
+    }
+  }
+}

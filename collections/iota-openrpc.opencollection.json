@@ -1,0 +1,9 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IOTA JSON-RPC",
+    "version": "1.26.0-alpha"
+  },
+  "items": [],
+  "bundled": true
+}

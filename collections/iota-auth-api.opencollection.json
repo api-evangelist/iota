@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate towards the node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate towards the node"
+        },
+        {
+          "info": {
+            "name": "Get information about the current authentication mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/auth/info"
+          },
+          "docs": "Get information about the current authentication mode"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

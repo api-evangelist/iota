@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth Move Utils API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Move Utils",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "iota_getMoveFunctionArgTypes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getMoveFunctionArgTypes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the argument types of a Move function, based on normalized Type."
+        },
+        {
+          "info": {
+            "name": "iota_getNormalizedMoveFunction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getNormalizedMoveFunction",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return a structured representation of Move function"
+        },
+        {
+          "info": {
+            "name": "iota_getNormalizedMoveModule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getNormalizedMoveModule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return a structured representation of Move module"
+        },
+        {
+          "info": {
+            "name": "iota_getNormalizedMoveModulesByPackage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getNormalizedMoveModulesByPackage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return structured representations of all modules in the given package"
+        },
+        {
+          "info": {
+            "name": "iota_getNormalizedMoveStruct",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getNormalizedMoveStruct",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return a structured representation of Move struct"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

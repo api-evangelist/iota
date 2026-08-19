@@ -1,0 +1,243 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth Transaction Builder API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction Builder",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "unsafe_batchTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_batchTransaction",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unsigned batched transaction."
+        },
+        {
+          "info": {
+            "name": "unsafe_mergeCoins",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_mergeCoins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unsigned transaction to merge multiple coins into one coin."
+        },
+        {
+          "info": {
+            "name": "unsafe_moveCall",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_moveCall",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unsigned transaction to execute a Move call on the network, by calling the specified function in the module of a given package."
+        },
+        {
+          "info": {
+            "name": "unsafe_pay",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_pay",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send `Coin<T>` to a list of addresses, where `T` can be any coin type, following a list of amounts, The object specified in the `gas` field will be used to pay the gas fee for the transaction. The gas object can not appear in `input_coins`. If the gas object is not specified, the RPC server will auto-select one."
+        },
+        {
+          "info": {
+            "name": "unsafe_payAllIota",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_payAllIota",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send all IOTA coins to one recipient. This is for IOTA coin only and does not require a separate gas coin object. Specifically, what pay_all_iota does are: 1. accumulate all IOTA from input coins and deposit all IOTA to the first    input coin 2. transfer the updated first coin to the recipient and also use this first    coin as gas coin object. 3. the balance of the first input coin after tx is sum(input_coins) -    actual_gas_cost. 4. all other input coins other than the first are deleted."
+        },
+        {
+          "info": {
+            "name": "unsafe_payIota",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_payIota",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send IOTA coins to a list of addresses, following a list of amounts. This is for IOTA coin only and does not require a separate gas coin object. Specifically, what pay_iota does are: 1. debit each input_coin to create new coin following the order of amounts and assign it to the corresponding recipient. 2. accumulate all residual IOTA from input coins left and deposit all IOTA    to the first input coin, then use the first input coin as the gas coin object. 3. the balance of the first input coin "
+        },
+        {
+          "info": {
+            "name": "unsafe_publish",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_publish",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unsigned transaction to publish a Move package."
+        },
+        {
+          "info": {
+            "name": "unsafe_requestAddStake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_requestAddStake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add stake to a validator's staking pool using multiple coins and amount."
+        },
+        {
+          "info": {
+            "name": "unsafe_requestAddTimelockedStake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_requestAddTimelockedStake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add timelocked stake to a validator's staking pool using multiple balances and amount."
+        },
+        {
+          "info": {
+            "name": "unsafe_requestWithdrawStake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_requestWithdrawStake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw stake from a validator's staking pool."
+        },
+        {
+          "info": {
+            "name": "unsafe_requestWithdrawTimelockedStake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_requestWithdrawTimelockedStake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw timelocked stake from a validator's staking pool."
+        },
+        {
+          "info": {
+            "name": "unsafe_splitCoin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_splitCoin",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unsigned transaction to split a coin object into multiple coins."
+        },
+        {
+          "info": {
+            "name": "unsafe_splitCoinEqual",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_splitCoinEqual",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unsigned transaction to split a coin object into multiple equal-size coins."
+        },
+        {
+          "info": {
+            "name": "unsafe_transferIota",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_transferIota",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unsigned transaction to send IOTA coin object to an IOTA address. The IOTA object is also used as the gas object."
+        },
+        {
+          "info": {
+            "name": "unsafe_transferObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/unsafe_transferObject",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unsigned transaction to transfer an object from one address to another. The object's type must allow public transfers"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

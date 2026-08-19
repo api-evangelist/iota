@@ -1,0 +1,399 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth chains API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "chains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get information about a specific chain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ]
+          },
+          "docs": "Get information about a specific chain"
+        },
+        {
+          "info": {
+            "name": "Configure a trusted node to be an access node.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/v1/chain/access-node/:peer",
+            "params": [
+              {
+                "name": "peer",
+                "value": "",
+                "type": "path",
+                "description": "Name or PubKey (hex) of the trusted peer"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Configure a trusted node to be an access node."
+        },
+        {
+          "info": {
+            "name": "Remove an access node.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/chain/access-node/:peer",
+            "params": [
+              {
+                "name": "peer",
+                "value": "",
+                "type": "path",
+                "description": "Name or PubKey (hex) of the trusted peer"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Remove an access node."
+        },
+        {
+          "info": {
+            "name": "Activate a chain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/chain/activate/:chainID",
+            "params": [
+              {
+                "name": "chainID",
+                "value": "",
+                "type": "path",
+                "description": "ChainID (Hex Address)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Activate a chain"
+        },
+        {
+          "info": {
+            "name": "Call a view function on a contract by Hname",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/chain/callview",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a view call. Either use HName or Name properties. If both are supplied, HName are used."
+        },
+        {
+          "info": {
+            "name": "Sets the chain record.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/chain/chainrecord/:chainID",
+            "params": [
+              {
+                "name": "chainID",
+                "value": "",
+                "type": "path",
+                "description": "ChainID (Hex Address)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sets the chain record."
+        },
+        {
+          "info": {
+            "name": "Get information about the deployed committee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/committee",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get information about the deployed committee"
+        },
+        {
+          "info": {
+            "name": "Get all available chain contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/contracts",
+            "params": [
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Block index or trie root"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all available chain contracts"
+        },
+        {
+          "info": {
+            "name": "Deactivate a chain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/chain/deactivate",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deactivate a chain"
+        },
+        {
+          "info": {
+            "name": "dump accounts information into a humanly-readable format",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/chain/dump-accounts",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "dump accounts information into a humanly-readable format"
+        },
+        {
+          "info": {
+            "name": "Estimates gas for a given off-ledger ISC request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/chain/estimategas-offledger",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Estimates gas for a given off-ledger ISC request"
+        },
+        {
+          "info": {
+            "name": "Estimates gas for a given on-ledger ISC request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/chain/estimategas-onledger",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Estimates gas usage for a given on-ledger ISC request. To calculate required L1 and L2 gas budgets use values of L1.GasBudget and L2.GasBurned respectively."
+        },
+        {
+          "info": {
+            "name": "Ethereum JSON-RPC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/chain/evm"
+          },
+          "docs": "Ethereum JSON-RPC"
+        },
+        {
+          "info": {
+            "name": "Ethereum JSON-RPC (Websocket transport)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/evm/ws"
+          },
+          "docs": "Ethereum JSON-RPC (Websocket transport)"
+        },
+        {
+          "info": {
+            "name": "Get the contents of the mempool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/mempool",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the contents of the mempool."
+        },
+        {
+          "info": {
+            "name": "Get a receipt from a request ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/receipts/:requestID",
+            "params": [
+              {
+                "name": "requestID",
+                "value": "",
+                "type": "path",
+                "description": "RequestID (Hex)"
+              }
+            ]
+          },
+          "docs": "Get a receipt from a request ID"
+        },
+        {
+          "info": {
+            "name": "Wait until the given request has been processed by the node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/requests/:requestID/wait",
+            "params": [
+              {
+                "name": "requestID",
+                "value": "",
+                "type": "path",
+                "description": "RequestID (Hex)"
+              },
+              {
+                "name": "timeoutSeconds",
+                "value": "",
+                "type": "query",
+                "description": "The timeout in seconds, maximum 60s"
+              },
+              {
+                "name": "waitForL1Confirmation",
+                "value": "",
+                "type": "query",
+                "description": "Wait for the block to be confirmed on L1"
+              }
+            ]
+          },
+          "docs": "Wait until the given request has been processed by the node"
+        },
+        {
+          "info": {
+            "name": "Rotate a chain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/chain/rotate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Rotate a chain"
+        },
+        {
+          "info": {
+            "name": "Fetch the raw value associated with the given key in the chain state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/chain/state/:stateKey",
+            "params": [
+              {
+                "name": "stateKey",
+                "value": "",
+                "type": "path",
+                "description": "State Key (Hex)"
+              }
+            ]
+          },
+          "docs": "Fetch the raw value associated with the given key in the chain state"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

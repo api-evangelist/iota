@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth Write API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Write",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "iota_devInspectTransactionBlock",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_devInspectTransactionBlock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs the transaction in dev-inspect mode. Which allows for nearly any transaction (or Move call) with any arguments. Detailed results are provided, including both the transaction effects and any return values."
+        },
+        {
+          "info": {
+            "name": "iota_dryRunTransactionBlock",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_dryRunTransactionBlock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return transaction execution effects including the gas cost summary, while the effects are not committed to the chain."
+        },
+        {
+          "info": {
+            "name": "iota_executeTransactionBlock",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_executeTransactionBlock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute the transaction and wait for results if desired. Request types: 1. WaitForEffectsCert: waits for TransactionEffectsCert and then return to    client. This mode is a proxy for transaction finality. 2. WaitForLocalExecution: waits for TransactionEffectsCert and make sure the    node executed the transaction locally before returning the client. The    local execution makes sure this node is aware of this transaction when    client fires subsequent queries. However if the node fails to execu"
+        },
+        {
+          "info": {
+            "name": "iota_getTotalTransactionBlocks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getTotalTransactionBlocks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the total number of transaction blocks known to the server."
+        },
+        {
+          "info": {
+            "name": "iota_getTransactionBlock",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_getTransactionBlock",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the transaction response object."
+        },
+        {
+          "info": {
+            "name": "iota_isTransactionIndexedOnNode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_isTransactionIndexedOnNode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return if the transaction has been indexed on the fullnode."
+        },
+        {
+          "info": {
+            "name": "iota_multiGetTransactionBlocks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/iota_multiGetTransactionBlocks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns an ordered list of transaction responses The method will throw an error if the input contains any duplicate or the input size exceeds QUERY_MAX_RESULT_LIMIT"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

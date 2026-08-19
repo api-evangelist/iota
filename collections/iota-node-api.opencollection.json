@@ -1,0 +1,240 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth node API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "node",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return the Wasp configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/node/config",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return the Wasp configuration"
+        },
+        {
+          "info": {
+            "name": "Generate a new distributed key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/node/dks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a new distributed key"
+        },
+        {
+          "info": {
+            "name": "Get information about the shared address DKS configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/node/dks/:sharedAddress",
+            "params": [
+              {
+                "name": "sharedAddress",
+                "value": "",
+                "type": "path",
+                "description": "SharedAddress (Hex Address)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get information about the shared address DKS configuration"
+        },
+        {
+          "info": {
+            "name": "Returns private information about this node.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/node/info",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns private information about this node."
+        },
+        {
+          "info": {
+            "name": "Gets the node owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/node/owner/certificate",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets the node owner"
+        },
+        {
+          "info": {
+            "name": "Get basic information about all configured peers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/node/peers",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get basic information about all configured peers"
+        },
+        {
+          "info": {
+            "name": "Get basic peer info of the current node",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/node/peers/identity",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get basic peer info of the current node"
+        },
+        {
+          "info": {
+            "name": "Get trusted peers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/node/peers/trusted",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get trusted peers"
+        },
+        {
+          "info": {
+            "name": "Trust a peering node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/node/peers/trusted",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Trust a peering node"
+        },
+        {
+          "info": {
+            "name": "Distrust a peering node",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v1/node/peers/trusted/:peer",
+            "params": [
+              {
+                "name": "peer",
+                "value": "",
+                "type": "path",
+                "description": "Name or PubKey (hex) of the trusted peer"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Distrust a peering node"
+        },
+        {
+          "info": {
+            "name": "Shut down the node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v1/node/shutdown",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Shut down the node"
+        },
+        {
+          "info": {
+            "name": "Returns the node version.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/node/version"
+          },
+          "docs": "Returns the node version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

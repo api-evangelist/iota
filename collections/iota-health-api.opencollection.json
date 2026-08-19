@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth Health API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns 200 if the node is healthy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/health"
+          },
+          "docs": "Returns 200 if the node is healthy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

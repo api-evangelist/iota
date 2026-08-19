@@ -1,0 +1,2609 @@
+{
+  "item": [
+    {
+      "id": "8abc94e3-7c54-4b0c-9414-6f45ca801c6e",
+      "name": "chains",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c631c0d2-d22e-4129-bf3e-10857b895aec",
+          "name": "Get information about a specific chain",
+          "request": {
+            "name": "Get information about a specific chain",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6c20aff-31be-46a1-b442-6a9e08ded822",
+              "name": "Information about a specific chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chainAdmin\": \"chainAdmin\",\n  \"metadata\": {\n    \"website\": \"website\",\n    \"evmWebSocketURL\": \"evmWebSocketURL\",\n    \"name\": \"name\",\n    \"description\": \"description\",\n    \"evmJsonRpcURL\": \"evmJsonRpcURL\"\n  },\n  \"gasLimits\": {\n    \"maxGasExternalViewCall\": 5,\n    \"minGasPerRequest\": 9,\n    \"maxGasPerBlock\": 2,\n    \"maxGasPerRequest\": 7\n  },\n  \"chainID\": \"chainID\",\n  \"evmChainId\": 1,\n  \"publicURL\": \"publicURL\",\n  \"gasFeePolicy\": {\n    \"gasPerToken\": {\n      \"a\": 0,\n      \"b\": 0\n    },\n    \"validatorFeeShare\": 5,\n    \"evmGasRatio\": {\n      \"a\": 0,\n      \"b\": 0\n    }\n  },\n  \"isActive\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23023b85-5fd6-4095-ba1f-aa55e79ef65c",
+          "name": "Remove an access node.",
+          "request": {
+            "name": "Remove an access node.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "access-node",
+                ":peer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "peer",
+                  "description": "(Required) Name or PubKey (hex) of the trusted peer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5ac3205c-da2f-43ac-b17e-e2193097e772",
+              "name": "Access node was successfully removed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "access-node",
+                    ":peer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peer",
+                      "description": "(Required) Name or PubKey (hex) of the trusted peer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6ee9027-68fa-4296-92d8-19004a4faa47",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "access-node",
+                    ":peer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peer",
+                      "description": "(Required) Name or PubKey (hex) of the trusted peer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb5a5823-12f4-4201-b8e3-db5c78a18023",
+          "name": "Configure a trusted node to be an access node.",
+          "request": {
+            "name": "Configure a trusted node to be an access node.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "access-node",
+                ":peer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "peer",
+                  "description": "(Required) Name or PubKey (hex) of the trusted peer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8eed8945-1fb3-4407-a17f-2be71cf10d0b",
+              "name": "Access node was successfully added",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "access-node",
+                    ":peer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peer",
+                      "description": "(Required) Name or PubKey (hex) of the trusted peer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c3b935c-5e95-4e3b-a02a-03d1409e1083",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "access-node",
+                    ":peer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "peer",
+                      "description": "(Required) Name or PubKey (hex) of the trusted peer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9a27951-1a40-4e0d-a64d-924d8ea8f123",
+          "name": "Activate a chain",
+          "request": {
+            "name": "Activate a chain",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "activate",
+                ":chainID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chainID",
+                  "description": "(Required) ChainID (Hex Address)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8984d18a-134a-4858-a998-b72824142382",
+              "name": "Chain was successfully activated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "activate",
+                    ":chainID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainID",
+                      "description": "(Required) ChainID (Hex Address)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35c8cd2d-2a2f-4d71-b815-554497bf7bda",
+              "name": "Chain was not activated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "activate",
+                    ":chainID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainID",
+                      "description": "(Required) ChainID (Hex Address)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Modified",
+              "code": 304,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "04478052-5b73-4363-9c8d-e5af644312a2",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "activate",
+                    ":chainID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainID",
+                      "description": "(Required) ChainID (Hex Address)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74dd1386-f58e-4258-be2d-123ac721706f",
+          "name": "Call a view function on a contract by Hname",
+          "request": {
+            "name": "Call a view function on a contract by Hname",
+            "description": {
+              "content": "Execute a view call. Either use HName or Name properties. If both are supplied, HName are used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "callview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"arguments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"contractHName\": \"<string>\",\n  \"contractName\": \"<string>\",\n  \"functionHName\": \"<string>\",\n  \"functionName\": \"<string>\",\n  \"block\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e38f80a-e919-4fe7-98ca-ed9237468a08",
+              "name": "Result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "callview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contractHName\": \"contractHName\",\n  \"functionName\": \"functionName\",\n  \"functionHName\": \"functionHName\",\n  \"arguments\": [\n    \"arguments\",\n    \"arguments\"\n  ],\n  \"block\": \"block\",\n  \"contractName\": \"contractName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"string\",\n  \"string\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2fa57f8-6f0d-41c1-8eb0-94f3a8100305",
+          "name": "Sets the chain record.",
+          "request": {
+            "name": "Sets the chain record.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "chainrecord",
+                ":chainID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chainID",
+                  "description": "(Required) ChainID (Hex Address)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accessNodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"isActive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5aa25908-8de8-4c45-89a5-acb84b3c3792",
+              "name": "Chain record was saved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "chainrecord",
+                    ":chainID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainID",
+                      "description": "(Required) ChainID (Hex Address)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accessNodes\": [\n    \"accessNodes\",\n    \"accessNodes\"\n  ],\n  \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ab10b23-6a4a-4034-9755-31066009ab2b",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "chainrecord",
+                    ":chainID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chainID",
+                      "description": "(Required) ChainID (Hex Address)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accessNodes\": [\n    \"accessNodes\",\n    \"accessNodes\"\n  ],\n  \"isActive\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a7167de-b862-495e-9782-864740dbe0aa",
+          "name": "Get information about the deployed committee",
+          "request": {
+            "name": "Get information about the deployed committee",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "committee"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "697f4f21-97e5-416e-b319-42478e358580",
+              "name": "A list of all nodes tied to the chain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "committee"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"candidateNodes\": [\n    {\n      \"node\": {\n        \"isAlive\": true,\n        \"peeringURL\": \"peeringURL\",\n        \"name\": \"name\",\n        \"publicKey\": \"publicKey\",\n        \"numUsers\": 0,\n        \"isTrusted\": true\n      },\n      \"accessAPI\": \"accessAPI\"\n    },\n    {\n      \"node\": {\n        \"isAlive\": true,\n        \"peeringURL\": \"peeringURL\",\n        \"name\": \"name\",\n        \"publicKey\": \"publicKey\",\n        \"numUsers\": 0,\n        \"isTrusted\": true\n      },\n      \"accessAPI\": \"accessAPI\"\n    }\n  ],\n  \"committeeNodes\": [\n    {\n      \"node\": {\n        \"isAlive\": true,\n        \"peeringURL\": \"peeringURL\",\n        \"name\": \"name\",\n        \"publicKey\": \"publicKey\",\n        \"numUsers\": 0,\n        \"isTrusted\": true\n      },\n      \"accessAPI\": \"accessAPI\"\n    },\n    {\n      \"node\": {\n        \"isAlive\": true,\n        \"peeringURL\": \"peeringURL\",\n        \"name\": \"name\",\n        \"publicKey\": \"publicKey\",\n        \"numUsers\": 0,\n        \"isTrusted\": true\n      },\n      \"accessAPI\": \"accessAPI\"\n    }\n  ],\n  \"chainId\": \"chainId\",\n  \"accessNodes\": [\n    {\n      \"node\": {\n        \"isAlive\": true,\n        \"peeringURL\": \"peeringURL\",\n        \"name\": \"name\",\n        \"publicKey\": \"publicKey\",\n        \"numUsers\": 0,\n        \"isTrusted\": true\n      },\n      \"accessAPI\": \"accessAPI\"\n    },\n    {\n      \"node\": {\n        \"isAlive\": true,\n        \"peeringURL\": \"peeringURL\",\n        \"name\": \"name\",\n        \"publicKey\": \"publicKey\",\n        \"numUsers\": 0,\n        \"isTrusted\": true\n      },\n      \"accessAPI\": \"accessAPI\"\n    }\n  ],\n  \"stateAddress\": \"stateAddress\",\n  \"active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2a5e5f4-3eee-452b-a3a5-7ba6873e46fe",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "committee"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efd827fb-4ace-477a-b39c-4002ce559bfb",
+          "name": "Get all available chain contracts",
+          "request": {
+            "name": "Get all available chain contracts",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "contracts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "block",
+                  "value": "<string>",
+                  "description": "Block index or trie root"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "022215ec-5544-496f-aa71-10dc45adb538",
+              "name": "A list of all available contracts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "contracts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"name\",\n    \"hName\": \"hName\"\n  },\n  {\n    \"name\": \"name\",\n    \"hName\": \"hName\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b4a9009-eeb4-4db6-a8d9-5f15dc91eebe",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "contracts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "block",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11271e81-05d2-4f62-afc4-1f5b8ae9f7b5",
+          "name": "Deactivate a chain",
+          "request": {
+            "name": "Deactivate a chain",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "deactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cba7efce-f7a9-4ad4-9163-36f86bc912c1",
+              "name": "Chain was successfully deactivated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "57269ff0-4f2b-4cf8-a611-b82d67d39359",
+              "name": "Chain was not deactivated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Modified",
+              "code": 304,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56b09e6f-e43e-4b82-ba2f-0bd6a01c9853",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65c8479a-976c-4d07-ada2-065ee69c7eea",
+          "name": "dump accounts information into a humanly-readable format",
+          "request": {
+            "name": "dump accounts information into a humanly-readable format",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "dump-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eee9e7e1-cfc8-435d-b04c-ba915b0b5798",
+              "name": "Accounts dump will be produced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "dump-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "77d243eb-efb4-483e-accf-452a26846f55",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "dump-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b958fa8-eec9-4665-ac67-e79afd213506",
+          "name": "Estimates gas for a given off-ledger ISC request",
+          "request": {
+            "name": "Estimates gas for a given off-ledger ISC request",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "estimategas-offledger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fromAddress\": \"<string>\",\n  \"requestBytes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4d38dac-17fe-4fd9-adc9-1c98d88bfd01",
+              "name": "ReceiptResponse",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "estimategas-offledger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestBytes\": \"requestBytes\",\n  \"fromAddress\": \"fromAddress\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blockIndex\": 8545,\n  \"gasBudget\": \"string\",\n  \"gasBurnLog\": [\n    {\n      \"code\": 6,\n      \"gasBurned\": 1\n    },\n    {\n      \"code\": 6,\n      \"gasBurned\": 1\n    }\n  ],\n  \"gasBurned\": \"string\",\n  \"gasFeeCharged\": \"string\",\n  \"request\": {\n    \"allowance\": {\n      \"coins\": [\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        },\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        }\n      ],\n      \"objects\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"assets\": {\n      \"coins\": [\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        },\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        }\n      ],\n      \"objects\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"callTarget\": {\n      \"contractHName\": \"contractHName\",\n      \"functionHName\": \"functionHName\"\n    },\n    \"gasBudget\": \"string\",\n    \"isEVM\": false,\n    \"isOffLedger\": false,\n    \"params\": [\n      \"string\",\n      \"string\"\n    ],\n    \"requestId\": \"string\",\n    \"senderAccount\": \"string\",\n    \"allowanceError\": \"string\"\n  },\n  \"requestIndex\": 3506,\n  \"storageDepositCharged\": \"string\",\n  \"errorMessage\": \"string\",\n  \"rawError\": {\n    \"code\": \"code\",\n    \"params\": [\n      \"params\",\n      \"params\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a6b8546-f352-4654-9fe0-2de700fa079a",
+          "name": "Estimates gas for a given on-ledger ISC request",
+          "request": {
+            "name": "Estimates gas for a given on-ledger ISC request",
+            "description": {
+              "content": "Estimates gas usage for a given on-ledger ISC request. To calculate required L1 and L2 gas budgets use values of L1.GasBudget and L2.GasBurned respectively.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "estimategas-onledger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionBytes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "273631cf-9508-4faf-94eb-06e9a7ca96cf",
+              "name": "ReceiptResponse",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "estimategas-onledger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionBytes\": \"transactionBytes\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"l1\": {\n    \"storageRebate\": \"storageRebate\",\n    \"storageFee\": \"storageFee\",\n    \"computationFee\": \"computationFee\",\n    \"gasFeeCharged\": \"gasFeeCharged\",\n    \"gasBudget\": \"gasBudget\"\n  },\n  \"l2\": {\n    \"blockIndex\": 3622,\n    \"gasBudget\": \"string\",\n    \"gasBurnLog\": [\n      {\n        \"code\": 6,\n        \"gasBurned\": 1\n      },\n      {\n        \"code\": 6,\n        \"gasBurned\": 1\n      }\n    ],\n    \"gasBurned\": \"string\",\n    \"gasFeeCharged\": \"string\",\n    \"request\": {\n      \"allowance\": {\n        \"coins\": [\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          },\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          }\n        ],\n        \"objects\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"assets\": {\n        \"coins\": [\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          },\n          {\n            \"coinType\": \"coinType\",\n            \"balance\": \"balance\"\n          }\n        ],\n        \"objects\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"callTarget\": {\n        \"contractHName\": \"contractHName\",\n        \"functionHName\": \"functionHName\"\n      },\n      \"gasBudget\": \"string\",\n      \"isEVM\": false,\n      \"isOffLedger\": true,\n      \"params\": [\n        \"string\",\n        \"string\"\n      ],\n      \"requestId\": \"string\",\n      \"senderAccount\": \"string\",\n      \"allowanceError\": \"string\"\n    },\n    \"requestIndex\": 3510,\n    \"storageDepositCharged\": \"string\",\n    \"errorMessage\": \"string\",\n    \"rawError\": {\n      \"code\": \"code\",\n      \"params\": [\n        \"params\",\n        \"params\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4fa08445-d15e-4315-8b8c-8275bf2d80b5",
+          "name": "Ethereum JSON-RPC",
+          "request": {
+            "name": "Ethereum JSON-RPC",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "evm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5492814-588d-4ca3-8e17-f935a36b1bdc",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "evm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b622d3e-5597-4189-8605-3d64ccb31876",
+          "name": "Ethereum JSON-RPC (Websocket transport)",
+          "request": {
+            "name": "Ethereum JSON-RPC (Websocket transport)",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "evm",
+                "ws"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2d3143a-d53b-4eea-9f66-ea98d9f45b1e",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "evm",
+                    "ws"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7322cb83-ecbc-43b3-8ec8-cbb8fa8086f4",
+          "name": "Get the contents of the mempool.",
+          "request": {
+            "name": "Get the contents of the mempool.",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "mempool"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6e4360d9-e51b-4cd3-84b6-0d8eb796a9f5",
+              "name": "stream of JSON representation of the requests in the mempool",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "mempool"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "998569dc-41c9-4bfc-bb8a-140848d2df78",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "mempool"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f743bfa0-85ce-432f-a8e3-d8978a48b10b",
+          "name": "Get a receipt from a request ID",
+          "request": {
+            "name": "Get a receipt from a request ID",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "receipts",
+                ":requestID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestID",
+                  "description": "(Required) RequestID (Hex)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36e40dfb-60f6-4805-a151-471087cec9ad",
+              "name": "ReceiptResponse",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "receipts",
+                    ":requestID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blockIndex\": 5289,\n  \"gasBudget\": \"string\",\n  \"gasBurnLog\": [\n    {\n      \"code\": 6,\n      \"gasBurned\": 1\n    },\n    {\n      \"code\": 6,\n      \"gasBurned\": 1\n    }\n  ],\n  \"gasBurned\": \"string\",\n  \"gasFeeCharged\": \"string\",\n  \"request\": {\n    \"allowance\": {\n      \"coins\": [\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        },\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        }\n      ],\n      \"objects\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"assets\": {\n      \"coins\": [\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        },\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        }\n      ],\n      \"objects\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"callTarget\": {\n      \"contractHName\": \"contractHName\",\n      \"functionHName\": \"functionHName\"\n    },\n    \"gasBudget\": \"string\",\n    \"isEVM\": true,\n    \"isOffLedger\": false,\n    \"params\": [\n      \"string\",\n      \"string\"\n    ],\n    \"requestId\": \"string\",\n    \"senderAccount\": \"string\",\n    \"allowanceError\": \"string\"\n  },\n  \"requestIndex\": 864,\n  \"storageDepositCharged\": \"string\",\n  \"errorMessage\": \"string\",\n  \"rawError\": {\n    \"code\": \"code\",\n    \"params\": [\n      \"params\",\n      \"params\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "428692f8-f470-4afd-bb16-0dcf65743936",
+              "name": "Chain or request id not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "receipts",
+                    ":requestID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cf11dda-c408-4da3-89f2-7b71f7b67e42",
+          "name": "Wait until the given request has been processed by the node",
+          "request": {
+            "name": "Wait until the given request has been processed by the node",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "requests",
+                ":requestID",
+                "wait"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "timeoutSeconds",
+                  "value": "<integer>",
+                  "description": "The timeout in seconds, maximum 60s"
+                },
+                {
+                  "disabled": false,
+                  "key": "waitForL1Confirmation",
+                  "value": "<boolean>",
+                  "description": "Wait for the block to be confirmed on L1"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestID",
+                  "description": "(Required) RequestID (Hex)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4776a088-a1f8-4e1e-84a2-91e40fa69777",
+              "name": "The request receipt",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "requests",
+                    ":requestID",
+                    "wait"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeoutSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "waitForL1Confirmation",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blockIndex\": 5289,\n  \"gasBudget\": \"string\",\n  \"gasBurnLog\": [\n    {\n      \"code\": 6,\n      \"gasBurned\": 1\n    },\n    {\n      \"code\": 6,\n      \"gasBurned\": 1\n    }\n  ],\n  \"gasBurned\": \"string\",\n  \"gasFeeCharged\": \"string\",\n  \"request\": {\n    \"allowance\": {\n      \"coins\": [\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        },\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        }\n      ],\n      \"objects\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"assets\": {\n      \"coins\": [\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        },\n        {\n          \"coinType\": \"coinType\",\n          \"balance\": \"balance\"\n        }\n      ],\n      \"objects\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    \"callTarget\": {\n      \"contractHName\": \"contractHName\",\n      \"functionHName\": \"functionHName\"\n    },\n    \"gasBudget\": \"string\",\n    \"isEVM\": true,\n    \"isOffLedger\": false,\n    \"params\": [\n      \"string\",\n      \"string\"\n    ],\n    \"requestId\": \"string\",\n    \"senderAccount\": \"string\",\n    \"allowanceError\": \"string\"\n  },\n  \"requestIndex\": 864,\n  \"storageDepositCharged\": \"string\",\n  \"errorMessage\": \"string\",\n  \"rawError\": {\n    \"code\": \"code\",\n    \"params\": [\n      \"params\",\n      \"params\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c1e0e7f-25f3-4b2d-bccd-100ff785d541",
+              "name": "The chain or request id not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "requests",
+                    ":requestID",
+                    "wait"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeoutSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "waitForL1Confirmation",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f8bd942-dc2a-4f99-8a1b-5ada8c69f53c",
+              "name": "The waiting time has reached the defined limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "requests",
+                    ":requestID",
+                    "wait"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeoutSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "waitForL1Confirmation",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestID",
+                      "description": "(Required) RequestID (Hex)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6c10301-5f1a-487c-919e-54849f090277",
+          "name": "Rotate a chain",
+          "request": {
+            "name": "Rotate a chain",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "rotate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rotateToAddress\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d88a4ef-d22e-4549-988d-610e0ea70d19",
+              "name": "Chain rotation was requested",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rotateToAddress\": \"rotateToAddress\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67be762e-0036-4351-8c25-a4ad91465c6f",
+              "name": "Unauthorized (Wrong permissions, missing token)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "rotate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rotateToAddress\": \"rotateToAddress\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"error\",\n  \"missingPermission\": \"missingPermission\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0aaafb34-ce43-4a22-bee8-57ac4cbdcb0a",
+          "name": "Fetch the raw value associated with the given key in the chain state",
+          "request": {
+            "name": "Fetch the raw value associated with the given key in the chain state",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "chain",
+                "state",
+                ":stateKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stateKey",
+                  "description": "(Required) State Key (Hex)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ac3f325-cdde-4b48-94f3-156b183047a2",
+              "name": "Result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "chain",
+                    "state",
+                    ":stateKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stateKey",
+                      "description": "(Required) State Key (Hex)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"state\": \"state\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "75ef2a0b-f775-402c-9cd1-6377e5bf4bb2",
+    "name": "Wasp auth chains API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Wasp node",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wasp auth metrics API",
+    "version": "0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get chain specific message metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/metrics/chain/messages",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get chain specific message metrics."
+        },
+        {
+          "info": {
+            "name": "Get chain pipe event metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/metrics/chain/pipe",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get chain pipe event metrics."
+        },
+        {
+          "info": {
+            "name": "Get chain workflow metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v1/metrics/chain/workflow",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get chain workflow metrics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
