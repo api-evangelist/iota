@@ -34,7 +34,7 @@ description: IOTA is an open-source distributed ledger technology built to bring
   real-world asset tokenization, and product lifecycle management.
 created: '2026-06-14'
 modified: '2026-06-14'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: iota:iota-graphql-api
   name: IOTA GraphQL API
