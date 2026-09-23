@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   description: REST API for the Wasp node
-  title: Wasp auth Ws API
+  title: Wasp Ws API
   version: '0'
 servers:
 - url: /
@@ -17,6 +17,8 @@ paths:
       summary: The websocket connection service
       tags:
       - Ws
+      operationId: getV1Ws
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Authorization:

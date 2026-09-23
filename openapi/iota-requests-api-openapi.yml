@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   description: REST API for the Wasp node
-  title: Wasp auth requests API
+  title: Wasp Requests API
   version: '0'
 servers:
 - url: /
 tags:
-- name: requests
+- name: Requests
 paths:
   /v1/requests/offledger:
     post:
@@ -24,7 +24,7 @@ paths:
           description: Request submitted
       summary: Post an off-ledger request
       tags:
-      - requests
+      - Requests
       x-codegen-request-body-name: ''
 components:
   schemas:

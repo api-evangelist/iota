@@ -1,10 +1,27 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  description: REST API for the Wasp node
-  title: Wasp auth Transaction Builder API
-  version: '0'
+  title: IOTA JSON-RPC Transaction Builder API
+  description: IOTA JSON-RPC API for interaction with IOTA full node or indexer. All requests are HTTP POST to the node endpoint. Covers iota_ (Read, Write, Move Utils), iotax_ (Extended, Coin Query, Governance), and unsafe_ (Transaction Builder) method namespaces.
+  version: 1.26.0-alpha
+  contact:
+    name: IOTA Foundation
+    email: info@iota.org
+    url: https://docs.iota.org/
+  license:
+    name: Apache-2.0
+    url: https://opensource.org/licenses/Apache-2.0
+  x-openrpc-source: https://raw.githubusercontent.com/iotaledger/iota/develop/crates/iota-open-rpc/spec/openrpc.json
 servers:
-- url: /
+- url: https://api.mainnet.iota.cafe
+  description: IOTA Mainnet full node
+- url: https://api.testnet.iota.cafe
+  description: IOTA Testnet full node
+- url: https://api.devnet.iota.cafe
+  description: IOTA Devnet full node
+- url: https://indexer.mainnet.iota.cafe
+  description: IOTA Mainnet indexer (iotax_ methods)
+- url: https://indexer.testnet.iota.cafe
+  description: IOTA Testnet indexer (iotax_ methods)
 tags:
 - name: Transaction Builder
   description: Build unsigned transactions for transfers, staking, Move calls (unsafe_ prefix)
@@ -253,7 +270,7 @@ paths:
     post:
       operationId: unsafe_pay
       summary: unsafe_pay
-      description: Send `Coin<T>` to a list of addresses, where `T` can be any coin type, following a list of amounts, The object specified in the `gas` field will be used to pay the gas fee for the transaction. The gas object can not appear in `input_coins`. If the gas object is not specified, the RPC server will auto-select one.
+      description: Send `Coin` to a list of addresses, where `T` can be any coin type, following a list of amounts, The object specified in the `gas` field will be used to pay the gas fee for the transaction. The gas object can not appear in `input_coins`. If the gas object is not specified, the RPC server will auto-select one.
       tags:
       - Transaction Builder
       requestBody:
@@ -333,7 +350,7 @@ paths:
     post:
       operationId: unsafe_payAllIota
       summary: unsafe_payAllIota
-      description: 'Send all IOTA coins to one recipient. This is for IOTA coin only and does not require a separate gas coin object. Specifically, what pay_all_iota does are: 1. accumulate all IOTA from input coins and deposit all IOTA to the first    input coin 2. transfer the updated first coin to the recipient and also use this first    coin as gas coin object. 3. the balance of the first input coin after tx is sum(input_coins) -    actual_gas_cost. 4. all other input coins other than the first are deleted.'
+      description: 'Send all IOTA coins to one recipient. This is for IOTA coin only and does not require a separate gas coin object. Specifically, what pay_all_iota does are: 1. accumulate all IOTA from input coins and deposit all IOTA to the first input coin 2. transfer the updated first coin to the recipient and also use this first coin as gas coin object. 3. the balance of the first input coin after tx is sum(input_coins) - actual_gas_cost. 4. all other input coins other than the first are deleted.'
       tags:
       - Transaction Builder
       requestBody:
@@ -413,7 +430,7 @@ paths:
     post:
       operationId: unsafe_payIota
       summary: unsafe_payIota
-      description: 'Send IOTA coins to a list of addresses, following a list of amounts. This is for IOTA coin only and does not require a separate gas coin object. Specifically, what pay_iota does are: 1. debit each input_coin to create new coin following the order of amounts and assign it to the corresponding recipient. 2. accumulate all residual IOTA from input coins left and deposit all IOTA    to the first input coin, then use the first input coin as the gas coin object. 3. the balance of the first input coin after tx is sum(input_coins) -    sum(amounts) - actual_gas_cost 4. all other input coints other than the first one are deleted.'
+      description: 'Send IOTA coins to a list of addresses, following a list of amounts. This is for IOTA coin only and does not require a separate gas coin object. Specifically, what pay_iota does are: 1. debit each input_coin to create new coin following the order of amounts and assign it to the corresponding recipient. 2. accumulate all residual IOTA from input coins left and deposit all IOTA to the first input coin, then use the first input coin as the gas coin object. 3. the balance of the first input coin after tx is sum(input_coins) - sum(amounts) - actual_gas_cost 4. all other input coints other than the first one are deleted.'
       tags:
       - Transaction Builder
       requestBody:
@@ -1209,14 +1226,6 @@ paths:
                       message:
                         type: string
                       data: {}
-components:
-  securitySchemes:
-    Authorization:
-      description: JWT Token
-      in: header
-      name: Authorization
-      type: apiKey
 externalDocs:
-  description: Find out more about Wasp
-  url: https://wiki.iota.org/smart-contracts/overview
-x-original-swagger-version: '2.0'
+  description: IOTA API Reference
+  url: https://docs.iota.org/iota-api-ref

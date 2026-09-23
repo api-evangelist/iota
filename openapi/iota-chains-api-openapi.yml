@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   description: REST API for the Wasp node
-  title: Wasp auth chains API
+  title: Wasp Chains API
   version: '0'
 servers:
 - url: /
 tags:
-- name: chains
+- name: Chains
 paths:
   /v1/chain:
     get:
@@ -27,7 +27,7 @@ paths:
           description: Information about a specific chain
       summary: Get information about a specific chain
       tags:
-      - chains
+      - Chains
   /v1/chain/access-node/{peer}:
     delete:
       operationId: removeAccessNode
@@ -51,9 +51,9 @@ paths:
           description: Unauthorized (Wrong permissions, missing token)
       security:
       - Authorization: []
-      summary: Remove an access node.
+      summary: Remove an access node
       tags:
-      - chains
+      - Chains
     put:
       operationId: addAccessNode
       parameters:
@@ -76,9 +76,9 @@ paths:
           description: Unauthorized (Wrong permissions, missing token)
       security:
       - Authorization: []
-      summary: Configure a trusted node to be an access node.
+      summary: Configure a trusted node to be an access node
       tags:
-      - chains
+      - Chains
   /v1/chain/activate/{chainID}:
     post:
       operationId: activateChain
@@ -107,7 +107,7 @@ paths:
       - Authorization: []
       summary: Activate a chain
       tags:
-      - chains
+      - Chains
   /v1/chain/callview:
     post:
       description: Execute a view call. Either use HName or Name properties. If both are supplied, HName are used.
@@ -132,7 +132,7 @@ paths:
           description: Result
       summary: Call a view function on a contract by Hname
       tags:
-      - chains
+      - Chains
       x-codegen-request-body-name: ''
   /v1/chain/chainrecord/{chainID}:
     post:
@@ -164,9 +164,9 @@ paths:
           description: Unauthorized (Wrong permissions, missing token)
       security:
       - Authorization: []
-      summary: Sets the chain record.
+      summary: Sets the chain record
       tags:
-      - chains
+      - Chains
       x-codegen-request-body-name: ChainRecord
   /v1/chain/committee:
     get:
@@ -195,7 +195,7 @@ paths:
       - Authorization: []
       summary: Get information about the deployed committee
       tags:
-      - chains
+      - Chains
   /v1/chain/contracts:
     get:
       operationId: getContracts
@@ -225,7 +225,7 @@ paths:
       - Authorization: []
       summary: Get all available chain contracts
       tags:
-      - chains
+      - Chains
   /v1/chain/deactivate:
     post:
       operationId: deactivateChain
@@ -246,7 +246,7 @@ paths:
       - Authorization: []
       summary: Deactivate a chain
       tags:
-      - chains
+      - Chains
   /v1/chain/dump-accounts:
     post:
       operationId: dump-accounts
@@ -264,7 +264,7 @@ paths:
       - Authorization: []
       summary: dump accounts information into a humanly-readable format
       tags:
-      - chains
+      - Chains
   /v1/chain/estimategas-offledger:
     post:
       operationId: estimateGasOffledger
@@ -284,7 +284,7 @@ paths:
           description: ReceiptResponse
       summary: Estimates gas for a given off-ledger ISC request
       tags:
-      - chains
+      - Chains
       x-codegen-request-body-name: Request
   /v1/chain/estimategas-onledger:
     post:
@@ -306,7 +306,7 @@ paths:
           description: ReceiptResponse
       summary: Estimates gas for a given on-ledger ISC request
       tags:
-      - chains
+      - Chains
       x-codegen-request-body-name: Request
   /v1/chain/evm:
     post:
@@ -316,7 +316,9 @@ paths:
           description: successful operation
       summary: Ethereum JSON-RPC
       tags:
-      - chains
+      - Chains
+      operationId: postV1ChainEvm
+      x-operation-id-source: derived
   /v1/chain/evm/ws:
     get:
       responses:
@@ -325,7 +327,9 @@ paths:
           description: successful operation
       summary: Ethereum JSON-RPC (Websocket transport)
       tags:
-      - chains
+      - Chains
+      operationId: getV1ChainEvmWs
+      x-operation-id-source: derived
   /v1/chain/mempool:
     get:
       operationId: getMempoolContents
@@ -347,9 +351,9 @@ paths:
           description: Unauthorized (Wrong permissions, missing token)
       security:
       - Authorization: []
-      summary: Get the contents of the mempool.
+      summary: Get the contents of the mempool
       tags:
-      - chains
+      - Chains
   /v1/chain/receipts/{requestID}:
     get:
       operationId: getReceipt
@@ -373,7 +377,7 @@ paths:
           description: Chain or request id not found
       summary: Get a receipt from a request ID
       tags:
-      - chains
+      - Chains
   /v1/chain/requests/{requestID}/wait:
     get:
       operationId: waitForRequest
@@ -412,7 +416,7 @@ paths:
           description: The waiting time has reached the defined limit
       summary: Wait until the given request has been processed by the node
       tags:
-      - chains
+      - Chains
   /v1/chain/rotate:
     post:
       operationId: rotateChain
@@ -437,7 +441,7 @@ paths:
       - Authorization: []
       summary: Rotate a chain
       tags:
-      - chains
+      - Chains
       x-codegen-request-body-name: RotateRequest
   /v1/chain/state/{stateKey}:
     get:
@@ -459,56 +463,188 @@ paths:
           description: Result
       summary: Fetch the raw value associated with the given key in the chain state
       tags:
-      - chains
+      - Chains
 components:
   schemas:
-    ValidationError:
+    PublicChainMetadata:
       example:
-        error: error
-        missingPermission: missingPermission
+        website: website
+        evmWebSocketURL: evmWebSocketURL
+        name: name
+        description: description
+        evmJsonRpcURL: evmJsonRpcURL
       properties:
-        error:
+        description:
+          description: The description of the chain.
           format: string
           type: string
           xml:
-            name: Error
-        missingPermission:
+            name: Description
+        evmJsonRpcURL:
+          description: The EVM json rpc url
           format: string
           type: string
           xml:
-            name: MissingPermission
+            name: EVMJsonRPCURL
+        evmWebSocketURL:
+          description: The EVM websocket url)
+          format: string
+          type: string
+          xml:
+            name: EVMWebSocketURL
+        name:
+          description: The name of the chain
+          format: string
+          type: string
+          xml:
+            name: Name
+        website:
+          description: The official website of the chain.
+          format: string
+          type: string
+          xml:
+            name: Website
       required:
-      - error
-      - missingPermission
+      - description
+      - evmJsonRpcURL
+      - evmWebSocketURL
+      - name
+      - website
       type: object
       xml:
-        name: ValidationError
-    ChainRecord:
+        name: PublicChainMetadata
+    CommitteeInfoResponse:
       example:
+        candidateNodes:
+        - node:
+            isAlive: true
+            peeringURL: peeringURL
+            name: name
+            publicKey: publicKey
+            numUsers: 0
+            isTrusted: true
+          accessAPI: accessAPI
+        - node:
+            isAlive: true
+            peeringURL: peeringURL
+            name: name
+            publicKey: publicKey
+            numUsers: 0
+            isTrusted: true
+          accessAPI: accessAPI
+        committeeNodes:
+        - node:
+            isAlive: true
+            peeringURL: peeringURL
+            name: name
+            publicKey: publicKey
+            numUsers: 0
+            isTrusted: true
+          accessAPI: accessAPI
+        - node:
+            isAlive: true
+            peeringURL: peeringURL
+            name: name
+            publicKey: publicKey
+            numUsers: 0
+            isTrusted: true
+          accessAPI: accessAPI
+        chainId: chainId
         accessNodes:
-        - accessNodes
-        - accessNodes
-        isActive: true
+        - node:
+            isAlive: true
+            peeringURL: peeringURL
+            name: name
+            publicKey: publicKey
+            numUsers: 0
+            isTrusted: true
+          accessAPI: accessAPI
+        - node:
+            isAlive: true
+            peeringURL: peeringURL
+            name: name
+            publicKey: publicKey
+            numUsers: 0
+            isTrusted: true
+          accessAPI: accessAPI
+        stateAddress: stateAddress
+        active: true
       properties:
         accessNodes:
+          description: A list of all access nodes and their peering info.
           items:
-            format: string
-            type: string
+            $ref: '#/components/schemas/CommitteeNode'
           type: array
           xml:
             name: AccessNodes
             wrapped: true
-        isActive:
+        active:
+          description: Whether or not the chain is active.
           format: boolean
           type: boolean
           xml:
-            name: IsActive
+            name: Active
+        candidateNodes:
+          description: A list of all candidate nodes and their peering info.
+          items:
+            $ref: '#/components/schemas/CommitteeNode'
+          type: array
+          xml:
+            name: CandidateNodes
+            wrapped: true
+        chainId:
+          description: ChainID (Hex Address).
+          format: string
+          type: string
+          xml:
+            name: ChainID
+        committeeNodes:
+          description: A list of all committee nodes and their peering info.
+          items:
+            $ref: '#/components/schemas/CommitteeNode'
+          type: array
+          xml:
+            name: CommitteeNodes
+            wrapped: true
+        stateAddress:
+          format: string
+          type: string
+          xml:
+            name: StateAddress
       required:
       - accessNodes
-      - isActive
+      - active
+      - candidateNodes
+      - chainId
+      - committeeNodes
+      - stateAddress
       type: object
       xml:
-        name: ChainRecord
+        name: CommitteeInfoResponse
+    CommitteeNode:
+      example:
+        node:
+          isAlive: true
+          peeringURL: peeringURL
+          name: name
+          publicKey: publicKey
+          numUsers: 0
+          isTrusted: true
+        accessAPI: accessAPI
+      properties:
+        accessAPI:
+          format: string
+          type: string
+          xml:
+            name: AccessAPI
+        node:
+          $ref: '#/components/schemas/PeeringNodeStatusResponse'
+      required:
+      - accessAPI
+      - node
+      type: object
+      xml:
+        name: CommitteeNode
     CoinJSON:
       example:
         coinType: coinType
@@ -570,21 +706,163 @@ components:
       type: object
       xml:
         name: Limits
-    EstimateGasRequestOnledger:
+    ValidationError:
       example:
-        transactionBytes: transactionBytes
+        error: error
+        missingPermission: missingPermission
       properties:
-        transactionBytes:
-          description: Hexadecimal bytes of transaction to estimate
+        error:
           format: string
           type: string
           xml:
-            name: TransactionBytes
+            name: Error
+        missingPermission:
+          format: string
+          type: string
+          xml:
+            name: MissingPermission
       required:
-      - transactionBytes
+      - error
+      - missingPermission
       type: object
       xml:
-        name: EstimateGasRequestOnledger
+        name: ValidationError
+    AssetsJSON:
+      example:
+        coins:
+        - coinType: coinType
+          balance: balance
+        - coinType: coinType
+          balance: balance
+        objects:
+        - id: id
+          type: type
+        - id: id
+          type: type
+      properties:
+        coins:
+          items:
+            $ref: '#/components/schemas/CoinJSON'
+          type: array
+          xml:
+            name: Coins
+            wrapped: true
+        objects:
+          items:
+            $ref: '#/components/schemas/IotaObjectJSON'
+          type: array
+          xml:
+            name: Objects
+            wrapped: true
+      required:
+      - coins
+      - objects
+      type: object
+      xml:
+        name: AssetsJSON
+    FeePolicy:
+      example:
+        gasPerToken:
+          a: 0
+          b: 0
+        validatorFeeShare: 5
+        evmGasRatio:
+          a: 0
+          b: 0
+      properties:
+        evmGasRatio:
+          $ref: '#/components/schemas/Ratio32'
+        gasPerToken:
+          $ref: '#/components/schemas/Ratio32'
+        validatorFeeShare:
+          description: The validator fee share.
+          format: int32
+          type: integer
+          xml:
+            name: ValidatorFeeShare
+      required:
+      - evmGasRatio
+      - gasPerToken
+      - validatorFeeShare
+      type: object
+      xml:
+        name: FeePolicy
+    ChainInfoResponse:
+      example:
+        chainAdmin: chainAdmin
+        metadata:
+          website: website
+          evmWebSocketURL: evmWebSocketURL
+          name: name
+          description: description
+          evmJsonRpcURL: evmJsonRpcURL
+        gasLimits:
+          maxGasExternalViewCall: 5
+          minGasPerRequest: 9
+          maxGasPerBlock: 2
+          maxGasPerRequest: 7
+        chainID: chainID
+        evmChainId: 1
+        publicURL: publicURL
+        gasFeePolicy:
+          gasPerToken:
+            a: 0
+            b: 0
+          validatorFeeShare: 5
+          evmGasRatio:
+            a: 0
+            b: 0
+        isActive: true
+      properties:
+        chainAdmin:
+          description: The chain admin address (Hex Address)
+          format: string
+          type: string
+          xml:
+            name: ChainAdmin
+        chainID:
+          description: ChainID (Hex Address)
+          format: string
+          type: string
+          xml:
+            name: ChainID
+        evmChainId:
+          description: The EVM chain ID
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: EVMChainID
+        gasFeePolicy:
+          $ref: '#/components/schemas/FeePolicy'
+        gasLimits:
+          $ref: '#/components/schemas/Limits'
+        isActive:
+          description: Whether or not the chain is active
+          format: boolean
+          type: boolean
+          xml:
+            name: IsActive
+        metadata:
+          $ref: '#/components/schemas/PublicChainMetadata'
+        publicURL:
+          description: The fully qualified public url leading to the chains metadata
+          format: string
+          type: string
+          xml:
+            name: PublicURL
+      required:
+      - chainAdmin
+      - chainID
+      - evmChainId
+      - gasFeePolicy
+      - gasLimits
+      - isActive
+      - metadata
+      - publicURL
+      type: object
+      xml:
+        name: ChainInfoResponse
     ReceiptResponse:
       example:
         gasBurnLog:
@@ -704,6 +982,462 @@ components:
       type: object
       xml:
         name: ReceiptResponse
+    IotaObjectJSON:
+      example:
+        id: id
+        type: type
+      properties:
+        id:
+          description: Hex-encoded object ID
+          format: string
+          type: string
+          xml:
+            name: ID
+        type:
+          format: string
+          type: string
+          xml:
+            name: Type
+      required:
+      - id
+      - type
+      type: object
+      xml:
+        name: IotaObjectJSON
+    ChainRecord:
+      example:
+        accessNodes:
+        - accessNodes
+        - accessNodes
+        isActive: true
+      properties:
+        accessNodes:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: AccessNodes
+            wrapped: true
+        isActive:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsActive
+      required:
+      - accessNodes
+      - isActive
+      type: object
+      xml:
+        name: ChainRecord
+    BurnRecord:
+      example:
+        code: 6
+        gasBurned: 1
+      properties:
+        code:
+          format: int32
+          type: integer
+          xml:
+            name: Code
+        gasBurned:
+          format: int64
+          type: integer
+          xml:
+            name: GasBurned
+      required:
+      - code
+      - gasBurned
+      type: object
+      xml:
+        name: BurnRecord
+    EstimateGasRequestOffledger:
+      example:
+        requestBytes: requestBytes
+        fromAddress: fromAddress
+      properties:
+        fromAddress:
+          description: The address to estimate gas for(Hex)
+          format: string
+          type: string
+          xml:
+            name: FromAddress
+        requestBytes:
+          description: Offledger Request (Hex)
+          format: string
+          type: string
+          xml:
+            name: Request
+      required:
+      - fromAddress
+      - requestBytes
+      type: object
+      xml:
+        name: EstimateGasRequestOffledger
+    OnLedgerEstimationResponse:
+      example:
+        l1:
+          storageRebate: storageRebate
+          storageFee: storageFee
+          computationFee: computationFee
+          gasFeeCharged: gasFeeCharged
+          gasBudget: gasBudget
+        l2:
+          gasBurnLog:
+          - code: 6
+            gasBurned: 1
+          - code: 6
+            gasBurned: 1
+          request:
+            senderAccount: senderAccount
+            allowanceError: allowanceError
+            assets:
+              coins:
+              - coinType: coinType
+                balance: balance
+              - coinType: coinType
+                balance: balance
+              objects:
+              - id: id
+                type: type
+              - id: id
+                type: type
+            isOffLedger: true
+            requestId: requestId
+            callTarget:
+              contractHName: contractHName
+              functionHName: functionHName
+            gasBudget: gasBudget
+            allowance:
+              coins:
+              - coinType: coinType
+                balance: balance
+              - coinType: coinType
+                balance: balance
+              objects:
+              - id: id
+                type: type
+              - id: id
+                type: type
+            params:
+            - params
+            - params
+            isEVM: true
+          blockIndex: 1
+          rawError:
+            code: code
+            params:
+            - params
+            - params
+          requestIndex: 1
+          storageDepositCharged: storageDepositCharged
+          gasFeeCharged: gasFeeCharged
+          errorMessage: errorMessage
+          gasBudget: gasBudget
+          gasBurned: gasBurned
+      properties:
+        l1:
+          $ref: '#/components/schemas/L1EstimationResult'
+        l2:
+          $ref: '#/components/schemas/ReceiptResponse'
+      required:
+      - l1
+      - l2
+      type: object
+      xml:
+        name: OnLedgerEstimationResponse
+    ContractCallViewRequest:
+      example:
+        contractHName: contractHName
+        functionName: functionName
+        functionHName: functionHName
+        arguments:
+        - arguments
+        - arguments
+        block: block
+        contractName: contractName
+      properties:
+        arguments:
+          description: Encoded arguments to be passed to the function
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Arguments
+            wrapped: true
+        block:
+          format: string
+          type: string
+          xml:
+            name: Block
+        contractHName:
+          description: The contract name as HName (Hex)
+          format: string
+          type: string
+          xml:
+            name: ContractHName
+        contractName:
+          description: The contract name
+          format: string
+          type: string
+          xml:
+            name: ContractName
+        functionHName:
+          description: The function name as HName (Hex)
+          format: string
+          type: string
+          xml:
+            name: FunctionHName
+        functionName:
+          description: The function name
+          format: string
+          type: string
+          xml:
+            name: FunctionName
+      required:
+      - arguments
+      - contractHName
+      - contractName
+      - functionHName
+      - functionName
+      type: object
+      xml:
+        name: ContractCallViewRequest
+    ContractInfoResponse:
+      example:
+        name: name
+        hName: hName
+      properties:
+        hName:
+          description: The id (HName as Hex)) of the contract.
+          format: string
+          type: string
+          xml:
+            name: HName
+        name:
+          description: The name of the contract.
+          format: string
+          type: string
+          xml:
+            name: Name
+      required:
+      - hName
+      - name
+      type: object
+      xml:
+        name: ContractInfoResponse
+    PeeringNodeStatusResponse:
+      example:
+        isAlive: true
+        peeringURL: peeringURL
+        name: name
+        publicKey: publicKey
+        numUsers: 0
+        isTrusted: true
+      properties:
+        isAlive:
+          description: Whether or not the peer is activated
+          format: boolean
+          type: boolean
+          xml:
+            name: IsAlive
+        isTrusted:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsTrusted
+        name:
+          format: string
+          type: string
+          xml:
+            name: Name
+        numUsers:
+          description: The amount of users attached to the peer
+          format: int32
+          type: integer
+          xml:
+            name: NumUsers
+        peeringURL:
+          description: The peering URL of the peer
+          format: string
+          type: string
+          xml:
+            name: PeeringURL
+        publicKey:
+          description: The peers public key encoded in Hex
+          format: string
+          type: string
+          xml:
+            name: PublicKey
+      required:
+      - isAlive
+      - isTrusted
+      - name
+      - numUsers
+      - peeringURL
+      - publicKey
+      type: object
+      xml:
+        name: PeeringNodeStatusResponse
+    Ratio32:
+      example:
+        a: 0
+        b: 0
+      properties:
+        a:
+          format: int32
+          minimum: 0
+          type: integer
+          xml:
+            name: A
+        b:
+          format: int32
+          minimum: 0
+          type: integer
+          xml:
+            name: B
+      required:
+      - a
+      - b
+      type: object
+      xml:
+        name: Ratio32
+    CallTargetJSON:
+      example:
+        contractHName: contractHName
+        functionHName: functionHName
+      properties:
+        contractHName:
+          description: The contract name as HName (Hex)
+          format: string
+          type: string
+          xml:
+            name: ContractHName
+        functionHName:
+          description: The function name as HName (Hex)
+          format: string
+          type: string
+          xml:
+            name: FunctionHName
+      required:
+      - contractHName
+      - functionHName
+      type: object
+      xml:
+        name: CallTargetJSON
+    RotateChainRequest:
+      example:
+        rotateToAddress: rotateToAddress
+      properties:
+        rotateToAddress:
+          description: The address of the new committee or empty to cancel attempt to rotate
+          format: string
+          type: string
+          xml:
+            name: RotateToAddress
+      type: object
+      xml:
+        name: RotateChainRequest
+    EstimateGasRequestOnledger:
+      example:
+        transactionBytes: transactionBytes
+      properties:
+        transactionBytes:
+          description: Hexadecimal bytes of transaction to estimate
+          format: string
+          type: string
+          xml:
+            name: TransactionBytes
+      required:
+      - transactionBytes
+      type: object
+      xml:
+        name: EstimateGasRequestOnledger
+    StateResponse:
+      example:
+        state: state
+      properties:
+        state:
+          description: The state of the requested key (Hex-encoded)
+          format: string
+          type: string
+          xml:
+            name: State
+      required:
+      - state
+      type: object
+      xml:
+        name: StateResponse
+    UnresolvedVMErrorJSON:
+      example:
+        code: code
+        params:
+        - params
+        - params
+      properties:
+        code:
+          format: string
+          type: string
+          xml:
+            name: ErrorCode
+        params:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Params
+            wrapped: true
+      type: object
+      xml:
+        name: UnresolvedVMErrorJSON
+    L1EstimationResult:
+      example:
+        storageRebate: storageRebate
+        storageFee: storageFee
+        computationFee: computationFee
+        gasFeeCharged: gasFeeCharged
+        gasBudget: gasBudget
+      properties:
+        computationFee:
+          description: Gas cost for computation (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: ComputationFee
+        gasBudget:
+          format: string
+          type: string
+          xml:
+            name: GasBudget
+        gasFeeCharged:
+          description: 'Total gas fee charged: computation fee + storage fee - storage rebate (uint64 as string)'
+          format: string
+          type: string
+          xml:
+            name: GasFeeCharged
+        storageFee:
+          description: Gas cost for storage (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: StorageFee
+        storageRebate:
+          description: Gas rebate for storage (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: StorageRebate
+      required:
+      - computationFee
+      - gasBudget
+      - gasFeeCharged
+      - storageFee
+      - storageRebate
+      type: object
+      xml:
+        name: L1EstimationResult
     RequestJSON:
       example:
         senderAccount: senderAccount
@@ -799,736 +1533,6 @@ components:
       type: object
       xml:
         name: RequestJSON
-    EstimateGasRequestOffledger:
-      example:
-        requestBytes: requestBytes
-        fromAddress: fromAddress
-      properties:
-        fromAddress:
-          description: The address to estimate gas for(Hex)
-          format: string
-          type: string
-          xml:
-            name: FromAddress
-        requestBytes:
-          description: Offledger Request (Hex)
-          format: string
-          type: string
-          xml:
-            name: Request
-      required:
-      - fromAddress
-      - requestBytes
-      type: object
-      xml:
-        name: EstimateGasRequestOffledger
-    FeePolicy:
-      example:
-        gasPerToken:
-          a: 0
-          b: 0
-        validatorFeeShare: 5
-        evmGasRatio:
-          a: 0
-          b: 0
-      properties:
-        evmGasRatio:
-          $ref: '#/components/schemas/Ratio32'
-        gasPerToken:
-          $ref: '#/components/schemas/Ratio32'
-        validatorFeeShare:
-          description: The validator fee share.
-          format: int32
-          type: integer
-          xml:
-            name: ValidatorFeeShare
-      required:
-      - evmGasRatio
-      - gasPerToken
-      - validatorFeeShare
-      type: object
-      xml:
-        name: FeePolicy
-    Ratio32:
-      example:
-        a: 0
-        b: 0
-      properties:
-        a:
-          format: int32
-          minimum: 0
-          type: integer
-          xml:
-            name: A
-        b:
-          format: int32
-          minimum: 0
-          type: integer
-          xml:
-            name: B
-      required:
-      - a
-      - b
-      type: object
-      xml:
-        name: Ratio32
-    PeeringNodeStatusResponse:
-      example:
-        isAlive: true
-        peeringURL: peeringURL
-        name: name
-        publicKey: publicKey
-        numUsers: 0
-        isTrusted: true
-      properties:
-        isAlive:
-          description: Whether or not the peer is activated
-          format: boolean
-          type: boolean
-          xml:
-            name: IsAlive
-        isTrusted:
-          format: boolean
-          type: boolean
-          xml:
-            name: IsTrusted
-        name:
-          format: string
-          type: string
-          xml:
-            name: Name
-        numUsers:
-          description: The amount of users attached to the peer
-          format: int32
-          type: integer
-          xml:
-            name: NumUsers
-        peeringURL:
-          description: The peering URL of the peer
-          format: string
-          type: string
-          xml:
-            name: PeeringURL
-        publicKey:
-          description: The peers public key encoded in Hex
-          format: string
-          type: string
-          xml:
-            name: PublicKey
-      required:
-      - isAlive
-      - isTrusted
-      - name
-      - numUsers
-      - peeringURL
-      - publicKey
-      type: object
-      xml:
-        name: PeeringNodeStatusResponse
-    UnresolvedVMErrorJSON:
-      example:
-        code: code
-        params:
-        - params
-        - params
-      properties:
-        code:
-          format: string
-          type: string
-          xml:
-            name: ErrorCode
-        params:
-          items:
-            format: string
-            type: string
-          type: array
-          xml:
-            name: Params
-            wrapped: true
-      type: object
-      xml:
-        name: UnresolvedVMErrorJSON
-    ContractInfoResponse:
-      example:
-        name: name
-        hName: hName
-      properties:
-        hName:
-          description: The id (HName as Hex)) of the contract.
-          format: string
-          type: string
-          xml:
-            name: HName
-        name:
-          description: The name of the contract.
-          format: string
-          type: string
-          xml:
-            name: Name
-      required:
-      - hName
-      - name
-      type: object
-      xml:
-        name: ContractInfoResponse
-    CallTargetJSON:
-      example:
-        contractHName: contractHName
-        functionHName: functionHName
-      properties:
-        contractHName:
-          description: The contract name as HName (Hex)
-          format: string
-          type: string
-          xml:
-            name: ContractHName
-        functionHName:
-          description: The function name as HName (Hex)
-          format: string
-          type: string
-          xml:
-            name: FunctionHName
-      required:
-      - contractHName
-      - functionHName
-      type: object
-      xml:
-        name: CallTargetJSON
-    OnLedgerEstimationResponse:
-      example:
-        l1:
-          storageRebate: storageRebate
-          storageFee: storageFee
-          computationFee: computationFee
-          gasFeeCharged: gasFeeCharged
-          gasBudget: gasBudget
-        l2:
-          gasBurnLog:
-          - code: 6
-            gasBurned: 1
-          - code: 6
-            gasBurned: 1
-          request:
-            senderAccount: senderAccount
-            allowanceError: allowanceError
-            assets:
-              coins:
-              - coinType: coinType
-                balance: balance
-              - coinType: coinType
-                balance: balance
-              objects:
-              - id: id
-                type: type
-              - id: id
-                type: type
-            isOffLedger: true
-            requestId: requestId
-            callTarget:
-              contractHName: contractHName
-              functionHName: functionHName
-            gasBudget: gasBudget
-            allowance:
-              coins:
-              - coinType: coinType
-                balance: balance
-              - coinType: coinType
-                balance: balance
-              objects:
-              - id: id
-                type: type
-              - id: id
-                type: type
-            params:
-            - params
-            - params
-            isEVM: true
-          blockIndex: 1
-          rawError:
-            code: code
-            params:
-            - params
-            - params
-          requestIndex: 1
-          storageDepositCharged: storageDepositCharged
-          gasFeeCharged: gasFeeCharged
-          errorMessage: errorMessage
-          gasBudget: gasBudget
-          gasBurned: gasBurned
-      properties:
-        l1:
-          $ref: '#/components/schemas/L1EstimationResult'
-        l2:
-          $ref: '#/components/schemas/ReceiptResponse'
-      required:
-      - l1
-      - l2
-      type: object
-      xml:
-        name: OnLedgerEstimationResponse
-    ChainInfoResponse:
-      example:
-        chainAdmin: chainAdmin
-        metadata:
-          website: website
-          evmWebSocketURL: evmWebSocketURL
-          name: name
-          description: description
-          evmJsonRpcURL: evmJsonRpcURL
-        gasLimits:
-          maxGasExternalViewCall: 5
-          minGasPerRequest: 9
-          maxGasPerBlock: 2
-          maxGasPerRequest: 7
-        chainID: chainID
-        evmChainId: 1
-        publicURL: publicURL
-        gasFeePolicy:
-          gasPerToken:
-            a: 0
-            b: 0
-          validatorFeeShare: 5
-          evmGasRatio:
-            a: 0
-            b: 0
-        isActive: true
-      properties:
-        chainAdmin:
-          description: The chain admin address (Hex Address)
-          format: string
-          type: string
-          xml:
-            name: ChainAdmin
-        chainID:
-          description: ChainID (Hex Address)
-          format: string
-          type: string
-          xml:
-            name: ChainID
-        evmChainId:
-          description: The EVM chain ID
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: EVMChainID
-        gasFeePolicy:
-          $ref: '#/components/schemas/FeePolicy'
-        gasLimits:
-          $ref: '#/components/schemas/Limits'
-        isActive:
-          description: Whether or not the chain is active
-          format: boolean
-          type: boolean
-          xml:
-            name: IsActive
-        metadata:
-          $ref: '#/components/schemas/PublicChainMetadata'
-        publicURL:
-          description: The fully qualified public url leading to the chains metadata
-          format: string
-          type: string
-          xml:
-            name: PublicURL
-      required:
-      - chainAdmin
-      - chainID
-      - evmChainId
-      - gasFeePolicy
-      - gasLimits
-      - isActive
-      - metadata
-      - publicURL
-      type: object
-      xml:
-        name: ChainInfoResponse
-    CommitteeInfoResponse:
-      example:
-        candidateNodes:
-        - node:
-            isAlive: true
-            peeringURL: peeringURL
-            name: name
-            publicKey: publicKey
-            numUsers: 0
-            isTrusted: true
-          accessAPI: accessAPI
-        - node:
-            isAlive: true
-            peeringURL: peeringURL
-            name: name
-            publicKey: publicKey
-            numUsers: 0
-            isTrusted: true
-          accessAPI: accessAPI
-        committeeNodes:
-        - node:
-            isAlive: true
-            peeringURL: peeringURL
-            name: name
-            publicKey: publicKey
-            numUsers: 0
-            isTrusted: true
-          accessAPI: accessAPI
-        - node:
-            isAlive: true
-            peeringURL: peeringURL
-            name: name
-            publicKey: publicKey
-            numUsers: 0
-            isTrusted: true
-          accessAPI: accessAPI
-        chainId: chainId
-        accessNodes:
-        - node:
-            isAlive: true
-            peeringURL: peeringURL
-            name: name
-            publicKey: publicKey
-            numUsers: 0
-            isTrusted: true
-          accessAPI: accessAPI
-        - node:
-            isAlive: true
-            peeringURL: peeringURL
-            name: name
-            publicKey: publicKey
-            numUsers: 0
-            isTrusted: true
-          accessAPI: accessAPI
-        stateAddress: stateAddress
-        active: true
-      properties:
-        accessNodes:
-          description: A list of all access nodes and their peering info.
-          items:
-            $ref: '#/components/schemas/CommitteeNode'
-          type: array
-          xml:
-            name: AccessNodes
-            wrapped: true
-        active:
-          description: Whether or not the chain is active.
-          format: boolean
-          type: boolean
-          xml:
-            name: Active
-        candidateNodes:
-          description: A list of all candidate nodes and their peering info.
-          items:
-            $ref: '#/components/schemas/CommitteeNode'
-          type: array
-          xml:
-            name: CandidateNodes
-            wrapped: true
-        chainId:
-          description: ChainID (Hex Address).
-          format: string
-          type: string
-          xml:
-            name: ChainID
-        committeeNodes:
-          description: A list of all committee nodes and their peering info.
-          items:
-            $ref: '#/components/schemas/CommitteeNode'
-          type: array
-          xml:
-            name: CommitteeNodes
-            wrapped: true
-        stateAddress:
-          format: string
-          type: string
-          xml:
-            name: StateAddress
-      required:
-      - accessNodes
-      - active
-      - candidateNodes
-      - chainId
-      - committeeNodes
-      - stateAddress
-      type: object
-      xml:
-        name: CommitteeInfoResponse
-    AssetsJSON:
-      example:
-        coins:
-        - coinType: coinType
-          balance: balance
-        - coinType: coinType
-          balance: balance
-        objects:
-        - id: id
-          type: type
-        - id: id
-          type: type
-      properties:
-        coins:
-          items:
-            $ref: '#/components/schemas/CoinJSON'
-          type: array
-          xml:
-            name: Coins
-            wrapped: true
-        objects:
-          items:
-            $ref: '#/components/schemas/IotaObjectJSON'
-          type: array
-          xml:
-            name: Objects
-            wrapped: true
-      required:
-      - coins
-      - objects
-      type: object
-      xml:
-        name: AssetsJSON
-    IotaObjectJSON:
-      example:
-        id: id
-        type: type
-      properties:
-        id:
-          description: Hex-encoded object ID
-          format: string
-          type: string
-          xml:
-            name: ID
-        type:
-          format: string
-          type: string
-          xml:
-            name: Type
-      required:
-      - id
-      - type
-      type: object
-      xml:
-        name: IotaObjectJSON
-    BurnRecord:
-      example:
-        code: 6
-        gasBurned: 1
-      properties:
-        code:
-          format: int32
-          type: integer
-          xml:
-            name: Code
-        gasBurned:
-          format: int64
-          type: integer
-          xml:
-            name: GasBurned
-      required:
-      - code
-      - gasBurned
-      type: object
-      xml:
-        name: BurnRecord
-    L1EstimationResult:
-      example:
-        storageRebate: storageRebate
-        storageFee: storageFee
-        computationFee: computationFee
-        gasFeeCharged: gasFeeCharged
-        gasBudget: gasBudget
-      properties:
-        computationFee:
-          description: Gas cost for computation (uint64 as string)
-          format: string
-          type: string
-          xml:
-            name: ComputationFee
-        gasBudget:
-          format: string
-          type: string
-          xml:
-            name: GasBudget
-        gasFeeCharged:
-          description: 'Total gas fee charged: computation fee + storage fee - storage rebate (uint64 as string)'
-          format: string
-          type: string
-          xml:
-            name: GasFeeCharged
-        storageFee:
-          description: Gas cost for storage (uint64 as string)
-          format: string
-          type: string
-          xml:
-            name: StorageFee
-        storageRebate:
-          description: Gas rebate for storage (uint64 as string)
-          format: string
-          type: string
-          xml:
-            name: StorageRebate
-      required:
-      - computationFee
-      - gasBudget
-      - gasFeeCharged
-      - storageFee
-      - storageRebate
-      type: object
-      xml:
-        name: L1EstimationResult
-    ContractCallViewRequest:
-      example:
-        contractHName: contractHName
-        functionName: functionName
-        functionHName: functionHName
-        arguments:
-        - arguments
-        - arguments
-        block: block
-        contractName: contractName
-      properties:
-        arguments:
-          description: Encoded arguments to be passed to the function
-          items:
-            format: string
-            type: string
-          type: array
-          xml:
-            name: Arguments
-            wrapped: true
-        block:
-          format: string
-          type: string
-          xml:
-            name: Block
-        contractHName:
-          description: The contract name as HName (Hex)
-          format: string
-          type: string
-          xml:
-            name: ContractHName
-        contractName:
-          description: The contract name
-          format: string
-          type: string
-          xml:
-            name: ContractName
-        functionHName:
-          description: The function name as HName (Hex)
-          format: string
-          type: string
-          xml:
-            name: FunctionHName
-        functionName:
-          description: The function name
-          format: string
-          type: string
-          xml:
-            name: FunctionName
-      required:
-      - arguments
-      - contractHName
-      - contractName
-      - functionHName
-      - functionName
-      type: object
-      xml:
-        name: ContractCallViewRequest
-    StateResponse:
-      example:
-        state: state
-      properties:
-        state:
-          description: The state of the requested key (Hex-encoded)
-          format: string
-          type: string
-          xml:
-            name: State
-      required:
-      - state
-      type: object
-      xml:
-        name: StateResponse
-    RotateChainRequest:
-      example:
-        rotateToAddress: rotateToAddress
-      properties:
-        rotateToAddress:
-          description: The address of the new committee or empty to cancel attempt to rotate
-          format: string
-          type: string
-          xml:
-            name: RotateToAddress
-      type: object
-      xml:
-        name: RotateChainRequest
-    PublicChainMetadata:
-      example:
-        website: website
-        evmWebSocketURL: evmWebSocketURL
-        name: name
-        description: description
-        evmJsonRpcURL: evmJsonRpcURL
-      properties:
-        description:
-          description: The description of the chain.
-          format: string
-          type: string
-          xml:
-            name: Description
-        evmJsonRpcURL:
-          description: The EVM json rpc url
-          format: string
-          type: string
-          xml:
-            name: EVMJsonRPCURL
-        evmWebSocketURL:
-          description: The EVM websocket url)
-          format: string
-          type: string
-          xml:
-            name: EVMWebSocketURL
-        name:
-          description: The name of the chain
-          format: string
-          type: string
-          xml:
-            name: Name
-        website:
-          description: The official website of the chain.
-          format: string
-          type: string
-          xml:
-            name: Website
-      required:
-      - description
-      - evmJsonRpcURL
-      - evmWebSocketURL
-      - name
-      - website
-      type: object
-      xml:
-        name: PublicChainMetadata
-    CommitteeNode:
-      example:
-        node:
-          isAlive: true
-          peeringURL: peeringURL
-          name: name
-          publicKey: publicKey
-          numUsers: 0
-          isTrusted: true
-        accessAPI: accessAPI
-      properties:
-        accessAPI:
-          format: string
-          type: string
-          xml:
-            name: AccessAPI
-        node:
-          $ref: '#/components/schemas/PeeringNodeStatusResponse'
-      required:
-      - accessAPI
-      - node
-      type: object
-      xml:
-        name: CommitteeNode
   securitySchemes:
     Authorization:
       description: JWT Token

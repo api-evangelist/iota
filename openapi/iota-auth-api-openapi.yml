@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   description: REST API for the Wasp node
-  title: Wasp auth API
+  title: Wasp Auth API
   version: '0'
 servers:
 - url: /
 tags:
-- name: auth
+- name: Auth
 paths:
   /auth:
     post:
@@ -33,7 +33,7 @@ paths:
           description: 'auth type: none'
       summary: Authenticate towards the node
       tags:
-      - auth
+      - Auth
       x-codegen-request-body-name: ''
   /auth/info:
     get:
@@ -47,30 +47,29 @@ paths:
           description: Login was successful
       summary: Get information about the current authentication mode
       tags:
-      - auth
+      - Auth
 components:
   schemas:
-    LoginRequest:
+    LoginResponse:
       example:
-        password: password
-        username: username
+        jwt: jwt
+        error: error
       properties:
-        password:
+        error:
           format: string
           type: string
           xml:
-            name: Password
-        username:
+            name: Error
+        jwt:
           format: string
           type: string
           xml:
-            name: Username
+            name: JWT
       required:
-      - password
-      - username
+      - jwt
       type: object
       xml:
-        name: LoginRequest
+        name: LoginResponse
     AuthInfoModel:
       example:
         authURL: authURL
@@ -93,26 +92,27 @@ components:
       type: object
       xml:
         name: AuthInfoModel
-    LoginResponse:
+    LoginRequest:
       example:
-        jwt: jwt
-        error: error
+        password: password
+        username: username
       properties:
-        error:
+        password:
           format: string
           type: string
           xml:
-            name: Error
-        jwt:
+            name: Password
+        username:
           format: string
           type: string
           xml:
-            name: JWT
+            name: Username
       required:
-      - jwt
+      - password
+      - username
       type: object
       xml:
-        name: LoginResponse
+        name: LoginRequest
   securitySchemes:
     Authorization:
       description: JWT Token

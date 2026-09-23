@@ -1,12 +1,12 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   description: REST API for the Wasp node
-  title: Wasp auth users API
+  title: Wasp Users API
   version: '0'
 servers:
 - url: /
 tags:
-- name: users
+- name: Users
 paths:
   /v1/users:
     get:
@@ -30,7 +30,7 @@ paths:
       - Authorization: []
       summary: Get a list of all users
       tags:
-      - users
+      - Users
     post:
       operationId: addUser
       requestBody:
@@ -57,7 +57,7 @@ paths:
       - Authorization: []
       summary: Add a user
       tags:
-      - users
+      - Users
       x-codegen-request-body-name: ''
   /v1/users/{username}:
     delete:
@@ -87,7 +87,7 @@ paths:
       - Authorization: []
       summary: Deletes a user
       tags:
-      - users
+      - Users
     get:
       operationId: getUser
       parameters:
@@ -118,7 +118,7 @@ paths:
       - Authorization: []
       summary: Get a user
       tags:
-      - users
+      - Users
   /v1/users/{username}/password:
     put:
       operationId: changeUserPassword
@@ -157,7 +157,7 @@ paths:
       - Authorization: []
       summary: Change user password
       tags:
-      - users
+      - Users
       x-codegen-request-body-name: ''
   /v1/users/{username}/permissions:
     put:
@@ -197,7 +197,7 @@ paths:
       - Authorization: []
       summary: Change user permissions
       tags:
-      - users
+      - Users
       x-codegen-request-body-name: ''
 components:
   schemas:
@@ -234,20 +234,6 @@ components:
       type: object
       xml:
         name: AddUserRequest
-    UpdateUserPasswordRequest:
-      example:
-        password: password
-      properties:
-        password:
-          format: string
-          type: string
-          xml:
-            name: Password
-      required:
-      - password
-      type: object
-      xml:
-        name: UpdateUserPasswordRequest
     User:
       example:
         permissions:
@@ -295,6 +281,20 @@ components:
       type: object
       xml:
         name: ValidationError
+    UpdateUserPasswordRequest:
+      example:
+        password: password
+      properties:
+        password:
+          format: string
+          type: string
+          xml:
+            name: Password
+      required:
+      - password
+      type: object
+      xml:
+        name: UpdateUserPasswordRequest
     UpdateUserPermissionsRequest:
       example:
         permissions:

@@ -1,10 +1,27 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  description: REST API for the Wasp node
-  title: Wasp auth Governance API
-  version: '0'
+  title: IOTA JSON-RPC Governance API
+  description: IOTA JSON-RPC API for interaction with IOTA full node or indexer. All requests are HTTP POST to the node endpoint. Covers iota_ (Read, Write, Move Utils), iotax_ (Extended, Coin Query, Governance), and unsafe_ (Transaction Builder) method namespaces.
+  version: 1.26.0-alpha
+  contact:
+    name: IOTA Foundation
+    email: info@iota.org
+    url: https://docs.iota.org/
+  license:
+    name: Apache-2.0
+    url: https://opensource.org/licenses/Apache-2.0
+  x-openrpc-source: https://raw.githubusercontent.com/iotaledger/iota/develop/crates/iota-open-rpc/spec/openrpc.json
 servers:
-- url: /
+- url: https://api.mainnet.iota.cafe
+  description: IOTA Mainnet full node
+- url: https://api.testnet.iota.cafe
+  description: IOTA Testnet full node
+- url: https://api.devnet.iota.cafe
+  description: IOTA Devnet full node
+- url: https://indexer.mainnet.iota.cafe
+  description: IOTA Mainnet indexer (iotax_ methods)
+- url: https://indexer.testnet.iota.cafe
+  description: IOTA Testnet indexer (iotax_ methods)
 tags:
 - name: Governance
   description: Governance, staking, validator, epoch, and system state queries
@@ -1139,14 +1156,6 @@ paths:
                       message:
                         type: string
                       data: {}
-components:
-  securitySchemes:
-    Authorization:
-      description: JWT Token
-      in: header
-      name: Authorization
-      type: apiKey
 externalDocs:
-  description: Find out more about Wasp
-  url: https://wiki.iota.org/smart-contracts/overview
-x-original-swagger-version: '2.0'
+  description: IOTA API Reference
+  url: https://docs.iota.org/iota-api-ref
