@@ -201,39 +201,6 @@ paths:
       x-codegen-request-body-name: ''
 components:
   schemas:
-    AddUserRequest:
-      example:
-        password: password
-        permissions:
-        - permissions
-        - permissions
-        username: username
-      properties:
-        password:
-          format: string
-          type: string
-          xml:
-            name: Password
-        permissions:
-          items:
-            format: string
-            type: string
-          type: array
-          xml:
-            name: Permissions
-            wrapped: true
-        username:
-          format: string
-          type: string
-          xml:
-            name: Username
-      required:
-      - password
-      - permissions
-      - username
-      type: object
-      xml:
-        name: AddUserRequest
     User:
       example:
         permissions:
@@ -281,6 +248,39 @@ components:
       type: object
       xml:
         name: ValidationError
+    AddUserRequest:
+      example:
+        password: password
+        permissions:
+        - permissions
+        - permissions
+        username: username
+      properties:
+        password:
+          format: string
+          type: string
+          xml:
+            name: Password
+        permissions:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Permissions
+            wrapped: true
+        username:
+          format: string
+          type: string
+          xml:
+            name: Username
+      required:
+      - password
+      - permissions
+      - username
+      type: object
+      xml:
+        name: AddUserRequest
     UpdateUserPasswordRequest:
       example:
         password: password

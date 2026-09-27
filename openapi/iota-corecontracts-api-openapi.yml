@@ -573,28 +573,426 @@ paths:
       - corecontracts
 components:
   schemas:
-    CoinJSON:
+    GovPublicChainMetadata:
       example:
-        coinType: coinType
-        balance: balance
+        website: website
+        evmWebSocketURL: evmWebSocketURL
+        name: name
+        description: description
+        evmJsonRpcURL: evmJsonRpcURL
       properties:
-        balance:
-          description: The balance (uint64 as string)
+        description:
+          description: The description of the chain.
           format: string
           type: string
           xml:
-            name: Balance
-        coinType:
+            name: Description
+        evmJsonRpcURL:
+          description: The EVM json rpc url
           format: string
           type: string
           xml:
-            name: CoinType
+            name: EVMJsonRPCURL
+        evmWebSocketURL:
+          description: The EVM websocket url)
+          format: string
+          type: string
+          xml:
+            name: EVMWebSocketURL
+        name:
+          description: The name of the chain
+          format: string
+          type: string
+          xml:
+            name: Name
+        website:
+          description: The official website of the chain.
+          format: string
+          type: string
+          xml:
+            name: Website
       required:
-      - balance
-      - coinType
+      - description
+      - evmJsonRpcURL
+      - evmWebSocketURL
+      - name
+      - website
       type: object
       xml:
-        name: CoinJSON
+        name: GovPublicChainMetadata
+    ControlAddressesResponse:
+      example:
+        chainAdmin: chainAdmin
+        sinceBlockIndex: 1
+        anchorOwner: anchorOwner
+      properties:
+        anchorOwner:
+          description: The anchor owner (Hex Address)
+          format: string
+          type: string
+          xml:
+            name: AnchorOwner
+        chainAdmin:
+          description: The chain admin (Hex Address)
+          format: string
+          type: string
+          xml:
+            name: ChainAdmin
+        sinceBlockIndex:
+          description: The block index (uint32
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: SinceBlockIndex
+      required:
+      - anchorOwner
+      - chainAdmin
+      - sinceBlockIndex
+      type: object
+      xml:
+        name: ControlAddressesResponse
+    ValidationError:
+      example:
+        error: error
+        missingPermission: missingPermission
+      properties:
+        error:
+          format: string
+          type: string
+          xml:
+            name: Error
+        missingPermission:
+          format: string
+          type: string
+          xml:
+            name: MissingPermission
+      required:
+      - error
+      - missingPermission
+      type: object
+      xml:
+        name: ValidationError
+    RequestJSON:
+      example:
+        senderAccount: senderAccount
+        allowanceError: allowanceError
+        assets:
+          coins:
+          - coinType: coinType
+            balance: balance
+          - coinType: coinType
+            balance: balance
+          objects:
+          - id: id
+            type: type
+          - id: id
+            type: type
+        isOffLedger: true
+        requestId: requestId
+        callTarget:
+          contractHName: contractHName
+          functionHName: functionHName
+        gasBudget: gasBudget
+        allowance:
+          coins:
+          - coinType: coinType
+            balance: balance
+          - coinType: coinType
+            balance: balance
+          objects:
+          - id: id
+            type: type
+          - id: id
+            type: type
+        params:
+        - params
+        - params
+        isEVM: true
+      properties:
+        allowance:
+          $ref: '#/components/schemas/AssetsJSON'
+        allowanceError:
+          format: string
+          type: string
+          xml:
+            name: AllowanceError
+        assets:
+          $ref: '#/components/schemas/AssetsJSON'
+        callTarget:
+          $ref: '#/components/schemas/CallTargetJSON'
+        gasBudget:
+          description: The gas budget (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: GasBudget
+        isEVM:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsEVM
+        isOffLedger:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsOffLedger
+        params:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Params
+            wrapped: true
+        requestId:
+          format: string
+          type: string
+          xml:
+            name: RequestID
+        senderAccount:
+          format: string
+          type: string
+          xml:
+            name: SenderAccount
+      required:
+      - allowance
+      - assets
+      - callTarget
+      - gasBudget
+      - isEVM
+      - isOffLedger
+      - params
+      - requestId
+      - senderAccount
+      type: object
+      xml:
+        name: RequestJSON
+    BlockInfoResponse:
+      example:
+        blockIndex: 1
+        numSuccessfulRequests: 1
+        gasFeeCharged: gasFeeCharged
+        gasBurned: gasBurned
+        totalRequests: 1
+        numOffLedgerRequests: 1
+        timestamp: 2000-01-23 04:56:07+00:00
+      properties:
+        blockIndex:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: BlockIndex
+        gasBurned:
+          description: The burned gas (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: GasBurned
+        gasFeeCharged:
+          description: The charged gas fee (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: GasFeeCharged
+        numOffLedgerRequests:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: NumOffLedgerRequests
+        numSuccessfulRequests:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: NumSuccessfulRequests
+        timestamp:
+          format: date-time
+          type: string
+          xml:
+            name: Timestamp
+        totalRequests:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: TotalRequests
+      required:
+      - blockIndex
+      - gasBurned
+      - gasFeeCharged
+      - numOffLedgerRequests
+      - numSuccessfulRequests
+      - timestamp
+      - totalRequests
+      type: object
+      xml:
+        name: BlockInfoResponse
+    Ratio32:
+      example:
+        a: 0
+        b: 0
+      properties:
+        a:
+          format: int32
+          minimum: 0
+          type: integer
+          xml:
+            name: A
+        b:
+          format: int32
+          minimum: 0
+          type: integer
+          xml:
+            name: B
+      required:
+      - a
+      - b
+      type: object
+      xml:
+        name: Ratio32
+    GovChainAdminResponse:
+      example:
+        chainAdmin: chainAdmin
+      properties:
+        chainAdmin:
+          description: The chain admin (Hex Address)
+          format: string
+          type: string
+          xml:
+            name: ChainAdmin
+      type: object
+      xml:
+        name: GovChainAdminResponse
+    UnresolvedVMErrorJSON:
+      example:
+        code: code
+        params:
+        - params
+        - params
+      properties:
+        code:
+          format: string
+          type: string
+          xml:
+            name: ErrorCode
+        params:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Params
+            wrapped: true
+      type: object
+      xml:
+        name: UnresolvedVMErrorJSON
+    Limits:
+      example:
+        maxGasExternalViewCall: 5
+        minGasPerRequest: 9
+        maxGasPerBlock: 2
+        maxGasPerRequest: 7
+      properties:
+        maxGasExternalViewCall:
+          description: The maximum gas per external view call
+          format: int64
+          type: integer
+          xml:
+            name: MaxGasExternalViewCall
+        maxGasPerBlock:
+          description: The maximum gas per block
+          format: int64
+          type: integer
+          xml:
+            name: MaxGasPerBlock
+        maxGasPerRequest:
+          description: The maximum gas per request
+          format: int64
+          type: integer
+          xml:
+            name: MaxGasPerRequest
+        minGasPerRequest:
+          description: The minimum gas per request
+          format: int64
+          type: integer
+          xml:
+            name: MinGasPerRequest
+      required:
+      - maxGasExternalViewCall
+      - maxGasPerBlock
+      - maxGasPerRequest
+      - minGasPerRequest
+      type: object
+      xml:
+        name: Limits
+    RequestProcessedResponse:
+      example:
+        chainId: chainId
+        requestId: requestId
+        isProcessed: true
+      properties:
+        chainId:
+          format: string
+          type: string
+          xml:
+            name: ChainID
+        isProcessed:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsProcessed
+        requestId:
+          format: string
+          type: string
+          xml:
+            name: RequestID
+      required:
+      - chainId
+      - isProcessed
+      - requestId
+      type: object
+      xml:
+        name: RequestProcessedResponse
+    IotaObjectJSON:
+      example:
+        id: id
+        type: type
+      properties:
+        id:
+          description: Hex-encoded object ID
+          format: string
+          type: string
+          xml:
+            name: ID
+        type:
+          format: string
+          type: string
+          xml:
+            name: Type
+      required:
+      - id
+      - type
+      type: object
+      xml:
+        name: IotaObjectJSON
+    AccountNonceResponse:
+      example:
+        nonce: nonce
+      properties:
+        nonce:
+          description: The nonce (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: Nonce
+      required:
+      - nonce
+      type: object
+      xml:
+        name: AccountNonceResponse
     GovChainInfoResponse:
       example:
         chainAdmin: chainAdmin
@@ -654,126 +1052,6 @@ components:
       type: object
       xml:
         name: GovChainInfoResponse
-    Limits:
-      example:
-        maxGasExternalViewCall: 5
-        minGasPerRequest: 9
-        maxGasPerBlock: 2
-        maxGasPerRequest: 7
-      properties:
-        maxGasExternalViewCall:
-          description: The maximum gas per external view call
-          format: int64
-          type: integer
-          xml:
-            name: MaxGasExternalViewCall
-        maxGasPerBlock:
-          description: The maximum gas per block
-          format: int64
-          type: integer
-          xml:
-            name: MaxGasPerBlock
-        maxGasPerRequest:
-          description: The maximum gas per request
-          format: int64
-          type: integer
-          xml:
-            name: MaxGasPerRequest
-        minGasPerRequest:
-          description: The minimum gas per request
-          format: int64
-          type: integer
-          xml:
-            name: MinGasPerRequest
-      required:
-      - maxGasExternalViewCall
-      - maxGasPerBlock
-      - maxGasPerRequest
-      - minGasPerRequest
-      type: object
-      xml:
-        name: Limits
-    ValidationError:
-      example:
-        error: error
-        missingPermission: missingPermission
-      properties:
-        error:
-          format: string
-          type: string
-          xml:
-            name: Error
-        missingPermission:
-          format: string
-          type: string
-          xml:
-            name: MissingPermission
-      required:
-      - error
-      - missingPermission
-      type: object
-      xml:
-        name: ValidationError
-    AssetsJSON:
-      example:
-        coins:
-        - coinType: coinType
-          balance: balance
-        - coinType: coinType
-          balance: balance
-        objects:
-        - id: id
-          type: type
-        - id: id
-          type: type
-      properties:
-        coins:
-          items:
-            $ref: '#/components/schemas/CoinJSON'
-          type: array
-          xml:
-            name: Coins
-            wrapped: true
-        objects:
-          items:
-            $ref: '#/components/schemas/IotaObjectJSON'
-          type: array
-          xml:
-            name: Objects
-            wrapped: true
-      required:
-      - coins
-      - objects
-      type: object
-      xml:
-        name: AssetsJSON
-    FeePolicy:
-      example:
-        gasPerToken:
-          a: 0
-          b: 0
-        validatorFeeShare: 5
-        evmGasRatio:
-          a: 0
-          b: 0
-      properties:
-        evmGasRatio:
-          $ref: '#/components/schemas/Ratio32'
-        gasPerToken:
-          $ref: '#/components/schemas/Ratio32'
-        validatorFeeShare:
-          description: The validator fee share.
-          format: int32
-          type: integer
-          xml:
-            name: ValidatorFeeShare
-      required:
-      - evmGasRatio
-      - gasPerToken
-      - validatorFeeShare
-      type: object
-      xml:
-        name: FeePolicy
     ReceiptResponse:
       example:
         gasBurnLog:
@@ -893,119 +1171,6 @@ components:
       type: object
       xml:
         name: ReceiptResponse
-    BlockInfoResponse:
-      example:
-        blockIndex: 1
-        numSuccessfulRequests: 1
-        gasFeeCharged: gasFeeCharged
-        gasBurned: gasBurned
-        totalRequests: 1
-        numOffLedgerRequests: 1
-        timestamp: 2000-01-23 04:56:07+00:00
-      properties:
-        blockIndex:
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: BlockIndex
-        gasBurned:
-          description: The burned gas (uint64 as string)
-          format: string
-          type: string
-          xml:
-            name: GasBurned
-        gasFeeCharged:
-          description: The charged gas fee (uint64 as string)
-          format: string
-          type: string
-          xml:
-            name: GasFeeCharged
-        numOffLedgerRequests:
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: NumOffLedgerRequests
-        numSuccessfulRequests:
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: NumSuccessfulRequests
-        timestamp:
-          format: date-time
-          type: string
-          xml:
-            name: Timestamp
-        totalRequests:
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: TotalRequests
-      required:
-      - blockIndex
-      - gasBurned
-      - gasFeeCharged
-      - numOffLedgerRequests
-      - numSuccessfulRequests
-      - timestamp
-      - totalRequests
-      type: object
-      xml:
-        name: BlockInfoResponse
-    AccountNonceResponse:
-      example:
-        nonce: nonce
-      properties:
-        nonce:
-          description: The nonce (uint64 as string)
-          format: string
-          type: string
-          xml:
-            name: Nonce
-      required:
-      - nonce
-      type: object
-      xml:
-        name: AccountNonceResponse
-    IotaObjectJSON:
-      example:
-        id: id
-        type: type
-      properties:
-        id:
-          description: Hex-encoded object ID
-          format: string
-          type: string
-          xml:
-            name: ID
-        type:
-          format: string
-          type: string
-          xml:
-            name: Type
-      required:
-      - id
-      - type
-      type: object
-      xml:
-        name: IotaObjectJSON
-    ErrorMessageFormatResponse:
-      example:
-        messageFormat: messageFormat
-      properties:
-        messageFormat:
-          format: string
-          type: string
-          xml:
-            name: MessageFormat
-      required:
-      - messageFormat
-      type: object
-      xml:
-        name: ErrorMessageFormatResponse
     BurnRecord:
       example:
         code: 6
@@ -1027,6 +1192,61 @@ components:
       type: object
       xml:
         name: BurnRecord
+    RequestIDsResponse:
+      example:
+        requestIds:
+        - requestIds
+        - requestIds
+      properties:
+        requestIds:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: RequestIDs
+            wrapped: true
+      required:
+      - requestIds
+      type: object
+      xml:
+        name: RequestIDsResponse
+    CoinJSON:
+      example:
+        coinType: coinType
+        balance: balance
+      properties:
+        balance:
+          description: The balance (uint64 as string)
+          format: string
+          type: string
+          xml:
+            name: Balance
+        coinType:
+          format: string
+          type: string
+          xml:
+            name: CoinType
+      required:
+      - balance
+      - coinType
+      type: object
+      xml:
+        name: CoinJSON
+    ErrorMessageFormatResponse:
+      example:
+        messageFormat: messageFormat
+      properties:
+        messageFormat:
+          format: string
+          type: string
+          xml:
+            name: MessageFormat
+      required:
+      - messageFormat
+      type: object
+      xml:
+        name: ErrorMessageFormatResponse
     EventsResponse:
       example:
         events:
@@ -1051,6 +1271,33 @@ components:
       type: object
       xml:
         name: EventsResponse
+    FeePolicy:
+      example:
+        gasPerToken:
+          a: 0
+          b: 0
+        validatorFeeShare: 5
+        evmGasRatio:
+          a: 0
+          b: 0
+      properties:
+        evmGasRatio:
+          $ref: '#/components/schemas/Ratio32'
+        gasPerToken:
+          $ref: '#/components/schemas/Ratio32'
+        validatorFeeShare:
+          description: The validator fee share.
+          format: int32
+          type: integer
+          xml:
+            name: ValidatorFeeShare
+      required:
+      - evmGasRatio
+      - gasPerToken
+      - validatorFeeShare
+      type: object
+      xml:
+        name: FeePolicy
     AssetsResponse:
       example:
         coins:
@@ -1092,123 +1339,6 @@ components:
       type: object
       xml:
         name: AssetsResponse
-    RequestProcessedResponse:
-      example:
-        chainId: chainId
-        requestId: requestId
-        isProcessed: true
-      properties:
-        chainId:
-          format: string
-          type: string
-          xml:
-            name: ChainID
-        isProcessed:
-          format: boolean
-          type: boolean
-          xml:
-            name: IsProcessed
-        requestId:
-          format: string
-          type: string
-          xml:
-            name: RequestID
-      required:
-      - chainId
-      - isProcessed
-      - requestId
-      type: object
-      xml:
-        name: RequestProcessedResponse
-    RequestIDsResponse:
-      example:
-        requestIds:
-        - requestIds
-        - requestIds
-      properties:
-        requestIds:
-          items:
-            format: string
-            type: string
-          type: array
-          xml:
-            name: RequestIDs
-            wrapped: true
-      required:
-      - requestIds
-      type: object
-      xml:
-        name: RequestIDsResponse
-    Ratio32:
-      example:
-        a: 0
-        b: 0
-      properties:
-        a:
-          format: int32
-          minimum: 0
-          type: integer
-          xml:
-            name: A
-        b:
-          format: int32
-          minimum: 0
-          type: integer
-          xml:
-            name: B
-      required:
-      - a
-      - b
-      type: object
-      xml:
-        name: Ratio32
-    GovPublicChainMetadata:
-      example:
-        website: website
-        evmWebSocketURL: evmWebSocketURL
-        name: name
-        description: description
-        evmJsonRpcURL: evmJsonRpcURL
-      properties:
-        description:
-          description: The description of the chain.
-          format: string
-          type: string
-          xml:
-            name: Description
-        evmJsonRpcURL:
-          description: The EVM json rpc url
-          format: string
-          type: string
-          xml:
-            name: EVMJsonRPCURL
-        evmWebSocketURL:
-          description: The EVM websocket url)
-          format: string
-          type: string
-          xml:
-            name: EVMWebSocketURL
-        name:
-          description: The name of the chain
-          format: string
-          type: string
-          xml:
-            name: Name
-        website:
-          description: The official website of the chain.
-          format: string
-          type: string
-          xml:
-            name: Website
-      required:
-      - description
-      - evmJsonRpcURL
-      - evmWebSocketURL
-      - name
-      - website
-      type: object
-      xml:
-        name: GovPublicChainMetadata
     CallTargetJSON:
       example:
         contractHName: contractHName
@@ -1272,169 +1402,39 @@ components:
       type: object
       xml:
         name: EventJSON
-    GovChainAdminResponse:
+    AssetsJSON:
       example:
-        chainAdmin: chainAdmin
+        coins:
+        - coinType: coinType
+          balance: balance
+        - coinType: coinType
+          balance: balance
+        objects:
+        - id: id
+          type: type
+        - id: id
+          type: type
       properties:
-        chainAdmin:
-          description: The chain admin (Hex Address)
-          format: string
-          type: string
-          xml:
-            name: ChainAdmin
-      type: object
-      xml:
-        name: GovChainAdminResponse
-    UnresolvedVMErrorJSON:
-      example:
-        code: code
-        params:
-        - params
-        - params
-      properties:
-        code:
-          format: string
-          type: string
-          xml:
-            name: ErrorCode
-        params:
+        coins:
           items:
-            format: string
-            type: string
+            $ref: '#/components/schemas/CoinJSON'
           type: array
           xml:
-            name: Params
+            name: Coins
             wrapped: true
-      type: object
-      xml:
-        name: UnresolvedVMErrorJSON
-    ControlAddressesResponse:
-      example:
-        chainAdmin: chainAdmin
-        sinceBlockIndex: 1
-        anchorOwner: anchorOwner
-      properties:
-        anchorOwner:
-          description: The anchor owner (Hex Address)
-          format: string
-          type: string
-          xml:
-            name: AnchorOwner
-        chainAdmin:
-          description: The chain admin (Hex Address)
-          format: string
-          type: string
-          xml:
-            name: ChainAdmin
-        sinceBlockIndex:
-          description: The block index (uint32
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: SinceBlockIndex
-      required:
-      - anchorOwner
-      - chainAdmin
-      - sinceBlockIndex
-      type: object
-      xml:
-        name: ControlAddressesResponse
-    RequestJSON:
-      example:
-        senderAccount: senderAccount
-        allowanceError: allowanceError
-        assets:
-          coins:
-          - coinType: coinType
-            balance: balance
-          - coinType: coinType
-            balance: balance
-          objects:
-          - id: id
-            type: type
-          - id: id
-            type: type
-        isOffLedger: true
-        requestId: requestId
-        callTarget:
-          contractHName: contractHName
-          functionHName: functionHName
-        gasBudget: gasBudget
-        allowance:
-          coins:
-          - coinType: coinType
-            balance: balance
-          - coinType: coinType
-            balance: balance
-          objects:
-          - id: id
-            type: type
-          - id: id
-            type: type
-        params:
-        - params
-        - params
-        isEVM: true
-      properties:
-        allowance:
-          $ref: '#/components/schemas/AssetsJSON'
-        allowanceError:
-          format: string
-          type: string
-          xml:
-            name: AllowanceError
-        assets:
-          $ref: '#/components/schemas/AssetsJSON'
-        callTarget:
-          $ref: '#/components/schemas/CallTargetJSON'
-        gasBudget:
-          description: The gas budget (uint64 as string)
-          format: string
-          type: string
-          xml:
-            name: GasBudget
-        isEVM:
-          format: boolean
-          type: boolean
-          xml:
-            name: IsEVM
-        isOffLedger:
-          format: boolean
-          type: boolean
-          xml:
-            name: IsOffLedger
-        params:
+        objects:
           items:
-            format: string
-            type: string
+            $ref: '#/components/schemas/IotaObjectJSON'
           type: array
           xml:
-            name: Params
+            name: Objects
             wrapped: true
-        requestId:
-          format: string
-          type: string
-          xml:
-            name: RequestID
-        senderAccount:
-          format: string
-          type: string
-          xml:
-            name: SenderAccount
       required:
-      - allowance
-      - assets
-      - callTarget
-      - gasBudget
-      - isEVM
-      - isOffLedger
-      - params
-      - requestId
-      - senderAccount
+      - coins
+      - objects
       type: object
       xml:
-        name: RequestJSON
+        name: AssetsJSON
   securitySchemes:
     Authorization:
       description: JWT Token

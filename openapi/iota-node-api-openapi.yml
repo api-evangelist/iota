@@ -290,149 +290,95 @@ paths:
       - Node
 components:
   schemas:
-    Protocol:
+    NodeOwnerCertificateResponse:
       example:
-        protocol_version:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-        reference_gas_price:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-        epoch:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-        system_state_version:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-        epoch_duration_ms:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-        epoch_start_timestamp_ms:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
+        certificate: certificate
       properties:
-        epoch:
-          $ref: '#/components/schemas/BigInt'
-        epoch_duration_ms:
-          $ref: '#/components/schemas/BigInt'
-        epoch_start_timestamp_ms:
-          $ref: '#/components/schemas/BigInt'
-        protocol_version:
-          $ref: '#/components/schemas/BigInt'
-        reference_gas_price:
-          $ref: '#/components/schemas/BigInt'
-        system_state_version:
-          $ref: '#/components/schemas/BigInt'
-      required:
-      - epoch
-      - epoch_duration_ms
-      - epoch_start_timestamp_ms
-      - protocol_version
-      - reference_gas_price
-      - system_state_version
-      type: object
-      xml:
-        name: Protocol
-    L1Params:
-      example:
-        protocol:
-          protocol_version:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-          reference_gas_price:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-          epoch:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-          system_state_version:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-          epoch_duration_ms:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-          epoch_start_timestamp_ms:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-        baseToken:
-          coinType:
-            s: s
-          totalSupply: 6
-          decimals: 0
-          name: name
-          description: description
-          tickerSymbol: tickerSymbol
-          iconUrl: iconUrl
-      properties:
-        baseToken:
-          $ref: '#/components/schemas/IotaCoinInfo'
-        protocol:
-          $ref: '#/components/schemas/Protocol'
-      required:
-      - baseToken
-      - protocol
-      type: object
-      xml:
-        name: L1Params
-    Int:
-      example:
-        neg: true
-        abs:
-        - 1
-        - 1
-      properties:
-        abs:
-          items:
-            format: int32
-            type: integer
-          type: array
+        certificate:
+          description: Certificate stating the ownership. (Hex)
+          format: string
+          type: string
           xml:
-            name: abs
-            wrapped: true
-        neg:
+            name: Certificate
+      required:
+      - certificate
+      type: object
+      xml:
+        name: NodeOwnerCertificateResponse
+    ValidationError:
+      example:
+        error: error
+        missingPermission: missingPermission
+      properties:
+        error:
+          format: string
+          type: string
+          xml:
+            name: Error
+        missingPermission:
+          format: string
+          type: string
+          xml:
+            name: MissingPermission
+      required:
+      - error
+      - missingPermission
+      type: object
+      xml:
+        name: ValidationError
+    PeeringNodeStatusResponse:
+      example:
+        isAlive: true
+        peeringURL: peeringURL
+        name: name
+        publicKey: publicKey
+        numUsers: 0
+        isTrusted: true
+      properties:
+        isAlive:
+          description: Whether or not the peer is activated
           format: boolean
           type: boolean
           xml:
-            name: neg
+            name: IsAlive
+        isTrusted:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsTrusted
+        name:
+          format: string
+          type: string
+          xml:
+            name: Name
+        numUsers:
+          description: The amount of users attached to the peer
+          format: int32
+          type: integer
+          xml:
+            name: NumUsers
+        peeringURL:
+          description: The peering URL of the peer
+          format: string
+          type: string
+          xml:
+            name: PeeringURL
+        publicKey:
+          description: The peers public key encoded in Hex
+          format: string
+          type: string
+          xml:
+            name: PublicKey
+      required:
+      - isAlive
+      - isTrusted
+      - name
+      - numUsers
+      - peeringURL
+      - publicKey
       type: object
       xml:
-        name: Int
+        name: PeeringNodeStatusResponse
     IotaCoinInfo:
       example:
         coinType:
@@ -493,21 +439,44 @@ components:
       type: object
       xml:
         name: IotaCoinInfo
-    NodeOwnerCertificateResponse:
+    DKSharesPostRequest:
       example:
-        certificate: certificate
+        peerIdentities:
+        - peerIdentities
+        - peerIdentities
+        timeoutMS: 1
+        threshold: 1
       properties:
-        certificate:
-          description: Certificate stating the ownership. (Hex)
-          format: string
-          type: string
+        peerIdentities:
+          description: Names or hex encoded public keys of trusted peers to run DKG on.
+          items:
+            format: string
+            type: string
+          type: array
           xml:
-            name: Certificate
+            name: PeerPubKeysOrNames
+            wrapped: true
+        threshold:
+          description: Should be =< len(PeerPublicIdentities)
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: Threshold
+        timeoutMS:
+          description: Timeout in milliseconds.
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: TimeoutMS
       required:
-      - certificate
+      - peerIdentities
+      - threshold
+      - timeoutMS
       type: object
       xml:
-        name: NodeOwnerCertificateResponse
+        name: DKSharesPostRequest
     DKSharesInfo:
       example:
         publicKeyShares:
@@ -573,6 +542,18 @@ components:
       type: object
       xml:
         name: DKSharesInfo
+    ObjectType:
+      example:
+        s: s
+      properties:
+        s:
+          format: string
+          type: string
+          xml:
+            name: s
+      type: object
+      xml:
+        name: ObjectType
     PeeringNodeIdentityResponse:
       example:
         peeringURL: peeringURL
@@ -610,6 +591,65 @@ components:
       type: object
       xml:
         name: PeeringNodeIdentityResponse
+    L1Params:
+      example:
+        protocol:
+          protocol_version:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          reference_gas_price:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          epoch:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          system_state_version:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          epoch_duration_ms:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          epoch_start_timestamp_ms:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+        baseToken:
+          coinType:
+            s: s
+          totalSupply: 6
+          decimals: 0
+          name: name
+          description: description
+          tickerSymbol: tickerSymbol
+          iconUrl: iconUrl
+      properties:
+        baseToken:
+          $ref: '#/components/schemas/IotaCoinInfo'
+        protocol:
+          $ref: '#/components/schemas/Protocol'
+      required:
+      - baseToken
+      - protocol
+      type: object
+      xml:
+        name: L1Params
     InfoResponse:
       example:
         peeringURL: peeringURL
@@ -691,19 +731,6 @@ components:
       type: object
       xml:
         name: InfoResponse
-    BigInt:
-      example:
-        Int:
-          neg: true
-          abs:
-          - 1
-          - 1
-      properties:
-        Int:
-          $ref: '#/components/schemas/Int'
-      type: object
-      xml:
-        name: BigInt
     VersionResponse:
       example:
         version: version
@@ -719,6 +746,103 @@ components:
       type: object
       xml:
         name: VersionResponse
+    Protocol:
+      example:
+        protocol_version:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        reference_gas_price:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        epoch:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        system_state_version:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        epoch_duration_ms:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        epoch_start_timestamp_ms:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+      properties:
+        epoch:
+          $ref: '#/components/schemas/BigInt'
+        epoch_duration_ms:
+          $ref: '#/components/schemas/BigInt'
+        epoch_start_timestamp_ms:
+          $ref: '#/components/schemas/BigInt'
+        protocol_version:
+          $ref: '#/components/schemas/BigInt'
+        reference_gas_price:
+          $ref: '#/components/schemas/BigInt'
+        system_state_version:
+          $ref: '#/components/schemas/BigInt'
+      required:
+      - epoch
+      - epoch_duration_ms
+      - epoch_start_timestamp_ms
+      - protocol_version
+      - reference_gas_price
+      - system_state_version
+      type: object
+      xml:
+        name: Protocol
+    BigInt:
+      example:
+        Int:
+          neg: true
+          abs:
+          - 1
+          - 1
+      properties:
+        Int:
+          $ref: '#/components/schemas/Int'
+      type: object
+      xml:
+        name: BigInt
+    Int:
+      example:
+        neg: true
+        abs:
+        - 1
+        - 1
+      properties:
+        abs:
+          items:
+            format: int32
+            type: integer
+          type: array
+          xml:
+            name: abs
+            wrapped: true
+        neg:
+          format: boolean
+          type: boolean
+          xml:
+            name: neg
+      type: object
+      xml:
+        name: Int
     PeeringTrustRequest:
       example:
         peeringURL: peeringURL
@@ -749,130 +873,6 @@ components:
       type: object
       xml:
         name: PeeringTrustRequest
-    PeeringNodeStatusResponse:
-      example:
-        isAlive: true
-        peeringURL: peeringURL
-        name: name
-        publicKey: publicKey
-        numUsers: 0
-        isTrusted: true
-      properties:
-        isAlive:
-          description: Whether or not the peer is activated
-          format: boolean
-          type: boolean
-          xml:
-            name: IsAlive
-        isTrusted:
-          format: boolean
-          type: boolean
-          xml:
-            name: IsTrusted
-        name:
-          format: string
-          type: string
-          xml:
-            name: Name
-        numUsers:
-          description: The amount of users attached to the peer
-          format: int32
-          type: integer
-          xml:
-            name: NumUsers
-        peeringURL:
-          description: The peering URL of the peer
-          format: string
-          type: string
-          xml:
-            name: PeeringURL
-        publicKey:
-          description: The peers public key encoded in Hex
-          format: string
-          type: string
-          xml:
-            name: PublicKey
-      required:
-      - isAlive
-      - isTrusted
-      - name
-      - numUsers
-      - peeringURL
-      - publicKey
-      type: object
-      xml:
-        name: PeeringNodeStatusResponse
-    ObjectType:
-      example:
-        s: s
-      properties:
-        s:
-          format: string
-          type: string
-          xml:
-            name: s
-      type: object
-      xml:
-        name: ObjectType
-    ValidationError:
-      example:
-        error: error
-        missingPermission: missingPermission
-      properties:
-        error:
-          format: string
-          type: string
-          xml:
-            name: Error
-        missingPermission:
-          format: string
-          type: string
-          xml:
-            name: MissingPermission
-      required:
-      - error
-      - missingPermission
-      type: object
-      xml:
-        name: ValidationError
-    DKSharesPostRequest:
-      example:
-        peerIdentities:
-        - peerIdentities
-        - peerIdentities
-        timeoutMS: 1
-        threshold: 1
-      properties:
-        peerIdentities:
-          description: Names or hex encoded public keys of trusted peers to run DKG on.
-          items:
-            format: string
-            type: string
-          type: array
-          xml:
-            name: PeerPubKeysOrNames
-            wrapped: true
-        threshold:
-          description: Should be =< len(PeerPublicIdentities)
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: Threshold
-        timeoutMS:
-          description: Timeout in milliseconds.
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: TimeoutMS
-      required:
-      - peerIdentities
-      - threshold
-      - timeoutMS
-      type: object
-      xml:
-        name: DKSharesPostRequest
   securitySchemes:
     Authorization:
       description: JWT Token
