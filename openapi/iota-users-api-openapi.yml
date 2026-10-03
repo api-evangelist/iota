@@ -201,6 +201,60 @@ paths:
       x-codegen-request-body-name: ''
 components:
   schemas:
+    ValidationError:
+      example:
+        error: error
+        missingPermission: missingPermission
+      properties:
+        error:
+          format: string
+          type: string
+          xml:
+            name: Error
+        missingPermission:
+          format: string
+          type: string
+          xml:
+            name: MissingPermission
+      required:
+      - error
+      - missingPermission
+      type: object
+      xml:
+        name: ValidationError
+    UpdateUserPermissionsRequest:
+      example:
+        permissions:
+        - permissions
+        - permissions
+      properties:
+        permissions:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Permissions
+            wrapped: true
+      required:
+      - permissions
+      type: object
+      xml:
+        name: UpdateUserPermissionsRequest
+    UpdateUserPasswordRequest:
+      example:
+        password: password
+      properties:
+        password:
+          format: string
+          type: string
+          xml:
+            name: Password
+      required:
+      - password
+      type: object
+      xml:
+        name: UpdateUserPasswordRequest
     User:
       example:
         permissions:
@@ -227,27 +281,6 @@ components:
       type: object
       xml:
         name: User
-    ValidationError:
-      example:
-        error: error
-        missingPermission: missingPermission
-      properties:
-        error:
-          format: string
-          type: string
-          xml:
-            name: Error
-        missingPermission:
-          format: string
-          type: string
-          xml:
-            name: MissingPermission
-      required:
-      - error
-      - missingPermission
-      type: object
-      xml:
-        name: ValidationError
     AddUserRequest:
       example:
         password: password
@@ -281,39 +314,6 @@ components:
       type: object
       xml:
         name: AddUserRequest
-    UpdateUserPasswordRequest:
-      example:
-        password: password
-      properties:
-        password:
-          format: string
-          type: string
-          xml:
-            name: Password
-      required:
-      - password
-      type: object
-      xml:
-        name: UpdateUserPasswordRequest
-    UpdateUserPermissionsRequest:
-      example:
-        permissions:
-        - permissions
-        - permissions
-      properties:
-        permissions:
-          items:
-            format: string
-            type: string
-          type: array
-          xml:
-            name: Permissions
-            wrapped: true
-      required:
-      - permissions
-      type: object
-      xml:
-        name: UpdateUserPermissionsRequest
   securitySchemes:
     Authorization:
       description: JWT Token
