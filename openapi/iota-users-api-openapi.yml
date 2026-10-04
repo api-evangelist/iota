@@ -201,6 +201,20 @@ paths:
       x-codegen-request-body-name: ''
 components:
   schemas:
+    UpdateUserPasswordRequest:
+      example:
+        password: password
+      properties:
+        password:
+          format: string
+          type: string
+          xml:
+            name: Password
+      required:
+      - password
+      type: object
+      xml:
+        name: UpdateUserPasswordRequest
     ValidationError:
       example:
         error: error
@@ -222,65 +236,6 @@ components:
       type: object
       xml:
         name: ValidationError
-    UpdateUserPermissionsRequest:
-      example:
-        permissions:
-        - permissions
-        - permissions
-      properties:
-        permissions:
-          items:
-            format: string
-            type: string
-          type: array
-          xml:
-            name: Permissions
-            wrapped: true
-      required:
-      - permissions
-      type: object
-      xml:
-        name: UpdateUserPermissionsRequest
-    UpdateUserPasswordRequest:
-      example:
-        password: password
-      properties:
-        password:
-          format: string
-          type: string
-          xml:
-            name: Password
-      required:
-      - password
-      type: object
-      xml:
-        name: UpdateUserPasswordRequest
-    User:
-      example:
-        permissions:
-        - permissions
-        - permissions
-        username: username
-      properties:
-        permissions:
-          items:
-            format: string
-            type: string
-          type: array
-          xml:
-            name: Permissions
-            wrapped: true
-        username:
-          format: string
-          type: string
-          xml:
-            name: Username
-      required:
-      - permissions
-      - username
-      type: object
-      xml:
-        name: User
     AddUserRequest:
       example:
         password: password
@@ -314,6 +269,51 @@ components:
       type: object
       xml:
         name: AddUserRequest
+    User:
+      example:
+        permissions:
+        - permissions
+        - permissions
+        username: username
+      properties:
+        permissions:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Permissions
+            wrapped: true
+        username:
+          format: string
+          type: string
+          xml:
+            name: Username
+      required:
+      - permissions
+      - username
+      type: object
+      xml:
+        name: User
+    UpdateUserPermissionsRequest:
+      example:
+        permissions:
+        - permissions
+        - permissions
+      properties:
+        permissions:
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: Permissions
+            wrapped: true
+      required:
+      - permissions
+      type: object
+      xml:
+        name: UpdateUserPermissionsRequest
   securitySchemes:
     Authorization:
       description: JWT Token
