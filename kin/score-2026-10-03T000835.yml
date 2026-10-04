@@ -1,29 +1,27 @@
-# Kin Score artifact — iota — 2026-09-01T222808
+# Kin Score artifact — iota — 2026-10-03T000835
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: iota
-  schema_version: 0.18.0
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T222808
-  composite: 55.2
-  band: strong
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T000835
+  composite: 53.0
+  band: developing
   facets:
-    discoverability: 68.5
-    contract_quality: 56.3
-    governance: 0.0
-    operational_transparency: 60.5
-    developer_ergonomics: 76.2
-    commercial_clarity: 39.5
+    discoverability: 66.1
+    contract_quality: 53.8
     contract_governance: 0.0
-    access_clarity: 39.5
+    operational_transparency: 57.4
+    developer_ergonomics: 76.2
+    access_clarity: 36.3
   agent_readiness:
-    score: 28.1
-    band: agent-aware
+    score: 32.4
+    band: agent-ready
     dimensions:
       spec_presence: true
       agentic_access: derived
-      reversibility_documented: false
+      reversibility_documented: verified
       mcp_server: false
       auth_clarity: bearer
       idempotency: false
@@ -40,6 +38,12 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 16.7
+    matched_via: fallback
   open_source:
     applies: true
     score: 85.0
@@ -49,4 +53,4 @@ kin_score:
       total: 16
       derived: 0
       coverage: 0.0
-      callable: 0.0
+      callable: 43.8

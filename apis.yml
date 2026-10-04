@@ -30,6 +30,9 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/iota.png
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 tags:
 - Blockchain
 - Distributed Ledger
@@ -382,6 +385,9 @@ apis:
   - type: APIReference
     url: https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc
 common:
+- type: CapabilityMap
+  url: capabilities/iota-capability-edges.yml
+  name: IOTA Business Capability Map
 - type: IssueTracker
   url: https://github.com/iotaledger/iota/issues
 - type: Releases
