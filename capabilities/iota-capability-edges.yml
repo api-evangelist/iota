@@ -1,0 +1,25 @@
+slug: iota
+provider: IOTA
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Users
+  spec_file: iota-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /v1/users  addUser  Add a user; PUT /v1/users/{username}/permissions  changeUserPermissions
+  reason: CRUD over node user accounts, passwords and permissions — account and access administration,
+    which maps to Identity & Access Management. Moderate confidence as it is narrow node-local admin rather
+    than an enterprise IAM system.
