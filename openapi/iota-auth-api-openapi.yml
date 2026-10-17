@@ -50,27 +50,6 @@ paths:
       - Auth
 components:
   schemas:
-    LoginRequest:
-      example:
-        password: password
-        username: username
-      properties:
-        password:
-          format: string
-          type: string
-          xml:
-            name: Password
-        username:
-          format: string
-          type: string
-          xml:
-            name: Username
-      required:
-      - password
-      - username
-      type: object
-      xml:
-        name: LoginRequest
     AuthInfoModel:
       example:
         authURL: authURL
@@ -93,6 +72,27 @@ components:
       type: object
       xml:
         name: AuthInfoModel
+    LoginRequest:
+      example:
+        password: password
+        username: username
+      properties:
+        password:
+          format: string
+          type: string
+          xml:
+            name: Password
+        username:
+          format: string
+          type: string
+          xml:
+            name: Username
+      required:
+      - password
+      - username
+      type: object
+      xml:
+        name: LoginRequest
     LoginResponse:
       example:
         jwt: jwt

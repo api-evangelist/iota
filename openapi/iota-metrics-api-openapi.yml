@@ -254,34 +254,6 @@ components:
       type: object
       xml:
         name: ConsensusWorkflowMetrics
-    OnLedgerRequestMetricItem:
-      example:
-        lastMessage:
-          raw: raw
-          id: id
-        messages: 1
-        timestamp: 2000-01-23 04:56:07+00:00
-      properties:
-        lastMessage:
-          $ref: '#/components/schemas/OnLedgerRequest'
-        messages:
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: Messages
-        timestamp:
-          format: date-time
-          type: string
-          xml:
-            name: Timestamp
-      required:
-      - lastMessage
-      - messages
-      - timestamp
-      type: object
-      xml:
-        name: OnLedgerRequestMetricItem
     ChainMessageMetrics:
       example:
         outPublisherStateTransaction:
@@ -340,119 +312,6 @@ components:
       type: object
       xml:
         name: OnLedgerRequest
-    AnchorMetricItem:
-      example:
-        lastMessage:
-          stateMetadata: stateMetadata
-          stateIndex: 1
-          raw: raw
-        messages: 1
-        timestamp: 2000-01-23 04:56:07+00:00
-      properties:
-        lastMessage:
-          $ref: '#/components/schemas/StateAnchor'
-        messages:
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: Messages
-        timestamp:
-          format: date-time
-          type: string
-          xml:
-            name: Timestamp
-      required:
-      - lastMessage
-      - messages
-      - timestamp
-      type: object
-      xml:
-        name: AnchorMetricItem
-    StateAnchor:
-      example:
-        stateMetadata: stateMetadata
-        stateIndex: 1
-        raw: raw
-      properties:
-        raw:
-          description: The raw data of the anchor (Hex)
-          format: string
-          type: string
-          xml:
-            name: Raw
-        stateIndex:
-          description: The state index
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: StateIndex
-        stateMetadata:
-          description: The state metadata
-          format: string
-          type: string
-          xml:
-            name: StateMetadata
-      required:
-      - raw
-      - stateIndex
-      - stateMetadata
-      type: object
-      xml:
-        name: StateAnchor
-    StateTransaction:
-      example:
-        stateIndex: 1
-        txDigest: txDigest
-      properties:
-        stateIndex:
-          description: The state index
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: StateIndex
-        txDigest:
-          description: The transaction Digest
-          format: string
-          type: string
-          xml:
-            name: TransactionDigest
-      required:
-      - stateIndex
-      - txDigest
-      type: object
-      xml:
-        name: StateTransaction
-    PublisherStateTransactionItem:
-      example:
-        lastMessage:
-          stateIndex: 1
-          txDigest: txDigest
-        messages: 1
-        timestamp: 2000-01-23 04:56:07+00:00
-      properties:
-        lastMessage:
-          $ref: '#/components/schemas/StateTransaction'
-        messages:
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: Messages
-        timestamp:
-          format: date-time
-          type: string
-          xml:
-            name: Timestamp
-      required:
-      - lastMessage
-      - messages
-      - timestamp
-      type: object
-      xml:
-        name: PublisherStateTransactionItem
     ConsensusPipeMetrics:
       example:
         eventACSMsgPipeSize: 0
@@ -495,6 +354,147 @@ components:
       type: object
       xml:
         name: ConsensusPipeMetrics
+    PublisherStateTransactionItem:
+      example:
+        lastMessage:
+          stateIndex: 1
+          txDigest: txDigest
+        messages: 1
+        timestamp: 2000-01-23 04:56:07+00:00
+      properties:
+        lastMessage:
+          $ref: '#/components/schemas/StateTransaction'
+        messages:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: Messages
+        timestamp:
+          format: date-time
+          type: string
+          xml:
+            name: Timestamp
+      required:
+      - lastMessage
+      - messages
+      - timestamp
+      type: object
+      xml:
+        name: PublisherStateTransactionItem
+    StateTransaction:
+      example:
+        stateIndex: 1
+        txDigest: txDigest
+      properties:
+        stateIndex:
+          description: The state index
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: StateIndex
+        txDigest:
+          description: The transaction Digest
+          format: string
+          type: string
+          xml:
+            name: TransactionDigest
+      required:
+      - stateIndex
+      - txDigest
+      type: object
+      xml:
+        name: StateTransaction
+    OnLedgerRequestMetricItem:
+      example:
+        lastMessage:
+          raw: raw
+          id: id
+        messages: 1
+        timestamp: 2000-01-23 04:56:07+00:00
+      properties:
+        lastMessage:
+          $ref: '#/components/schemas/OnLedgerRequest'
+        messages:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: Messages
+        timestamp:
+          format: date-time
+          type: string
+          xml:
+            name: Timestamp
+      required:
+      - lastMessage
+      - messages
+      - timestamp
+      type: object
+      xml:
+        name: OnLedgerRequestMetricItem
+    StateAnchor:
+      example:
+        stateMetadata: stateMetadata
+        stateIndex: 1
+        raw: raw
+      properties:
+        raw:
+          description: The raw data of the anchor (Hex)
+          format: string
+          type: string
+          xml:
+            name: Raw
+        stateIndex:
+          description: The state index
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: StateIndex
+        stateMetadata:
+          description: The state metadata
+          format: string
+          type: string
+          xml:
+            name: StateMetadata
+      required:
+      - raw
+      - stateIndex
+      - stateMetadata
+      type: object
+      xml:
+        name: StateAnchor
+    AnchorMetricItem:
+      example:
+        lastMessage:
+          stateMetadata: stateMetadata
+          stateIndex: 1
+          raw: raw
+        messages: 1
+        timestamp: 2000-01-23 04:56:07+00:00
+      properties:
+        lastMessage:
+          $ref: '#/components/schemas/StateAnchor'
+        messages:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: Messages
+        timestamp:
+          format: date-time
+          type: string
+          xml:
+            name: Timestamp
+      required:
+      - lastMessage
+      - messages
+      - timestamp
+      type: object
+      xml:
+        name: AnchorMetricItem
   securitySchemes:
     Authorization:
       description: JWT Token

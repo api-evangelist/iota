@@ -290,242 +290,6 @@ paths:
       - Node
 components:
   schemas:
-    PeeringNodeStatusResponse:
-      example:
-        isAlive: true
-        peeringURL: peeringURL
-        name: name
-        publicKey: publicKey
-        numUsers: 0
-        isTrusted: true
-      properties:
-        isAlive:
-          description: Whether or not the peer is activated
-          format: boolean
-          type: boolean
-          xml:
-            name: IsAlive
-        isTrusted:
-          format: boolean
-          type: boolean
-          xml:
-            name: IsTrusted
-        name:
-          format: string
-          type: string
-          xml:
-            name: Name
-        numUsers:
-          description: The amount of users attached to the peer
-          format: int32
-          type: integer
-          xml:
-            name: NumUsers
-        peeringURL:
-          description: The peering URL of the peer
-          format: string
-          type: string
-          xml:
-            name: PeeringURL
-        publicKey:
-          description: The peers public key encoded in Hex
-          format: string
-          type: string
-          xml:
-            name: PublicKey
-      required:
-      - isAlive
-      - isTrusted
-      - name
-      - numUsers
-      - peeringURL
-      - publicKey
-      type: object
-      xml:
-        name: PeeringNodeStatusResponse
-    Int:
-      example:
-        neg: true
-        abs:
-        - 1
-        - 1
-      properties:
-        abs:
-          items:
-            format: int32
-            type: integer
-          type: array
-          xml:
-            name: abs
-            wrapped: true
-        neg:
-          format: boolean
-          type: boolean
-          xml:
-            name: neg
-      type: object
-      xml:
-        name: Int
-    ValidationError:
-      example:
-        error: error
-        missingPermission: missingPermission
-      properties:
-        error:
-          format: string
-          type: string
-          xml:
-            name: Error
-        missingPermission:
-          format: string
-          type: string
-          xml:
-            name: MissingPermission
-      required:
-      - error
-      - missingPermission
-      type: object
-      xml:
-        name: ValidationError
-    Protocol:
-      example:
-        protocol_version:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-        reference_gas_price:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-        epoch:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-        system_state_version:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-        epoch_duration_ms:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-        epoch_start_timestamp_ms:
-          Int:
-            neg: true
-            abs:
-            - 1
-            - 1
-      properties:
-        epoch:
-          $ref: '#/components/schemas/BigInt'
-        epoch_duration_ms:
-          $ref: '#/components/schemas/BigInt'
-        epoch_start_timestamp_ms:
-          $ref: '#/components/schemas/BigInt'
-        protocol_version:
-          $ref: '#/components/schemas/BigInt'
-        reference_gas_price:
-          $ref: '#/components/schemas/BigInt'
-        system_state_version:
-          $ref: '#/components/schemas/BigInt'
-      required:
-      - epoch
-      - epoch_duration_ms
-      - epoch_start_timestamp_ms
-      - protocol_version
-      - reference_gas_price
-      - system_state_version
-      type: object
-      xml:
-        name: Protocol
-    BigInt:
-      example:
-        Int:
-          neg: true
-          abs:
-          - 1
-          - 1
-      properties:
-        Int:
-          $ref: '#/components/schemas/Int'
-      type: object
-      xml:
-        name: BigInt
-    DKSharesInfo:
-      example:
-        publicKeyShares:
-        - publicKeyShares
-        - publicKeyShares
-        address: address
-        peerIdentities:
-        - peerIdentities
-        - peerIdentities
-        threshold: 1
-        publicKey: publicKey
-        peerIndex: 1
-      properties:
-        address:
-          description: New generated shared address.
-          format: string
-          type: string
-          xml:
-            name: Address
-        peerIdentities:
-          description: Identities of the nodes sharing the key. (Hex)
-          items:
-            format: string
-            type: string
-          type: array
-          xml:
-            name: PeerIdentities
-            wrapped: true
-        peerIndex:
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: PeerIndex
-        publicKey:
-          description: Used public key. (Hex)
-          format: string
-          type: string
-          xml:
-            name: PublicKey
-        publicKeyShares:
-          description: Public key shares for all the peers. (Hex)
-          items:
-            format: string
-            type: string
-          type: array
-          xml:
-            name: PublicKeyShares
-            wrapped: true
-        threshold:
-          format: int32
-          minimum: 1
-          type: integer
-          xml:
-            name: Threshold
-      required:
-      - address
-      - peerIdentities
-      - peerIndex
-      - publicKey
-      - publicKeyShares
-      - threshold
-      type: object
-      xml:
-        name: DKSharesInfo
     InfoResponse:
       example:
         peeringURL: peeringURL
@@ -607,114 +371,6 @@ components:
       type: object
       xml:
         name: InfoResponse
-    L1Params:
-      example:
-        protocol:
-          protocol_version:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-          reference_gas_price:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-          epoch:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-          system_state_version:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-          epoch_duration_ms:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-          epoch_start_timestamp_ms:
-            Int:
-              neg: true
-              abs:
-              - 1
-              - 1
-        baseToken:
-          coinType:
-            s: s
-          totalSupply: 6
-          decimals: 0
-          name: name
-          description: description
-          tickerSymbol: tickerSymbol
-          iconUrl: iconUrl
-      properties:
-        baseToken:
-          $ref: '#/components/schemas/IotaCoinInfo'
-        protocol:
-          $ref: '#/components/schemas/Protocol'
-      required:
-      - baseToken
-      - protocol
-      type: object
-      xml:
-        name: L1Params
-    PeeringNodeIdentityResponse:
-      example:
-        peeringURL: peeringURL
-        name: name
-        publicKey: publicKey
-        isTrusted: true
-      properties:
-        isTrusted:
-          format: boolean
-          type: boolean
-          xml:
-            name: IsTrusted
-        name:
-          format: string
-          type: string
-          xml:
-            name: Name
-        peeringURL:
-          description: The peering URL of the peer
-          format: string
-          type: string
-          xml:
-            name: PeeringURL
-        publicKey:
-          description: The peers public key encoded in Hex
-          format: string
-          type: string
-          xml:
-            name: PublicKey
-      required:
-      - isTrusted
-      - name
-      - peeringURL
-      - publicKey
-      type: object
-      xml:
-        name: PeeringNodeIdentityResponse
-    ObjectType:
-      example:
-        s: s
-      properties:
-        s:
-          format: string
-          type: string
-          xml:
-            name: s
-      type: object
-      xml:
-        name: ObjectType
     IotaCoinInfo:
       example:
         coinType:
@@ -775,66 +431,165 @@ components:
       type: object
       xml:
         name: IotaCoinInfo
-    NodeOwnerCertificateResponse:
+    ValidationError:
       example:
-        certificate: certificate
+        error: error
+        missingPermission: missingPermission
       properties:
-        certificate:
-          description: Certificate stating the ownership. (Hex)
+        error:
           format: string
           type: string
           xml:
-            name: Certificate
+            name: Error
+        missingPermission:
+          format: string
+          type: string
+          xml:
+            name: MissingPermission
       required:
-      - certificate
+      - error
+      - missingPermission
       type: object
       xml:
-        name: NodeOwnerCertificateResponse
-    PeeringTrustRequest:
+        name: ValidationError
+    ObjectType:
       example:
-        peeringURL: peeringURL
-        name: name
-        publicKey: publicKey
+        s: s
       properties:
-        name:
+        s:
           format: string
           type: string
           xml:
-            name: Name
-        peeringURL:
-          description: The peering URL of the peer
+            name: s
+      type: object
+      xml:
+        name: ObjectType
+    Protocol:
+      example:
+        protocol_version:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        reference_gas_price:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        epoch:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        system_state_version:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        epoch_duration_ms:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+        epoch_start_timestamp_ms:
+          Int:
+            neg: true
+            abs:
+            - 1
+            - 1
+      properties:
+        epoch:
+          $ref: '#/components/schemas/BigInt'
+        epoch_duration_ms:
+          $ref: '#/components/schemas/BigInt'
+        epoch_start_timestamp_ms:
+          $ref: '#/components/schemas/BigInt'
+        protocol_version:
+          $ref: '#/components/schemas/BigInt'
+        reference_gas_price:
+          $ref: '#/components/schemas/BigInt'
+        system_state_version:
+          $ref: '#/components/schemas/BigInt'
+      required:
+      - epoch
+      - epoch_duration_ms
+      - epoch_start_timestamp_ms
+      - protocol_version
+      - reference_gas_price
+      - system_state_version
+      type: object
+      xml:
+        name: Protocol
+    DKSharesInfo:
+      example:
+        publicKeyShares:
+        - publicKeyShares
+        - publicKeyShares
+        address: address
+        peerIdentities:
+        - peerIdentities
+        - peerIdentities
+        threshold: 1
+        publicKey: publicKey
+        peerIndex: 1
+      properties:
+        address:
+          description: New generated shared address.
           format: string
           type: string
           xml:
-            name: PeeringURL
+            name: Address
+        peerIdentities:
+          description: Identities of the nodes sharing the key. (Hex)
+          items:
+            format: string
+            type: string
+          type: array
+          xml:
+            name: PeerIdentities
+            wrapped: true
+        peerIndex:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: PeerIndex
         publicKey:
-          description: The peers public key encoded in Hex
+          description: Used public key. (Hex)
           format: string
           type: string
           xml:
             name: PublicKey
-      required:
-      - name
-      - peeringURL
-      - publicKey
-      type: object
-      xml:
-        name: PeeringTrustRequest
-    VersionResponse:
-      example:
-        version: version
-      properties:
-        version:
-          description: The version of the node
-          format: string
-          type: string
+        publicKeyShares:
+          description: Public key shares for all the peers. (Hex)
+          items:
+            format: string
+            type: string
+          type: array
           xml:
-            name: Version
+            name: PublicKeyShares
+            wrapped: true
+        threshold:
+          format: int32
+          minimum: 1
+          type: integer
+          xml:
+            name: Threshold
       required:
-      - version
+      - address
+      - peerIdentities
+      - peerIndex
+      - publicKey
+      - publicKeyShares
+      - threshold
       type: object
       xml:
-        name: VersionResponse
+        name: DKSharesInfo
     DKSharesPostRequest:
       example:
         peerIdentities:
@@ -873,6 +628,251 @@ components:
       type: object
       xml:
         name: DKSharesPostRequest
+    PeeringNodeIdentityResponse:
+      example:
+        peeringURL: peeringURL
+        name: name
+        publicKey: publicKey
+        isTrusted: true
+      properties:
+        isTrusted:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsTrusted
+        name:
+          format: string
+          type: string
+          xml:
+            name: Name
+        peeringURL:
+          description: The peering URL of the peer
+          format: string
+          type: string
+          xml:
+            name: PeeringURL
+        publicKey:
+          description: The peers public key encoded in Hex
+          format: string
+          type: string
+          xml:
+            name: PublicKey
+      required:
+      - isTrusted
+      - name
+      - peeringURL
+      - publicKey
+      type: object
+      xml:
+        name: PeeringNodeIdentityResponse
+    VersionResponse:
+      example:
+        version: version
+      properties:
+        version:
+          description: The version of the node
+          format: string
+          type: string
+          xml:
+            name: Version
+      required:
+      - version
+      type: object
+      xml:
+        name: VersionResponse
+    L1Params:
+      example:
+        protocol:
+          protocol_version:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          reference_gas_price:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          epoch:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          system_state_version:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          epoch_duration_ms:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+          epoch_start_timestamp_ms:
+            Int:
+              neg: true
+              abs:
+              - 1
+              - 1
+        baseToken:
+          coinType:
+            s: s
+          totalSupply: 6
+          decimals: 0
+          name: name
+          description: description
+          tickerSymbol: tickerSymbol
+          iconUrl: iconUrl
+      properties:
+        baseToken:
+          $ref: '#/components/schemas/IotaCoinInfo'
+        protocol:
+          $ref: '#/components/schemas/Protocol'
+      required:
+      - baseToken
+      - protocol
+      type: object
+      xml:
+        name: L1Params
+    BigInt:
+      example:
+        Int:
+          neg: true
+          abs:
+          - 1
+          - 1
+      properties:
+        Int:
+          $ref: '#/components/schemas/Int'
+      type: object
+      xml:
+        name: BigInt
+    NodeOwnerCertificateResponse:
+      example:
+        certificate: certificate
+      properties:
+        certificate:
+          description: Certificate stating the ownership. (Hex)
+          format: string
+          type: string
+          xml:
+            name: Certificate
+      required:
+      - certificate
+      type: object
+      xml:
+        name: NodeOwnerCertificateResponse
+    Int:
+      example:
+        neg: true
+        abs:
+        - 1
+        - 1
+      properties:
+        abs:
+          items:
+            format: int32
+            type: integer
+          type: array
+          xml:
+            name: abs
+            wrapped: true
+        neg:
+          format: boolean
+          type: boolean
+          xml:
+            name: neg
+      type: object
+      xml:
+        name: Int
+    PeeringTrustRequest:
+      example:
+        peeringURL: peeringURL
+        name: name
+        publicKey: publicKey
+      properties:
+        name:
+          format: string
+          type: string
+          xml:
+            name: Name
+        peeringURL:
+          description: The peering URL of the peer
+          format: string
+          type: string
+          xml:
+            name: PeeringURL
+        publicKey:
+          description: The peers public key encoded in Hex
+          format: string
+          type: string
+          xml:
+            name: PublicKey
+      required:
+      - name
+      - peeringURL
+      - publicKey
+      type: object
+      xml:
+        name: PeeringTrustRequest
+    PeeringNodeStatusResponse:
+      example:
+        isAlive: true
+        peeringURL: peeringURL
+        name: name
+        publicKey: publicKey
+        numUsers: 0
+        isTrusted: true
+      properties:
+        isAlive:
+          description: Whether or not the peer is activated
+          format: boolean
+          type: boolean
+          xml:
+            name: IsAlive
+        isTrusted:
+          format: boolean
+          type: boolean
+          xml:
+            name: IsTrusted
+        name:
+          format: string
+          type: string
+          xml:
+            name: Name
+        numUsers:
+          description: The amount of users attached to the peer
+          format: int32
+          type: integer
+          xml:
+            name: NumUsers
+        peeringURL:
+          description: The peering URL of the peer
+          format: string
+          type: string
+          xml:
+            name: PeeringURL
+        publicKey:
+          description: The peers public key encoded in Hex
+          format: string
+          type: string
+          xml:
+            name: PublicKey
+      required:
+      - isAlive
+      - isTrusted
+      - name
+      - numUsers
+      - peeringURL
+      - publicKey
+      type: object
+      xml:
+        name: PeeringNodeStatusResponse
   securitySchemes:
     Authorization:
       description: JWT Token
