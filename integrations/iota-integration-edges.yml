@@ -1,0 +1,44 @@
+edges:
+- partner_name: LF Decentralized Trust (membership / landscape)
+  partner: lf-decentralized-trust
+  partner_match: register
+  type: register
+  direction: partner-built
+  category: LF Decentralized Trust landscape listing
+  evidence: https://landscape.lfdecentralizedtrust.org
+  channel: standard-directory
+  relationship: standard-participant
+  contract_reference:
+    register: LF Decentralized Trust Landscape (landscape.lfdecentralizedtrust.org/data/full.json)
+    spec_file: null
+    standard: LF Decentralized Trust
+    role: landscape-listed
+    registered_name: IOTA
+    registered_names:
+    - IOTA
+    website: https://www.iota.org
+    matched_domain: iota.org
+    matched_by: domain
+    landscape_categories:
+    - Distributed Ledgers / Permissionless
+    landscape_entries: 1
+    signal_note: 'participation only: LFDT membership / a landscape listing is standard-participant evidence, not
+      depth. Tier, entries and categories are CONTEXT, never counted'
+    detected_by: sweep-lf-decentralized-trust-landscape.py
+    detected: '2026-10-22'
+  detected_by: sweep-lf-decentralized-trust-landscape.py
+  first_seen: '2026-10-22'
+generated: '2026-10-22'
+method: searched
+source:
+- https://landscape.lfdecentralizedtrust.org
+- https://landscape.lfdecentralizedtrust.org/data/full.json
+- https://github.com/hyperledger
+- https://github.com/LF-Decentralized-Trust-labs
+- https://github.com/canton-network/splice
+checked:
+- https://github.com/LF-Decentralized-Trust-labs
+- https://github.com/canton-network/splice
+- https://github.com/hyperledger
+- https://landscape.lfdecentralizedtrust.org
+- https://landscape.lfdecentralizedtrust.org/data/full.json
