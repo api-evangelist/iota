@@ -1,4 +1,4 @@
-# IOTA (iota)
+# IOTA
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,250 +66,165 @@
 
 IOTA is an open-source distributed ledger technology built to bring real-world applications on-chain. It is the first internet-scale programmable blockchain platform powered by the Move programming language with horizontal scaling, feeless transactions, and a unique parallel transaction processing model. IOTA exposes a JSON-RPC 2.0 API over HTTP and a GraphQL RPC for querying objects, checkpoints, transactions, coins, events, and on-chain state on Mainnet, Testnet, and Devnet networks. The platform targets trade and supply chains, decentralized finance, digital identity, real-world asset tokenization, and product lifecycle management.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/iota/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/iota/refs/heads/main/apis.yml)
+**Areas:** Blockchain · Distributed Ledger · Web3 · DeFi · Cryptocurrency · Move · Tangle
 
-## Scope
+## IOTA on APIs.io
 
-- **Type:** Index
+Everything profiled for IOTA is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/iota/](https://apis.io/providers/iota/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (17)
 
-- Blockchain
-- Distributed Ledger
-- Web3
-- DeFi
-- Cryptocurrency
-- Move
-- Tangle
+- [IOTA GraphQL API](https://apis.io/apis/iota/iota-graphql-api/) — GraphQL RPC interface for the IOTA blockchain, providing an alternative to the JSON-RPC API. Supports querying transaction blocks, objects, checkpoints,…
+- [IOTA Auth API](https://apis.io/apis/iota/iota-auth-api/) — The auth API from IOTA — 2 operation(s) for auth.
+- [IOTA Chains API](https://apis.io/apis/iota/iota-chains-api/) — The chains API from IOTA — 18 operation(s) for chains.
+- [IOTA Coin Query API](https://apis.io/apis/iota/iota-coin-query-api/) — Coin and balance queries: balances, coins list, metadata, supply
+- [IOTA Corecontracts API](https://apis.io/apis/iota/iota-corecontracts-api/) — The corecontracts API from IOTA — 18 operation(s) for corecontracts.
+- [IOTA Extended API](https://apis.io/apis/iota/iota-extended-api/) — Indexer-exclusive methods for advanced queries, events, dynamic fields, IOTA Names
+- [IOTA Governance API](https://apis.io/apis/iota/iota-governance-api/) — Governance, staking, validator, epoch, and system state queries
+- [IOTA Health API](https://apis.io/apis/iota/iota-health-api/) — The Health API from IOTA — 1 operation(s) for health.
+- [IOTA Metrics API](https://apis.io/apis/iota/iota-metrics-api/) — The metrics API from IOTA — 3 operation(s) for metrics.
+- [IOTA Move Utils API](https://apis.io/apis/iota/iota-move-utils-api/) — Move smart contract introspection: modules, functions, structs
+- [IOTA Node API](https://apis.io/apis/iota/iota-node-api/) — The node API from IOTA — 11 operation(s) for node.
+- [IOTA Read API](https://apis.io/apis/iota/iota-read-api/) — Core read operations: objects, checkpoints, transactions, events, protocol config
+- [IOTA Requests API](https://apis.io/apis/iota/iota-requests-api/) — The requests API from IOTA — 1 operation(s) for requests.
+- [IOTA Transaction Builder API](https://apis.io/apis/iota/iota-transaction-builder-api/) — Build unsigned transactions for transfers, staking, Move calls (unsafe_ prefix)
+- [IOTA Users API](https://apis.io/apis/iota/iota-users-api/) — The users API from IOTA — 4 operation(s) for users.
+- [IOTA Write API](https://apis.io/apis/iota/iota-write-api/) — Transaction execution, dry run, and dev inspection
+- [IOTA Ws API](https://apis.io/apis/iota/iota-ws-api/) — The Ws API from IOTA — 1 operation(s) for ws.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-06-14
-- **Modified:** 2026-06-14
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### IOTA Coin Query API
+GraphQL schemas.
 
-Coin and balance-oriented JSON-RPC methods for the IOTA blockchain. Provides iotax_getAllBalances to retrieve total balances across all coin types for an address, iotax_getAllCoins to list all coin objects owned by an address, iotax_getBalance for the balance of a specific coin type, iotax_getCirculatingSupply to retrieve circulating supply summary, iotax_getCoinMetadata for token symbol, decimals and description, iotax_getCoins to list coins of a specific type with pagination, and iotax_getTotalSupply to return the total supply for a given coin type.
+- [IOTA GraphQL API](https://apis.io/graphqls/iota/iota-graphql/)
 
-- **Human URL:** [https://docs.iota.org/iota-api-ref](https://docs.iota.org/iota-api-ref)
-- **Base URL:** `https://api.mainnet.iota.cafe:443`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Coins
-- Balances
-- Tokens
-- Blockchain
+- [Iota Agentic Access](https://apis.io/agentic-access/iota/iota-agentic-access/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://docs.iota.org/iota-api-ref)
-- [API Reference](https://docs.iota.org/iota-api-ref)
-- [OpenAPI](openapi/iota-jsonrpc-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+Linked-data contexts for the provider's vocabulary.
 
-### IOTA Read API
+- [Iota Context](https://apis.io/jsonld/iota/iota-context/)
 
-Core read-oriented JSON-RPC methods for the IOTA blockchain. Includes iota_getChainIdentifier to retrieve the genesis checkpoint digest, iota_getCheckpoint and iota_getCheckpoints for checkpoint data with pagination, iota_getObject and iota_multiGetObjects for on-chain object retrieval, iota_getTransactionBlock for individual transaction details, iota_multiGetTransactionBlocks for batch transaction lookup, iota_getEvents to query on-chain events by filter criteria, iota_getProtocolConfig for current protocol configuration, iota_getLatestCheckpointSequenceNumber, iota_getTotalTransactionBlocks, and iota_tryGetPastObject for historical object state.
+#### Collections (17)
 
-- **Human URL:** [https://docs.iota.org/iota-api-ref](https://docs.iota.org/iota-api-ref)
-- **Base URL:** `https://api.mainnet.iota.cafe:443`
+Postman and Open Collection request collections.
 
-#### Tags
+- [Wasp auth API](https://apis.io/collections/iota/open-iota-auth-api/)
+- [Wasp auth chains API](https://apis.io/collections/iota/open-iota-chains-api/)
+- [Wasp auth Coin Query API](https://apis.io/collections/iota/open-iota-coin-query-api/)
+- [Wasp auth corecontracts API](https://apis.io/collections/iota/open-iota-corecontracts-api/)
+- [Wasp auth Extended API](https://apis.io/collections/iota/open-iota-extended-api/)
+- [Wasp auth Governance API](https://apis.io/collections/iota/open-iota-governance-api/)
+- [Wasp auth Health API](https://apis.io/collections/iota/open-iota-health-api/)
+- [Wasp auth metrics API](https://apis.io/collections/iota/open-iota-metrics-api/)
+- [Wasp auth Move Utils API](https://apis.io/collections/iota/open-iota-move-utils-api/)
+- [Wasp auth node API](https://apis.io/collections/iota/open-iota-node-api/)
+- [IOTA JSON-RPC](https://apis.io/collections/iota/open-iota-openrpc/)
+- [Wasp auth Read API](https://apis.io/collections/iota/open-iota-read-api/)
+- [Wasp auth requests API](https://apis.io/collections/iota/open-iota-requests-api/)
+- [Wasp auth Transaction Builder API](https://apis.io/collections/iota/open-iota-transaction-builder-api/)
+- [Wasp auth users API](https://apis.io/collections/iota/open-iota-users-api/)
+- [Wasp auth Write API](https://apis.io/collections/iota/open-iota-write-api/)
+- [Wasp auth Ws API](https://apis.io/collections/iota/open-iota-ws-api/)
 
-- Objects
-- Checkpoints
-- Transactions
-- Events
-- Blockchain
+#### Security (2)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://docs.iota.org/iota-api-ref)
-- [API Reference](https://docs.iota.org/iota-api-ref)
-- [OpenAPI](openapi/iota-jsonrpc-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Iota Authentication](https://apis.io/security/iota/iota-authentication/)
+- [Iota Domain Security](https://apis.io/security/iota/iota-domain-security/)
 
-### IOTA Extended API
+#### Plans and pricing (1)
 
-Advanced indexer-exclusive JSON-RPC methods for the IOTA blockchain. Provides address metrics via iotax_getAllEpochAddressMetrics and iotax_getLatestAddressMetrics, epoch data via iotax_getCurrentEpoch and iotax_getEpochMetrics, dynamic field access via iotax_getDynamicFieldObject and iotax_getDynamicFields, network metrics, event and transaction queries with rich filtering, IOTA Names (SuiNS-compatible) resolution, and validator APY data. Approximately 18 methods available exclusively through the indexer endpoint rather than full nodes.
+Published plans, tiers and prices.
 
-- **Human URL:** [https://docs.iota.org/iota-api-ref](https://docs.iota.org/iota-api-ref)
-- **Base URL:** `https://indexer.mainnet.iota.cafe:443`
+- [Iota Plans](https://apis.io/plans/iota/iota-plans/)
 
-#### Tags
+#### Rate limits (1)
 
-- Epochs
-- Metrics
-- Events
-- Dynamic Fields
-- Indexer
-- Blockchain
+Published request limits.
 
-#### Properties
+- [Iota Rate Limits](https://apis.io/rate-limits/iota/iota-rate-limits/)
 
-- [Documentation](https://docs.iota.org/iota-api-ref)
-- [API Reference](https://docs.iota.org/iota-api-ref)
-- [OpenAPI](openapi/iota-jsonrpc-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+#### FinOps (1)
 
-### IOTA Governance Read API
+What the API costs to run, by operation.
 
-Governance and staking JSON-RPC methods for the IOTA blockchain. Includes iotax_getCommitteeInfo to retrieve committee data for specific epochs, iotax_getLatestIotaSystemState to return the full system state object, iotax_getReferenceGasPrice for the current network gas price, iotax_getStakes and iotax_getStakesByIds to query staking positions, iotax_getValidatorsApy for validator annual percentage yields, iotax_getCheckpointSummaryByEpoch, and additional epoch-scoped governance queries totaling 9 methods.
+- [Iota Finops](https://apis.io/finops/iota/iota-finops/)
 
-- **Human URL:** [https://docs.iota.org/iota-api-ref](https://docs.iota.org/iota-api-ref)
-- **Base URL:** `https://api.mainnet.iota.cafe:443`
+## Where to find this API
 
-#### Tags
-
-- Governance
-- Validators
-- Staking
-- System State
-- Blockchain
-
-#### Properties
-
-- [Documentation](https://docs.iota.org/iota-api-ref)
-- [API Reference](https://docs.iota.org/iota-api-ref)
-- [OpenAPI](openapi/iota-jsonrpc-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### IOTA Move Utils API
-
-Move language introspection JSON-RPC methods for the IOTA blockchain. Provides iota_getMoveFunctionArgTypes to retrieve function argument types for a Move function, iota_getNormalizedMoveFunction for full function structure including visibility and generics, iota_getNormalizedMoveModule to retrieve a normalized Move module, iota_getNormalizedMoveModulesByPackage to list all modules in a package, and iota_getNormalizedMoveStruct for detailed struct representation including fields and abilities. These 5 methods enable smart contract introspection and on-chain ABI discovery.
-
-- **Human URL:** [https://docs.iota.org/iota-api-ref](https://docs.iota.org/iota-api-ref)
-- **Base URL:** `https://api.mainnet.iota.cafe:443`
-
-#### Tags
-
-- Move
-- Smart Contracts
-- Modules
-- Introspection
-- Blockchain
-
-#### Properties
-
-- [Documentation](https://docs.iota.org/iota-api-ref)
-- [API Reference](https://docs.iota.org/iota-api-ref)
-- [OpenAPI](openapi/iota-jsonrpc-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### IOTA Transaction Builder API
-
-Transaction construction JSON-RPC methods for the IOTA blockchain. Includes methods for building unsigned transactions such as unsafe_transferObject, unsafe_transferIota, unsafe_payIota, unsafe_pay, unsafe_payAllIota, unsafe_moveCall for Move function invocations, unsafe_requestAddStake and unsafe_requestWithdrawStake for staking operations, and additional batch transfer and publish methods. These 16 unsafe transaction builder methods produce serialized unsigned transactions requiring subsequent signing and submission via the Write API.
-
-- **Human URL:** [https://docs.iota.org/iota-api-ref](https://docs.iota.org/iota-api-ref)
-- **Base URL:** `https://api.mainnet.iota.cafe:443`
-
-#### Tags
-
-- Transactions
-- Transfer
-- Staking
-- Construction
-- Blockchain
-
-#### Properties
-
-- [Documentation](https://docs.iota.org/iota-api-ref)
-- [API Reference](https://docs.iota.org/iota-api-ref)
-- [OpenAPI](openapi/iota-jsonrpc-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### IOTA Write API
-
-Transaction execution and simulation JSON-RPC methods for the IOTA blockchain. Provides iota_executeTransactionBlock to submit a signed transaction to the network and return results, iota_dryRunTransactionBlock to simulate a transaction without broadcasting and receive full effects and events, iota_devInspectTransactionBlock for development inspection of transaction execution with arbitrary gas budgets, and iotax_estimateGasBudget for gas budget estimation. These 4 methods handle all state-mutating operations on the IOTA network.
-
-- **Human URL:** [https://docs.iota.org/iota-api-ref](https://docs.iota.org/iota-api-ref)
-- **Base URL:** `https://api.mainnet.iota.cafe:443`
-
-#### Tags
-
-- Transactions
-- Execution
-- Simulation
-- Submit
-- Blockchain
-
-#### Properties
-
-- [Documentation](https://docs.iota.org/iota-api-ref)
-- [API Reference](https://docs.iota.org/iota-api-ref)
-- [OpenAPI](openapi/iota-jsonrpc-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-### IOTA GraphQL API
-
-GraphQL RPC interface for the IOTA blockchain, providing an alternative to the JSON-RPC API. Supports querying transaction blocks, objects, checkpoints, events, and on-chain state using GraphQL query syntax. Available on all IOTA networks including Mainnet at graphql.mainnet.iota.cafe, Testnet at graphql.testnet.iota.cafe, and Devnet at graphql.devnet.iota.cafe. Cursor-based pagination is supported for list operations.
-
-- **Human URL:** [https://docs.iota.org/developer/references/iota-api](https://docs.iota.org/developer/references/iota-api)
-- **Base URL:** `https://graphql.mainnet.iota.cafe`
-
-#### Tags
-
-- GraphQL
-- Queries
-- Objects
-- Transactions
-- Blockchain
-
-#### Properties
-
-- [Documentation](https://docs.iota.org/developer/references/iota-api)
-- [API Reference](https://graphql.mainnet.iota.cafe)
-- [Graph Q L](graphql/iota-graphql.md)
-
-### IOTA EVM JSON-RPC API
-
-Ethereum-compatible JSON-RPC API for the IOTA EVM Layer 2. Supports standard Ethereum JSON-RPC methods enabling Solidity smart contract deployment and interaction via EVM-compatible tooling including Hardhat, Foundry, and MetaMask. Provides HTTP and WebSocket transports for state queries and event subscriptions. The IOTA EVM is a WASP-based smart contract chain with an Ethereum-compatible interface for cross-chain interoperability and developer migration from EVM ecosystems.
-
-- **Human URL:** [https://docs.iota.org/developer/iota-evm/references/json-rpc-spec](https://docs.iota.org/developer/iota-evm/references/json-rpc-spec)
-- **Base URL:** `https://json-rpc.evm.testnet.iotaledger.net`
-
-#### Tags
-
-- EVM
-- Ethereum
-- Smart Contracts
-- L2
-- Blockchain
-
-#### Properties
-
-- [Documentation](https://docs.iota.org/developer/iota-evm/references/json-rpc-spec)
-- [API Reference](https://docs.iota.org/developer/iota-evm/references/openapi/ethereum-json-rpc)
-- [OpenAPI](openapi/iota-evm-wasp-openapi.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.iota.org/)
-- [Portal](https://docs.iota.org/)
 - [Documentation](https://docs.iota.org/)
-- [Getting Started](https://docs.iota.org/developer/getting-started)
-- [API Reference](https://docs.iota.org/iota-api-ref)
-- [Authentication](https://docs.iota.org/developer/network-overview)
-- [SDK](https://docs.iota.org/developer/ts-sdk/)
-- [SDK](https://github.com/iotaledger/iota/tree/develop/crates/iota-sdk)
-- [SDK](https://docs.iota.org/developer/references/iota-api)
-- [C L I](https://docs.iota.org/developer/getting-started)
-- [GitHub Organization](https://github.com/iotaledger)
-- [GitHub Repository](https://github.com/iotaledger/iota)
-- [Explorer](https://explorer.iota.org/)
-- [Faucet](https://faucet.testnet.iota.cafe)
+- [Getting started](https://docs.iota.org/developer/getting-started)
+- [API reference](https://docs.iota.org/iota-api-ref)
 - [Blog](https://blog.iota.org/)
-- [Network Overview](https://docs.iota.org/developer/network-overview)
-- [Terms of Service](https://www.iota.org/privacy-policy)
-- [Privacy Policy](https://www.iota.org/privacy-policy)
-- [Rate Limits](rate-limits/iota-rate-limits.yml)
-- [Plans](plans/iota-plans.yml)
-- [Fin Ops](finops/iota-finops.yml)
-- [OpenAPI](openapi/iota-jsonrpc-openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/iota-evm-wasp-openapi.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Open R P C](openapi/iota-openrpc.json)
-- [J S O N L D Context](json-ld/iota-context.jsonld)
-- [Use Cases](undefined)
-- [Features](undefined)
-- [Graph Q L](graphql/iota-graphql.md)
+- [Terms of service](https://www.iota.org/privacy-policy)
+- [Privacy policy](https://www.iota.org/privacy-policy)
+- [GitHub](https://github.com/iotaledger)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 45.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 53.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 76.2 |
+| Access clarity | 7.9 |
+
+**Agent readiness 30.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | verified |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/iota/](https://apis.io/providers/iota/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for IOTA: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/iota/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
